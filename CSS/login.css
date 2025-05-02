@@ -10,8 +10,7 @@ body {
   }
 
   .left {
-    flex: 1;
-    background-color: #01131d;
+    /* flex: 1; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,12 +18,14 @@ body {
   }
 
   .left img {
-    width: 70%;
-    max-width: 725px;
-    height: 725px;
-    width: 800px !important; 
+    height: 100%;
+    max-height: 90vh; 
+    width: auto;
     border-radius: 10px;
+    object-fit: contain;
+    border:3px solid #000000;
   }
+  
 
   .right {
     flex: 1;

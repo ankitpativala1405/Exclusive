@@ -12,6 +12,7 @@ const Navbar=()=>{
         <a href="#">Contact</a>
         <a href="#">About</a>
         <a href="/PAGES/signup.html">Sign Up</a>
+        <a href="/PAGES/login.html">Login</a>
       </div>
 
       <div class="search-container">
