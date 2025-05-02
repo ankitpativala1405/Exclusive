@@ -1,0 +1,70 @@
+body {
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+.checkout-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.billing-form {
+  flex: 1;
+  min-width: 300px;
+}
+.order-summary {
+  flex: 1;
+  min-width: 300px;
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+.order-container {
+    width: 300px;
+  }
+
+  .order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .item-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .item-info img {
+    margin-right: 10px;
+  }
+.order-item img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.coupon-section {
+  display: flex;
+  margin-top: 15px;
+}
+.coupon-section input {
+  flex: 1;
+  margin-right: 10px;
+}
+.btn-red {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+}
+.btn-red:hover {
+  background-color: #c0392b;
+}
+.form-check-input {
+  margin-right: 10px;
+}
+.payment-option img {
+  width: 36px;
+  margin-left: 5px;
+}
