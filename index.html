@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./CSS/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+ 
+    <div id="navbar" ></div>
+
+    <main>
+      <div class="container">
+        <div class="sidebar">
+          <ul>
+            <li>Women's Fashion</li>
+            <li>Men's Fashion</li>
+            <li>Electronics</li>
+            <li>Home & Lifestyle</li>
+            <li>Medicine</li>
+            <li>Sports & Outdoor</li>
+            <li>Baby's & Toys</li>
+            <li>Groceries & Pets</li>
+            <li>Health & Beauty</li>
+          </ul>
+        </div>
+
+        <div class="main-slider">
+          <div
+          class="slide active"
+          style="background-image: url('./images/carousel-1.jpg');"
+        >
+          <div class="slider-content">
+            <p>Stylish Blazer</p>
+            <h2>Up to 10% off Voucher</h2>
+            <a href="#">Shop Now →</a>
+          </div>
+        </div>
+        
+
+          <div
+            class="slide"
+            style="background-image: url('./images/carousel-3.jpg');"
+          >
+            <div class="slider-content">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+                alt="Apple"
+                width="40"
+              />
+              <p>Great Children Wear</p>
+              <h2>Now from ₹699</h2>
+              <a href="#">Shop Now →</a>
+            </div>
+          </div>
+          <div
+          class="slide"
+          style="background-image: url('./images/offer-1.jpg');"
+        >
+          <div class="slider-content">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+              alt="Apple"
+              width="40"
+            />
+            <p>Beautyfull Cosmetic Product</p>
+            <h2>Now from ₹499</h2>
+            <a href="#">Shop Now →</a>
+          </div>
+        </div>
+
+          <div class="dots">
+            <span class="dot active" onclick="setSlide(0)"></span>
+            <span class="dot" onclick="setSlide(1)"></span>
+            <span class="dot" onclick="setSlide(2)"></span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </body>
+  <script
+    src="https://kit.fontawesome.com/a076d05399.js"
+    crossorigin="anonymous"
+  ></script>
+  <script>let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.display = i === index ? "flex" : "none";
+        dots[i].classList.toggle("active", i === index);
+      });
+      currentSlide = index;
+    }
+    
+    function setSlide(index) {
+      showSlide(index);
+    }
+    
+    showSlide(currentSlide);</script>
+  <script src="./javascript/index.js" type="module"></script>
+
+
+  
+</html>
