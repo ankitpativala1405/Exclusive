@@ -23,8 +23,16 @@ const Navbar = () => {
         />
         <!-- <i class="fas fa-search"></i> -->
         <div class="icons">
-         <a href=""> <i class="far fa-heart" style="color: black; margin-top: 10px;"></i></a>
-        <a href="/PAGES/cart.html"><i class="fas fa-shopping-cart" style="color: black; margin-top: 10px;" ></i></a>
+         <a href="/PAGES/wishlist.html" style="text-decoration: none; color: black;">
+            <i class="far fa-heart" style="margin-top: 10px;"></i>
+              <span id="wishlist-count">(0)</span>
+         </a>
+
+         <a href="/PAGES/cart.html" style="text-decoration: none; color: black; display: inline-flex; align-items: center;">
+            <i class="fas fa-shopping-cart" style="margin-top: 5px;"></i>
+              <span id="cart-count" style="margin-left: 5px;">(0)</span>
+         </a>
+
         <div class="profile-menu">
         <div class="profile-icon">
              <i class="fas fa-user" style="margin-left: 2.5px;"></i>
