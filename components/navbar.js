@@ -1,6 +1,5 @@
-
-const Navbar=()=>{
-    return`   <header>
+const Navbar = () => {
+  return `   <header>
       Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!!
       <span>ShopNow</span>
     </header>
@@ -26,9 +25,19 @@ const Navbar=()=>{
         <div class="icons">
          <a href=""> <i class="far fa-heart" style="color: black;"></i></a>
         <a href="/PAGES/cart.html"><i class="fas fa-shopping-cart" style="color: black;" ></i></a>
+        <div class="profile-menu">
+  <div class="profile-icon"><i class="fas fa-user"></i></div>
+  <div class="dropdown">
+    <a href="#"><i class="fas fa-user-cog"></i> Manage My Account</a>
+    <a href="#"><i class="fas fa-box"></i> My Order</a>
+    <a href="#"><i class="fas fa-times-circle"></i> My Cancellations</a>
+    <a href="#"><i class="fas fa-star"></i> My Reviews</a>
+    <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+</div>
         </div>
       </div>
-    </nav>`
-}
+    </nav>`;
+};
 
 export default Navbar;
