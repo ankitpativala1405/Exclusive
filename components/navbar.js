@@ -23,8 +23,8 @@ const Navbar=()=>{
         />
         <!-- <i class="fas fa-search"></i> -->
         <div class="icons">
-          <i class="far fa-heart"></i>
-          <i class="fas fa-shopping-cart"></i>
+         <a href=""> <i class="far fa-heart" style="color: black;"></i></a>
+        <a href="/PAGES/cart.html"><i class="fas fa-shopping-cart" style="color: black;" ></i></a>
         </div>
       </div>
     </nav>`
