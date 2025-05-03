@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Shopping Cart</title>
@@ -8,8 +9,9 @@
   <link rel="stylesheet" href="/css/cart.css">
 
 </head>
+
 <body>
-    <div id="navbar"></div>
+  <div id="navbar"></div>
 
 
   <div class="cart-container">
@@ -26,19 +28,18 @@
         <tr>
           <td>
             <div class="product-info">
-              <i class="fas fa-times remove-icon"></i>
-              <img src="https://via.placeholder.com/60" alt="LCD Monitor">
-              <span>LCD Monitor</span>
+              <img src="https://via.placeholder.com/60" alt="HI Gamepad">
+              <span>HI Gamepad</span>
             </div>
           </td>
-          <td>$650</td>
+          <td>$550</td>
           <td>
             <select>
               <option>01</option>
-              <option>02</option>
+              <option selected>02</option>
             </select>
           </td>
-          <td>$650</td>
+          <td>$1100</td>
         </tr>
         <tr>
           <td>
@@ -65,9 +66,9 @@
     </div>
 
     <div class="coupon-box">
-        <input type="text" placeholder="Coupon Code">
-        <button>Apply Coupon</button>
-      </div>
+      <input type="text" placeholder="Coupon Code">
+      <button>Apply Coupon</button>
+    </div>
     <div class="coupon-checkout-wrapper">
       <div class="cart-summary">
         <h3>Cart Total</h3>
@@ -83,4 +84,5 @@
 
 </body>
 <script type="module" src="/javascript/cart.js"></script>
+
 </html>

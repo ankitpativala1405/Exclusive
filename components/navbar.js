@@ -23,19 +23,21 @@ const Navbar = () => {
         />
         <!-- <i class="fas fa-search"></i> -->
         <div class="icons">
-         <a href=""> <i class="far fa-heart" style="color: black;"></i></a>
-        <a href="/PAGES/cart.html"><i class="fas fa-shopping-cart" style="color: black;" ></i></a>
+         <a href=""> <i class="far fa-heart" style="color: black; margin-top: 10px;"></i></a>
+        <a href="/PAGES/cart.html"><i class="fas fa-shopping-cart" style="color: black; margin-top: 10px;" ></i></a>
         <div class="profile-menu">
-  <div class="profile-icon"><i class="fas fa-user"></i></div>
-  <div class="dropdown">
-    <a href="#"><i class="fas fa-user-cog"></i> Manage My Account</a>
-    <a href="#"><i class="fas fa-box"></i> My Order</a>
-    <a href="#"><i class="fas fa-times-circle"></i> My Cancellations</a>
-    <a href="#"><i class="fas fa-star"></i> My Reviews</a>
-    <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
-  </div>
-</div>
+        <div class="profile-icon">
+             <i class="fas fa-user" style="margin-left: 2.5px;"></i>
         </div>
+        <div class="dropdown">
+          <a href="/PAGES/account.html"><i class="fas fa-user-cog"></i> Manage My Account</a>
+          <a href="#"><i class="fas fa-box"></i> My Order</a>
+          <a href="#"><i class="fas fa-times-circle"></i> My Cancellations</a>
+          <a href="#"><i class="fas fa-star"></i> My Reviews</a>
+          <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+      </div>
+      </div>
       </div>
     </nav>`;
 };
