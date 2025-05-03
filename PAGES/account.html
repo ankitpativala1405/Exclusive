@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Account - Edit Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+  <link rel="stylesheet" href="/CSS/index.css">
+  <link rel="stylesheet" href="/CSS/account.css">
+
+</head>
+<body>
+    <div id="navbar"></div>
+
+  <div class="wrapper">
+    <!-- Top bar -->
+    <div class="top-bar">
+      <!-- <div class="breadcrumb">
+        Home / <span class="highlight">My Account</span>
+      </div> -->
+      <div class="welcome">
+        Welcome! <span>Md Rimel</span>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h4>Manage My Account</h4>
+        <ul>
+          <li><a href="#" class="active">My Profile</a></li>
+          <li><a href="#">Address Book</a></li>
+          <li><a href="#">My Payment Options</a></li>
+        </ul>
+
+        <h4>My Orders</h4>
+        <ul>
+          <li><a href="#">My Returns</a></li>
+          <li><a href="#">My Cancellations</a></li>
+        </ul>
+
+        <h4>My Wishlist</h4>
+        <ul>
+          <li><a href="#">Saved Items</a></li>
+        </ul>
+      </div>
+
+      <!-- Form -->
+      <div class="main-content">
+        <h2>Edit Your Profile</h2>
+        <form>
+          <div>
+            <label>First Name</label>
+            <input type="text" placeholder="Enter Your First Name...">
+          </div>
+          <div>
+            <label>Last Name</label>
+            <input type="text" placeholder="Enter Your Last Name...">
+          </div>
+          <div>
+            <label>Email</label>
+            <input type="email" placeholder="Enter Your Email Here...">
+          </div>
+          <div>
+            <label>Address</label>
+            <input type="text" placeholder="Enter Your Address Here...">
+          </div>
+          <div class="full-width">
+            <label>Current Password</label>
+            <input type="password" placeholder="Enter Your Password Current Password">
+          </div>
+          <div class="full-width">
+            <label>New Password</label>
+            <input type="password" placeholder="Enter Your Password New Password">
+          </div>
+          <div class="full-width">
+            <label>Confirm New Password</label>
+            <input type="password" placeholder="Enter Your Password Retype New Password">
+          </div>
+          <div class="form-actions">
+            <button type="button" class="cancel-btn">Cancel</button>
+            <button type="submit" class="save-btn">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="footer"></div>
+</body>
+<script type="module" src="/javascript/account.js"></script>
+</html>

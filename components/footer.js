@@ -21,7 +21,7 @@ const Footer = () => {
     <div class="account-section" style="width: 20%;">
       <h4>Account</h4>
       <ul style="list-style-type: none; padding: 0; ">
-        <li style="margin-top: 10px;">My Account</li>
+        <li style="margin-top: 10px;"><a href="/PAGES/account.html" style="color: white; text-decoration: none;">My Account</a></li>
         <li style="margin-top: 5px;">Register</li>
         <li style="margin-top: 5px;">Login</li>
         <li style="margin-top: 5px;">Cart</li>
