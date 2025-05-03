@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="/CSS/index.css">
+  <link rel="stylesheet" href="/css/cart.css">
+
+</head>
+<body>
+    <div id="navbar"></div>
+
+
+  <div class="cart-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="product-info">
+              <i class="fas fa-times remove-icon"></i>
+              <img src="https://via.placeholder.com/60" alt="LCD Monitor">
+              <span>LCD Monitor</span>
+            </div>
+          </td>
+          <td>$650</td>
+          <td>
+            <select>
+              <option>01</option>
+              <option>02</option>
+            </select>
+          </td>
+          <td>$650</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-info">
+              <img src="https://via.placeholder.com/60" alt="HI Gamepad">
+              <span>HI Gamepad</span>
+            </div>
+          </td>
+          <td>$550</td>
+          <td>
+            <select>
+              <option>01</option>
+              <option selected>02</option>
+            </select>
+          </td>
+          <td>$1100</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cart-actions">
+      <button>Return To Shop</button>
+      <button>Update Cart</button>
+    </div>
+
+    <div class="coupon-box">
+        <input type="text" placeholder="Coupon Code">
+        <button>Apply Coupon</button>
+      </div>
+    <div class="coupon-checkout-wrapper">
+      <div class="cart-summary">
+        <h3>Cart Total</h3>
+        <div><span>Subtotal:</span><span>$1750</span></div>
+        <div><span>Shipping:</span><span>Free</span></div>
+        <div><strong>Total:</strong><strong>$1750</strong></div>
+        <button class="checkout-btn">Proceed to checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer"></div>
+
+</body>
+<script type="module" src="/javascript/cart.js"></script>
+</html>

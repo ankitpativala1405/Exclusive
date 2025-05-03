@@ -9,7 +9,7 @@ const Navbar=()=>{
 
       <div class="nav-links">
         <a href="/index.html" class="active">Home</a>
-        <a href="#">Contact</a>
+        <a href="/PAGES/contact.html">Contact</a>
         <a href="#">About</a>
         <a href="/PAGES/signup.html">Sign Up</a>
         <a href="/PAGES/login.html">Login</a>
