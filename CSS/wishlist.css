@@ -102,3 +102,10 @@
     font-weight: 400;
     font-size: 0.9rem;
   }
+
+  #companypolicy{
+    border: 1px solid #b1adad;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 25px;
+  }
