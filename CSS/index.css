@@ -261,3 +261,14 @@ header {
     line-height: 30px;
     color: white;
   }
+
+  #heading{
+    display: flex;
+  }
+
+  #heading button{
+    width: 20px;
+    border: none;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
