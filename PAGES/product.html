@@ -1,76 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Explore Our Products</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="/CSS/product.css">
-</head>
-<body class="bg-white font-sans text-gray-800 p-8">
-  <div class="max-w-7xl mx-auto">
-    <div class="mb-6">
-      <p class="text-red-500 font-semibold">Our Products</p>
-      <h1 class="text-3xl font-bold">Explore Our Products</h1>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        
-      <div class="border p-4 rounded-lg shadow-sm text-center">
-        <div class="relative inline-block mb-4">
-          <img src="https://i.pinimg.com/736x/fe/fa/84/fefa8431d3e4f9854aa31f625403d93b.jpg" alt="Dog Food" class="images">
-          <div id="discount" class="absolute top-2 left-2">-30%</div>
-        </div>
-        <p class="font-medium">Breed Dry Dog Food</p>
-        <div class="text-yellow-400">★★★★☆ <span class="text-gray-600 text-sm">(35)</span></div>
-        <p class="text-red-500 font-semibold mt-2">₹100 <span class="old">₹360</span></p>
-        <button class="bg-black text-white px-4 py-1 mt-2 rounded">Add To Cart</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore Our Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/CSS/product.css" />
+  </head>
+  <body class="bg-white font-sans text-gray-800 p-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-6">
+        <p class="text-red-500 font-semibold">Our Products</p>
+        <h1 class="text-3xl font-bold">Explore Our Products</h1>
       </div>
-      
 
-      <div class="border p-4 rounded-lg shadow-sm text-center">
-        <div class="relative inline-block mb-4">
-          <img src="https://x.imastudent.com/content/0016823_canon-eos-90d-dslr-camera-with-18-135mm-lens_500.jpeg" alt="Camera" class="images">
-          <div id="discount" class="absolute top-2 left-2">-30%</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="border p-4 rounded-lg shadow-sm text-center">
+          <div class="relative inline-block mb-4">
+            <img
+              src="https://i.pinimg.com/736x/fe/fa/84/fefa8431d3e4f9854aa31f625403d93b.jpg"
+              alt="Dog Food"
+              class="images"
+            />
+            <div id="discount" class="absolute top-2 left-2">-30%</div>
+
+            <!-- Icons container -->
+            <div class="absolute top-2 right-2 space-x-2 flex">
+              <button class="bg-white p-1 rounded-full shadow">
+                <i class="fa-regular fa-heart text-gray-700"></i>
+              </button>
+              <button class="bg-white p-1 rounded-full shadow">
+                <i class="fa-regular fa-eye text-gray-700"></i>
+              </button>
+            </div>
+          </div>
+          <p class="font-medium">Breed Dry Dog Food</p>
+          <div class="text-yellow-400">
+            ★★★★☆ <span class="text-gray-600 text-sm">(35)</span>
+          </div>
+          <p class="text-red-500 font-semibold mt-2">
+            ₹100 <span class="old">₹360</span>
+          </p>
+          <button class="bg-black text-white px-4 py-1 mt-2 rounded">
+            Add To Cart
+          </button>
         </div>
-        <p class="font-medium">CANON EOS DSLR Camera</p>
-        <div class="text-yellow-400">★★★★★ <span class="text-gray-600 text-sm">(95)</span></div>
-        <p class="text-red-500 font-semibold mt-2">₹360 <span class="old">₹840</span></p>
-        <button class="bg-black text-white px-4 py-1 mt-2 rounded">Add To Cart</button>
-      </div>
-      
 
-      <div class="border p-4 rounded-lg shadow-sm text-center">
-        <div class="relative inline-block mb-4">
-          <img src="https://i.pinimg.com/736x/ae/79/4f/ae794f30d446a6a9724ef57c413129bc.jpg" alt="Laptop" class="images">
-          <div id="discount" class="absolute top-2 left-2">-30%</div>
+        <div class="border p-4 rounded-lg shadow-sm text-center">
+          <div class="relative inline-block mb-4">
+            <img
+              src="https://x.imastudent.com/content/0016823_canon-eos-90d-dslr-camera-with-18-135mm-lens_500.jpeg"
+              alt="Camera"
+              class="images"
+            />
+            <div id="discount" class="absolute top-2 left-2">-30%</div>
+
+            <!-- Icons -->
+            <div class="absolute top-2 right-2 flex space-x-2">
+              <button
+                class="bg-white p-1 rounded-full shadow hover:bg-gray-100 transition"
+              >
+                <i class="fa-regular fa-heart text-gray-700"></i>
+              </button>
+              <button
+                class="bg-white p-1 rounded-full shadow hover:bg-gray-100 transition"
+              >
+                <i class="fa-regular fa-eye text-gray-700"></i>
+              </button>
+            </div>
+          </div>
+          <p class="font-medium">CANON EOS DSLR Camera</p>
+          <div class="text-yellow-400">
+            ★★★★★ <span class="text-gray-600 text-sm">(95)</span>
+          </div>
+          <p class="text-red-500 font-semibold mt-2">
+            ₹360 <span class="old">₹840</span>
+          </p>
+          <button class="bg-black text-white px-4 py-1 mt-2 rounded">
+            Add To Cart
+          </button>
         </div>
-        <p class="font-medium">ASUS FHD Gaming Laptop</p>
-        <div class="text-yellow-400">★★★★★ <span class="text-gray-600 text-sm">(325)</span></div>
-        <p class="text-red-500 font-semibold mt-2">₹700 <span class="old">₹1160</span></p>
-        <button class="bg-black text-white px-4 py-1 mt-2 rounded">Add To Cart</button>
-      </div>
-      
 
-      <div class="border p-4 rounded-lg shadow-sm text-center">
-        <div class="relative inline-block">
-          <img src="https://i.pinimg.com/736x/1b/84/4b/1b844bdd809019128c2a0953a729c673.jpg" alt="Curology Set" class="mx-auto mb-4 images">
-          <div id="discount" class="absolute top-2 left-2">-30%</div>
+        <div class="border p-4 rounded-lg shadow-sm text-center">
+          <div class="relative inline-block mb-4">
+            <img
+              src="https://i.pinimg.com/736x/ae/79/4f/ae794f30d446a6a9724ef57c413129bc.jpg"
+              alt="Laptop"
+              class="images"
+            />
+            <div id="discount" class="absolute top-2 left-2">-30%</div>
+
+            <!-- Icons -->
+            <div class="absolute top-2 right-2 flex space-x-2">
+              <button
+                class="bg-white p-1 rounded-full shadow hover:bg-gray-100 transition"
+              >
+                <i class="fa-regular fa-heart text-gray-700"></i>
+              </button>
+              <button
+                class="bg-white p-1 rounded-full shadow hover:bg-gray-100 transition"
+              >
+                <i class="fa-regular fa-eye text-gray-700"></i>
+              </button>
+            </div>
+          </div>
+          <p class="font-medium">ASUS FHD Gaming Laptop</p>
+          <div class="text-yellow-400">
+            ★★★★★ <span class="text-gray-600 text-sm">(325)</span>
+          </div>
+          <p class="text-red-500 font-semibold mt-2">
+            ₹700 <span class="old">₹1160</span>
+          </p>
+          <button class="bg-black text-white px-4 py-1 mt-2 rounded">
+            Add To Cart
+          </button>
         </div>
-        <p class="font-medium">Curology Product Set</p>
-        <div class="text-yellow-400">★★★★☆ <span class="text-gray-600 text-sm">(145)</span></div>
-        <p class="text-red-500 font-semibold mt-2">₹500 <span class="old">₹860</span></p>
-        <button class="bg-black text-white px-4 py-1 mt-2 rounded">Add To Cart</button>
+
+        <div class="border p-4 rounded-lg shadow-sm text-center">
+          <div class="relative inline-block mb-4">
+            <img
+              src="https://i.pinimg.com/736x/1b/84/4b/1b844bdd809019128c2a0953a729c673.jpg"
+              alt="Curology Set"
+              class="images mx-auto"
+            />
+            <div id="discount" class="absolute top-2 left-2">-30%</div>
+
+            <!-- Wishlist and View Icons -->
+            <div class="absolute top-2 right-2 flex space-x-2">
+              <button
+                class="bg-white p-1 rounded-full shadow hover:bg-gray-100 transition"
+              >
+                <i class="fa-regular fa-heart text-gray-700"></i>
+              </button>
+              <button
+                class="bg-white p-1 rounded-full shadow hover:bg-gray-100 transition"
+              >
+                <i class="fa-regular fa-eye text-gray-700"></i>
+              </button>
+            </div>
+          </div>
+
+          <p class="font-medium">Curology Product Set</p>
+          <div class="text-yellow-400">
+            ★★★★☆ <span class="text-gray-600 text-sm">(145)</span>
+          </div>
+          <p class="text-red-500 font-semibold mt-2">
+            ₹500 <span class="old">₹860</span>
+          </p>
+          <button class="bg-black text-white px-4 py-1 mt-2 rounded">
+            Add To Cart
+          </button>
+        </div>
       </div>
-      
 
-    </div>
-
-    <!-- <div class="text-center mt-10">
+      <!-- <div class="text-center mt-10">
       <button class="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600">
         View All Products
       </button>
     </div> -->
-  </div>
-</body>
+    </div>
+  </body>
 </html>
