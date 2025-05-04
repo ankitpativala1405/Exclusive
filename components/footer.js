@@ -26,7 +26,7 @@ const Footer = () => {
         <li style="margin-top: 5px;"><a href="/PAGES/login.html" style="color: white; text-decoration: none;">Login</a></li>
         <li style="margin-top: 5px;"><a href="/PAGES/cart.html" style="color: white; text-decoration: none;">Cart</a></li>
         <li style="margin-top: 5px;"><a href="/PAGES/wishlist.html" style="color: white; text-decoration: none;">Wishlist</a></li>
-        <li style="margin-top: 5px;">Shop</li>
+        <li style="margin-top: 5px;"><a href="/PAGES/product.html" style="color: white; text-decoration: none;">Shop</a></li>
       </ul>
     </div>
     

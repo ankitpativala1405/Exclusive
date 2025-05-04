@@ -8,7 +8,7 @@ const Navbar = () => {
 
       <div class="nav-links">
         <a href="/index.html" class="active" >Home</a>
-        <a href="#">Product</a>
+        <a href="/PAGES/product.html">Product</a>
         <a href="/PAGES/contact.html">Contact</a>
         <a href="/PAGES/about.html">About</a>
         <a href="/PAGES/signup.html">Sign Up</a>
