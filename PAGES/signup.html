@@ -21,13 +21,15 @@
             <div class="right">
               <h2>Create an account</h2>
               <p>Enter your details below</p>
-              <div class="form">
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email " />
-                <input type="email" placeholder="Phone Number " />
-                <input type="password" placeholder="Password" />
-                <button>Create Account</button>
-              </div>
+              <form class="form" action="#" id="signupform">
+                <input type="text" name="name" placeholder="Name" id="name" required />
+                <input type="email" name="email" placeholder="Email" id="email" required />
+                <input type="tel" name="phone" placeholder="Phone Number" id="number" required />
+                <input type="password" name="password" placeholder="Password" id="password" required />
+                <button type="submit">Create Account</button>
+                 <!-- <input type="submit"> -->
+              </form>
+              
               <div class="google-signup">
                 <img src="https://i.pinimg.com/736x/6d/1b/fc/6d1bfc75070a8740ddc1144ab8464d37.jpg" width="20" style="margin-right: 10px;"> Sign up with Google
               </div>
