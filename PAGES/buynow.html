@@ -57,7 +57,7 @@
             <img src="https://via.placeholder.com/40" alt="LCD Monitor" />
             <span>LCD Monitor</span>
           </div>
-          <span>$650</span>
+          <span>₹650</span>
         </div>
       
         <div class="order-item">
@@ -65,14 +65,14 @@
             <img src="https://via.placeholder.com/40" alt="Gamepad" />
             <span>H1 Gamepad</span>
           </div>
-          <span>$1100</span>
+          <span>₹1100</span>
         </div>
       </div>
 
     <hr>
     <div class="order-item">
       <span>Subtotal:</span>
-      <span id="subtotal">$1750</span>
+      <span id="subtotal">₹1750</span>
     </div>
     <div class="order-item">
       <span>Shipping:</span>
@@ -80,7 +80,7 @@
     </div>
     <div class="order-item font-weight-bold">
       <span>Total:</span>
-      <span id="total">$1750</span>
+      <span id="total">₹1750</span>
     </div>
 
     <hr>
@@ -121,13 +121,13 @@
 
     if (code === "save10") {
       discount = 10;
-      alert("Coupon Applied: You saved $10!");
+      alert("Coupon Applied: You saved ₹10!");
     } else {
       alert("Invalid Coupon Code.");
     }
 
     const newTotal = subtotal - discount;
-    document.getElementById("total").innerText = "$" + newTotal;
+    document.getElementById("total").innerText = "₹" + newTotal;
   }
 </script>
 
