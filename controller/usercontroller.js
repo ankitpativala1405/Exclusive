@@ -8,7 +8,8 @@ const UserController = {
   post: async (req, res) => {
     try {
       let user = await User.create(req);
-      res.status(201).send(user);
+      let data= await user.save()
+      res.status(201).json(data);
     } catch (error) {
       res.send(error);
     }

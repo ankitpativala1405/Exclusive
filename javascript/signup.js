@@ -14,14 +14,11 @@ document.getElementById("signupform").addEventListener("submit", async (e) => {
     email: GetValue("email"),
     number: GetValue("number"),
     password: GetValue("password"),
-  };
+  }; 
   console.log(user);
 
-  const request = UserMethod.create(user);
-
-  const response = await request.json();
-  console.log(response);
-//   alert(response.message);
-
-alert("account created")
+  const req= await UserMethod.create(user)
+  const res=await req.json()
+  console.log("User created:", res);
+  alert("Signup successful!");
 });
