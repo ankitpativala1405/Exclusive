@@ -16,7 +16,6 @@ document.getElementById("signupform").addEventListener("submit", async (e) => {
     password: GetValue("password"),
   }; 
   console.log(user);
-  console.log("Sending user:", user)
 
   const req= await UserMethod.create(user)
   const res=await req.json()
