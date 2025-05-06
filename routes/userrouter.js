@@ -5,7 +5,6 @@ const router=Router()
 router.get("/",UserController.getAll)
 router.post("/",UserController.post)
 
-
 module.exports=router
 
 

@@ -1,10 +1,9 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose");
+require("dotenv").config();
 
+const DbConnect = async () => {
+  await mongoose.connect(process.env.DB_URL);
+  console.log(`Mongoose connected ....... `);
+};
 
-const DbConnect=async()=>{
-    await mongoose.connect("mongodb+srv://Exclusive:Exclusive@exclusive.rqiveuf.mongodb.net/?retryWrites=true&w=majority&appName=Exclusive")
-    console.log(`Mongoose connected ..... `);;
-    
-}
-
-module.exports=DbConnect
+module.exports = DbConnect;

@@ -3,51 +3,30 @@ import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 import { GetValue } from "../public/helper.js";
 
-document.getElementById("navbar").innerHTML=Navbar()
-document.getElementById("footer").innerHTML=Footer()
+document.getElementById("navbar").innerHTML = Navbar();
+document.getElementById("footer").innerHTML = Footer();
 
-document.getElementById("loginform").addEventListener("submit",async(e)=>{
-    e.preventDefault()
-    let user={
-        email:GetValue("email"),
-        password:GetValue("password")
-    }
+document.getElementById("loginform").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    console.log("user",user);
-    
-    islogin(user)
-    // const req=await UserMethod.GetAll()
-    // const res=await req.json()
+  const email = GetValue("email");
+  const password = GetValue("password");
 
+  const users = await UserMethod.emailExists(email);
 
-    // if(req[0])
-    // console.log("User logged:", req);
-    // alert("login successful!");
-    
-})
+  if (users.length === 0) {
+    alert("Email not found!");
+    return;
+  }
 
+  const user = users[0];
+  if (user.password === password) {
+    alert("Login successful!");
 
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
 
-const islogin = async (data) => {
-    
-    
-    let users = await UserMethod.emailExists(data.email);
-    console.log("users",users);
-
-
-  
-    // if (users.length === 0) {
-    //   alert("User Not Found .....");
-    //   return;
-    // } else {
-    //   if (users[0].password !== data.password) {
-    //     alert("Incorrect password.");
-    //     return;
-    //   } else {
-    //     alert("Logged in ... successfully!");
-        // localStorage.setItem("loggedin", true);
-        // localStorage.setItem("user", JSON.stringify(users[0]));
-        // window.open("../index.html", "_self");
-    //   }
-    // }
-  };
+    window.location.href = "/dashboard.html";
+  } else {
+    alert("Incorrect password!");
+  }
+});
