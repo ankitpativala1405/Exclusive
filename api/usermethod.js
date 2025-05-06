@@ -25,4 +25,6 @@ const UserMethod = {
   },
 };
 
-module.exports=UserMethod
+// module.exports=UserMethod
+export default UserMethod
+

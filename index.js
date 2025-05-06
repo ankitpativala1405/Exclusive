@@ -8,7 +8,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 4000;
 const router = require("./routes/userrouter");
 
-app.use("/api/user", router);
+app.use("/user", router);
 
 app.listen(PORT, () => {
   console.log(`start listning onport->${PORT}....`);
