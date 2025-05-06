@@ -21,12 +21,12 @@ const Footer = () => {
     <div class="account-section" style="width: 20%;">
       <h4>Account</h4>
       <ul style="list-style-type: none; padding: 0; ">
-        <li style="margin-top: 10px;"><a href="./PAGES/account.html" style="color: white; text-decoration: none;">My Account</a></li>
-        <li style="margin-top: 5px;"><a href="./PAGES/signup.html" style="color: white; text-decoration: none;">Register</a></li>
-        <li style="margin-top: 5px;"><a href="./PAGES/login.html" style="color: white; text-decoration: none;">Login</a></li>
-        <li style="margin-top: 5px;"><a href="./PAGES/cart.html" style="color: white; text-decoration: none;">Cart</a></li>
-        <li style="margin-top: 5px;"><a href="./PAGES/wishlist.html" style="color: white; text-decoration: none;">Wishlist</a></li>
-        <li style="margin-top: 5px;"><a href="./PAGES/product.html" style="color: white; text-decoration: none;">Shop</a></li>
+        <li style="margin-top: 10px;"><a href="/PAGES/account.html" style="color: white; text-decoration: none;">My Account</a></li>
+        <li style="margin-top: 5px;"><a href="/PAGES/signup.html" style="color: white; text-decoration: none;">Register</a></li>
+        <li style="margin-top: 5px;"><a href="/PAGES/login.html" style="color: white; text-decoration: none;">Login</a></li>
+        <li style="margin-top: 5px;"><a href="/PAGES/cart.html" style="color: white; text-decoration: none;">Cart</a></li>
+        <li style="margin-top: 5px;"><a href="/PAGES/wishlist.html" style="color: white; text-decoration: none;">Wishlist</a></li>
+        <li style="margin-top: 5px;"><a href="/PAGES/product.html" style="color: white; text-decoration: none;">Shop</a></li>
       </ul>
     </div>
     
@@ -36,7 +36,7 @@ const Footer = () => {
         <li style="margin-top: 10px;">Privacy Policy</li>
         <li style="margin-top: 5px;">Terms Of Use</li>
         <li style="margin-top: 5px;">FAQ</li>
-        <li style="margin-top: 5px;"><a href="./PAGES/contact.html" style="color: white; text-decoration: none;">Contact</a></li>
+        <li style="margin-top: 5px;"><a href="/PAGES/contact.html" style="color: white; text-decoration: none;">Contact</a></li>
       </ul>
     </div>
     
