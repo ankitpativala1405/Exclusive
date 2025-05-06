@@ -3,7 +3,7 @@ const CompanyPolicy=()=>{
     return`      <div class="features-section">
         <div class="feature">
           <div class="icon-circle">
-            <img src="/images/fast-removebg-preview.png" alt="Delivery Icon" />
+            <img src="./images/fast-removebg-preview.png" alt="Delivery Icon" />
           </div>
           <h3>FREE AND FAST DELIVERY</h3>
           <p>Free delivery for all orders over ₹999</p>
@@ -12,7 +12,7 @@ const CompanyPolicy=()=>{
         <div class="feature">
           <div class="icon-circle">
             <img
-              src="/images/unbeatable-removebg-preview.png"
+              src="./images/unbeatable-removebg-preview.png"
               alt="Delivery Icon"
             />
           </div>
@@ -23,7 +23,7 @@ const CompanyPolicy=()=>{
         <div class="feature">
           <div class="icon-circle">
             <img
-              src="/images/customer-removebg-preview.png"
+              src="./images/customer-removebg-preview.png"
               alt="Customer Service Icon"
             />
           </div>
@@ -34,7 +34,7 @@ const CompanyPolicy=()=>{
         <div class="feature">
           <div class="icon-circle">
             <img
-              src="/images/money-removebg-preview.png"
+              src="./images/money-removebg-preview.png"
               alt="Guarantee Icon"
             />
           </div>
@@ -43,7 +43,7 @@ const CompanyPolicy=()=>{
         </div>
         <div class="feature">
           <div class="icon-circle">
-            <img src="/images/trusted-removebg-preview.png" alt="Delivery Icon" />
+            <img src="./images/trusted-removebg-preview.png" alt="Delivery Icon" />
           </div>
           <h3>Trusted Wholesaler</h3>
           <p>Thousands of happy customers nationwide.</p>
