@@ -96,25 +96,26 @@ const UiMaker = () => {
 
         console.log(product);
         
-        const req=await CartMethod.Post(product)
-        const res=await req.json()
-        console.log("cart added:", res);
-        alert("cart added");
+        // const req=await CartMethod.Post(product)
+        // const res=await req.json()
+        // console.log("cart added:", res);
+        // alert("cart added");
  
-    // let CartItem=await CartMethod.GetAll();
+    let CartItem=await CartMethod.GetAll();
   
-    // let IsExist = CartItem.find((item) => item.id === product.id);
+    let IsExist = CartItem.find((item) => item.name === product.name);
 
-    // if (IsExist) {
-    //   let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
-    //   await CartMethod.Update(IsExist.id, upadteitem);
-    //   alert(`${product.name} has been increase in cart`);
-    // } else {
-    //   let CartAdd = { ...product, quantity: 1 };
-    //   await CartMethod.Post(CartAdd);
-    //   console.log("Product added to cart.");
-    //   alert(`${product.name} added to cart!`);
-    // }
+    if (IsExist) {
+      console.log(IsExist.quantity);
+      let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
+      await CartMethod.Update(IsExist.name, upadteitem);
+      alert(`${product.name} has been increase in cart`);
+    } else {
+      let CartAdd = { ...product, quantity: 1 };
+      await CartMethod.Post(CartAdd);
+      console.log("Product added to cart.");
+      alert(`${product.name} added to cart!`);
+    }
     });
 
     card.appendChild(imageWrapper);
