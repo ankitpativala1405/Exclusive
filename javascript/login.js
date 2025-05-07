@@ -32,13 +32,13 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
       document.getElementById("otpbox").style.display="flex"
       localStorage.setItem("loggedin", true);
       localStorage.setItem("user", JSON.stringify(user));
-      // window.location.href="/index.html"
+      window.location.href="/index.html"
     } else {
       alert("Incorrect password!");
     }
   }
 });
 
-const cliked=()=>{
-  VerifyOTP()
-}
+// const cliked=()=>{
+//   VerifyOTP()
+// }

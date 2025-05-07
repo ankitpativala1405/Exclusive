@@ -21,4 +21,9 @@ document.getElementById("signupform").addEventListener("submit", async (e) => {
   const res=await req.json()
   console.log("User created:", res);
   alert("Signup successful!");
-});
+}); 
+
+
+
+
+
