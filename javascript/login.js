@@ -11,22 +11,28 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
 
   const email = GetValue("email");
   const password = GetValue("password");
+  console.log(email);
+  console.log(password);
 
-  const users = await UserMethod.emailExists(email);
+  const users = await UserMethod.GetAll();
+  console.log("users", users);
 
-  if (users.length === 0) {
-    alert("Email not found!");
+  const user = users.find((data) => data.email === email);
+
+  console.log("user", user);
+  if (!user) {
+    alert("USer not exist");
     return;
-  }
-
-  const user = users[0];
-  if (user.password === password) {
-    alert("Login successful!");
-
-    localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-    window.location.href = "/dashboard.html";
   } else {
-    alert("Incorrect password!");
+    console.log(user.password);
+
+    if (user.password == password) {
+      alert("Login successful!");
+      localStorage.setItem("loggedin", true);
+      localStorage.setItem("user", JSON.stringify(user));
+      window.location.href="/index.html"
+    } else {
+      alert("Incorrect password!");
+    }
   }
 });
