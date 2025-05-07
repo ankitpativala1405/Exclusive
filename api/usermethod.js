@@ -23,21 +23,7 @@ const UserMethod = {
       body: JSON.stringify(data),
     });
   },
-  emailExists: async (email) => {
-    let requestemail = await fetch(`http://localhost:4000/user?email=${email}`);
-    let responseemail = await requestemail.json();
-    
-    // if(responseemail.length >0){
-    //   return responseemail;
-    // }
-
-    // let requestusername=await fetch(`http://localhost:4000/user?username=${email}`)
-    // let responceusername = await requestusername.json();
-    return responseemail
-    
-  }
 };
 
-// module.exports=UserMethod
 export default UserMethod
 

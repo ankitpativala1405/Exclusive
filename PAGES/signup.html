@@ -14,6 +14,7 @@
 />
     <link rel="stylesheet" href="/CSS/index.css">
     <link rel="stylesheet" href="/CSS/signup.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
     <div id="navbar"></div>
@@ -34,9 +35,25 @@
                  <!-- <input type="submit"> -->
               </form>
               
-              <div class="google-signup">
+              <!-- <div class="google-signup">
                 <img src="https://i.pinimg.com/736x/6d/1b/fc/6d1bfc75070a8740ddc1144ab8464d37.jpg" width="20" style="margin-right: 10px;"> Sign up with Google
-              </div>
+              </div> -->
+              <div id="g_id_onload"
+              data-client_id="YOUR_GOOGLE_CLIENT_ID"
+              data-context="signup"
+              data-ux_mode="popup"
+              data-callback="handleCredentialResponse"
+              data-auto_prompt="false">
+            </div>
+    
+            <div class="g_id_signin"
+              data-type="standard"
+              data-shape="rectangular"
+              data-theme="outline"
+              data-text="signup_with"
+              data-size="large"
+              data-logo_alignment="left">
+            </div>
               <div class="login-link">
                 Already have an account? <a href="/PAGES/login.html" style="color: #e63946; text-decoration: none">Log in</a>
               </div>
@@ -48,4 +65,15 @@
     
 </body>
 <script type="module" src="/javascript/signup.js"></script>
+<script>
+  function handleCredentialResponse(response) {
+    console.log("Google ID Token:", response.credential);
+    // Example: send this token to your backend for verification
+    // fetch('/verify-token', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ token: response.credential })
+    // });
+  }
+</script>
 </html>
