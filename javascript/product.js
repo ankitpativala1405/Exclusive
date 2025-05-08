@@ -13,26 +13,29 @@ let data = [
     name: "Breed Dry Dog Food",
     mrp: "₹360",
     price: "₹100",
+    sku:"E-DE-0405001"
   },
   {
     img: "https://x.imastudent.com/content/0016823_canon-eos-90d-dslr-camera-with-18-135mm-lens_500.jpeg",
     name: "CANON EOS DSLR Camera",
     mrp: "₹840",
     price: "₹360",
+     sku:"E-DE-0505001"
   },
   {
     img: "https://i.pinimg.com/736x/ae/79/4f/ae794f30d446a6a9724ef57c413129bc.jpg",
     name: "ASUS FHD Gaming Laptop",
     mrp: "₹1160",
     price: "₹700",
+     sku:"E-DE-0605001"
   },
   {
     img: "https://i.pinimg.com/736x/1b/84/4b/1b844bdd809019128c2a0953a729c673.jpg",
     name: "Curology Product Set",
     mrp: "₹860",
     price: "₹500",
+     sku:"E-DE-0705001"
   },
-  
 ];
 
 const UiMaker = () => {
@@ -81,6 +84,10 @@ const UiMaker = () => {
     name.className = "fw-medium";
     name.innerText = product.name;
 
+    const sku = document.createElement("p");
+    sku.className = "text-muted small mb-1";
+    sku.innerText = `SKU: ${product.sku}`;
+
     const rating = document.createElement("div");
     rating.className = "text-warning";
     rating.innerHTML = '★★★★☆ <span class="text-muted small">(35)</span>';
@@ -92,34 +99,37 @@ const UiMaker = () => {
     const addToCartBtn = document.createElement("button");
     addToCartBtn.className = "btn btn-dark btn-sm mt-2";
     addToCartBtn.innerText = "Add To Cart";
-    addToCartBtn.addEventListener("click", async() => {
+    addToCartBtn.addEventListener("click", async () => {
+      console.log(product);
 
-        console.log(product);
-        
-        // const req=await CartMethod.Post(product)
-        // const res=await req.json()
-        // console.log("cart added:", res);
-        // alert("cart added");
- 
-    let CartItem=await CartMethod.GetAll();
-  
-    let IsExist = CartItem.find((item) => item.name === product.name);
+      // const req=await CartMethod.Post(product)
+      // const res=await req.json()
+      // console.log("cart added:", res);
+      // alert("cart added");
 
-    if (IsExist) {
-      console.log(IsExist.quantity);
-      let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
-      await CartMethod.Update(IsExist.name, upadteitem);
-      alert(`${product.name} has been increase in cart`);
-    } else {
-      let CartAdd = { ...product, quantity: 1 };
-      await CartMethod.Post(CartAdd);
-      console.log("Product added to cart.");
-      alert(`${product.name} added to cart!`);
-    }
+      let CartItem = await CartMethod.GetAll();
+
+      let IsExist = CartItem.find((item) => item.name === product.name);
+
+      if (IsExist) {
+        console.log("quantity", IsExist.quantity);
+        console.log("sku", IsExist.sku);
+        console.log("already", { ...IsExist });
+
+        let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
+        await CartMethod.Update(IsExist.sku, upadteitem);
+        alert(`${product.name} has been increase in cart`);
+      } else {
+        let CartAdd = { ...product, quantity: 1 };
+        await CartMethod.Post(CartAdd);
+        console.log("Product added to cart.");
+        alert(`${product.name} added to cart!`);
+      }
     });
 
     card.appendChild(imageWrapper);
     card.appendChild(name);
+    card.appendChild(sku);
     card.appendChild(rating);
     card.appendChild(price);
     card.appendChild(addToCartBtn);
@@ -129,4 +139,3 @@ const UiMaker = () => {
   });
 };
 UiMaker();
-

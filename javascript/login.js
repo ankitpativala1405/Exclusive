@@ -28,11 +28,10 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
     console.log(user.password);
 
     if (user.password == password) {
-   
-      document.getElementById("otpbox").style.display="flex"
+      document.getElementById("otpbox").style.display = "flex";
       localStorage.setItem("loggedin", true);
       localStorage.setItem("user", JSON.stringify(user));
-      window.location.href="/index.html"
+      window.location.href = "/index.html";
     } else {
       alert("Incorrect password!");
     }

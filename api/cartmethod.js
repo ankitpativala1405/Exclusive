@@ -16,8 +16,8 @@ export const CartMethod = {
     });
     return request;
   },
-  Update: async (id, data) => {
-    await fetch(`${apiUrl.carts}/${id}`, {
+  Update: async (sku, data) => {
+    await fetch(`${apiUrl.carts}/${sku}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
