@@ -11,33 +11,34 @@ let data = [
   {
     img: "https://i.pinimg.com/736x/fe/fa/84/fefa8431d3e4f9854aa31f625403d93b.jpg",
     name: "Breed Dry Dog Food",
-    mrp: "₹360",
-    price: "₹100",
+    mrp: "360",
+    price: "100",
     sku: "E-DE-0405001",
   },
   {
     img: "https://x.imastudent.com/content/0016823_canon-eos-90d-dslr-camera-with-18-135mm-lens_500.jpeg",
     name: "CANON EOS DSLR Camera",
-    mrp: "₹840",
-    price: "₹360",
+    mrp: "840",
+    price: "360",
     sku: "E-DE-0505001",
   },
   {
     img: "https://i.pinimg.com/736x/ae/79/4f/ae794f30d446a6a9724ef57c413129bc.jpg",
     name: "ASUS FHD Gaming Laptop",
-    mrp: "₹1160",
-    price: "₹700",
+    mrp: "1160",
+    price: "700",
     sku: "E-DE-0605001",
   },
   {
     img: "https://i.pinimg.com/736x/1b/84/4b/1b844bdd809019128c2a0953a729c673.jpg",
     name: "Curology Product Set",
-    mrp: "₹860",
-    price: "₹500",
+    mrp: "860",
+    price: "500",
     sku: "E-DE-0705001",
   },
 ];
 
+let count=0
 const UiMaker = () => {
   document.getElementById("Product-List").innerHTML = "";
 
@@ -94,7 +95,7 @@ const UiMaker = () => {
 
     const price = document.createElement("p");
     price.className = "text-danger fw-semibold mt-2";
-    price.innerHTML = `${product.price} <span class="old">${product.mrp}</span>`;
+    price.innerHTML = `₹${product.price} <span class="old">₹${product.mrp}</span>`;
 
     const addToCartBtn = document.createElement("button");
     addToCartBtn.className = "btn btn-dark btn-sm mt-2";
@@ -131,6 +132,7 @@ const UiMaker = () => {
         await CartMethod.Post(CartAdd);
         console.log("Product added to cart.");
         alert(`${product.name} added to cart!`);
+        count++
       }
     });
 
@@ -146,3 +148,7 @@ const UiMaker = () => {
   });
 };
 UiMaker();
+
+
+
+
