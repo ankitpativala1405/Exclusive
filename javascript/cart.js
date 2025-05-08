@@ -8,6 +8,9 @@ document.getElementById("footer").innerHTML = Footer();
 let CartItem = await CartMethod.GetAll();
 console.log("CartItem", CartItem);
 
+
+let total=0;
+
 const UiMaker = () => {
 
   document.getElementById("tablebody").innerHTML = "";
@@ -49,10 +52,14 @@ const UiMaker = () => {
     let td4 = document.createElement("td");
     td4.textContent = `₹${subtotal}`;
     row.appendChild(td4);
+    total=total+subtotal
 
     document.getElementById("tablebody").appendChild(row);
 
   });
+
+  document.getElementById("Totalshow").innerHTML=`₹${total.toFixed(2)}`
+  document.getElementById("Grandtotal").innerHTML=`₹${(total+100).toFixed(2)}`
 };
 
 UiMaker()
