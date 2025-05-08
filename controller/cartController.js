@@ -2,7 +2,7 @@ const CartItem = require("../model/cart");
 
 
 const CartController = {
-  getAll: async (req, res) => {
+  getAll: async (_, res) => {
     let user = await CartItem.find();
     res.send(user);
   },

@@ -7,7 +7,7 @@ export const CartMethod = {
     return res;
   },
   Post: async (data) => {
-   let request= await fetch(apiUrl.carts, {
+    let request = await fetch(apiUrl.carts, {
       method: "POST",
       headers: {
         "content-type": "application/json",
