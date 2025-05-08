@@ -51,36 +51,36 @@
 
   <!-- Order Summary -->
   <div class="order-summary">
-    <div class="order-container">
-        <div class="order-item">
+    <div class="order-container" id="want-container">
+        <!-- <div class="order-item">
           <div class="item-info">
             <img src="https://via.placeholder.com/40" alt="LCD Monitor" />
             <span>LCD Monitor</span>
           </div>
           <span>₹650</span>
-        </div>
+        </div> -->
       
-        <div class="order-item">
+        <!-- <div class="order-item">
           <div class="item-info">
             <img src="https://via.placeholder.com/40" alt="Gamepad" />
             <span>H1 Gamepad</span>
           </div>
           <span>₹1100</span>
-        </div>
+        </div> -->
       </div>
 
     <hr>
     <div class="order-item">
       <span>Subtotal:</span>
-      <span id="subtotal">₹1750</span>
+      <span id="subtotal"></span>
     </div>
     <div class="order-item">
       <span>Shipping:</span>
-      <span>Free</span>
+      <span>₹ 100</span>
     </div>
     <div class="order-item font-weight-bold">
       <span>Total:</span>
-      <span id="total">₹1750</span>
+      <span id="total"></span>
     </div>
 
     <hr>
@@ -105,7 +105,7 @@
       <button class="btn btn-red" onclick="applyCoupon()">Apply Coupon</button>
     </div>
 
-    <button class="btn btn-red btn-block mt-4">Place Order</button>
+    <button class="btn btn-red btn-block mt-4" id="GetOrder">Place Order</button>
 
 
 

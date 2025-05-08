@@ -27,14 +27,28 @@ export const CartMethod = {
       body: JSON.stringify(data),
     });
   },
-  Delete: async (id) => {
-    await fetch(`${apiUrl.carts}/${id}`, {
-      method: "DELETE",
-    });
+  DeleteAll: async () => {
+    const allItems = await CartMethod.GetAll();
+    const deleteall = allItems.map(item => 
+      fetch(`${apiUrl.carts}/${item.id}`, {
+        method: "DELETE",
+      })
+    );
+    await Promise.all(deleteall);
   },
   GetByID: async (id) => {
     let req = await fetch(`${apiUrl.carts}/${id}`);
     let res = await req.json();
     return res;
+  },
+  Create: async (data) => {
+    let request = await fetch(apiUrl.orders, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    return request;
   },
 };

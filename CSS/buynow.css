@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
 }
 .checkout-container {
-  max-width: 1000px;
+  max-width: 1300px;
   margin: 40px auto;
   display: flex;
   gap: 30px;
@@ -12,17 +12,19 @@ body {
 .billing-form {
   flex: 1;
   min-width: 300px;
+  max-width: 600px;
 }
 .order-summary {
   flex: 1;
   min-width: 300px;
+  max-width: 700px;
   background-color: #f9f9f9;
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 .order-container {
-    width: 300px;
+    width: 600px;
   }
 
   .order-item {

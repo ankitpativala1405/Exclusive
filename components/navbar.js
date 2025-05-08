@@ -1,4 +1,5 @@
 const Navbar = () => {
+  
   return `   <header>
       Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!!
       <span>ShopNow</span>

@@ -6,7 +6,7 @@ document.getElementById("navbar").innerHTML = Navbar();
 document.getElementById("footer").innerHTML = Footer();
 
 let CartItem = await CartMethod.GetAll();
-console.log("CartItem", CartItem);
+// console.log("CartItem", CartItem);
 
 let total = 0;
 const UiMaker = () => {
@@ -89,6 +89,6 @@ const UiMaker = () => {
 
 UiMaker();
 
-document.getElementById("GetOrder").addEventListener("click",()=>{
-  alert("ordered")
-})
+
+
+
