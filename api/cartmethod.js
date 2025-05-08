@@ -17,6 +17,8 @@ export const CartMethod = {
     return request;
   },
   Update: async (sku, data) => {
+    console.log("skus", sku);
+
     await fetch(`${apiUrl.carts}/${sku}`, {
       method: "PATCH",
       headers: {
