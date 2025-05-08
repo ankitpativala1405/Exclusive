@@ -28,8 +28,8 @@
       </table>
 
       <div class="cart-actions">
-        <button>Return To Shop</button>
-        <button>Update Cart</button>
+        <button onclick="window.open('/PAGES/product.html')">Return To Shop</button>
+        <button onclick="window.open('/PAGES/cart.html')">Update Cart</button>
       </div>
 
       <div class="coupon-box">
@@ -42,7 +42,7 @@
           <div><span>Subtotal:</span><span id="Totalshow"></span></div>
           <div><span>Shipping:</span><span>₹ 100.00</span></div>
           <div><strong>Total:</strong><strong id="Grandtotal"></strong></div>
-          <button class="checkout-btn">Proceed to checkout</button>
+          <button class="checkout-btn" id="GetOrder">Proceed to checkout</button>
         </div>
       </div>
     </div>

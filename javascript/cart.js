@@ -8,16 +8,15 @@ document.getElementById("footer").innerHTML = Footer();
 let CartItem = await CartMethod.GetAll();
 console.log("CartItem", CartItem);
 
-
-let total=0;
-
+let total = 0;
 const UiMaker = () => {
-
   document.getElementById("tablebody").innerHTML = "";
+  total = 0;
 
-  CartItem.map((item) => {
+  CartItem.forEach((item, index) => {
     let row = document.createElement("tr");
 
+    // Product Info
     let td1 = document.createElement("td");
     let productInfoDiv = document.createElement("div");
     productInfoDiv.classList.add("product-info");
@@ -32,37 +31,64 @@ const UiMaker = () => {
     td1.appendChild(productInfoDiv);
     row.appendChild(td1);
 
+    // Price
     let td2 = document.createElement("td");
     td2.textContent = `₹${item.price}`;
     row.appendChild(td2);
 
+    // Quantity Input
     let td3 = document.createElement("td");
-
     let input = document.createElement("input");
-    input.type = "number"; 
-    input.value = item.quantity; 
-    input.min = "1"; 
-    input.max = "100"; 
-    
+    input.type = "number";
+    input.value = item.quantity;
+    input.min = "1";
+    input.max = "100";
     td3.appendChild(input);
     row.appendChild(td3);
-    
 
-    let subtotal = item.price * item.quantity;
+    // Subtotal
     let td4 = document.createElement("td");
+    let subtotal = item.price * item.quantity;
     td4.textContent = `₹${subtotal}`;
     row.appendChild(td4);
-    total=total+subtotal
 
     document.getElementById("tablebody").appendChild(row);
+    total += subtotal;
 
+    // Quantity Change Listener
+    input.addEventListener("input", () => {
+      let newQty = parseInt(input.value);
+      if (isNaN(newQty) || newQty < 1) newQty = 1;
+
+      CartItem[index].quantity = newQty;
+
+      const updatedSubtotal = newQty * item.price;
+      td4.textContent = `₹${updatedSubtotal}`;
+
+      // Update total
+      let newTotal = 0;
+      CartItem.forEach((i) => {
+        newTotal += i.price * i.quantity;
+      });
+
+      document.getElementById("Totalshow").innerHTML = `₹${newTotal.toFixed(
+        2
+      )}`;
+      document.getElementById("Grandtotal").innerHTML = `₹${(
+        newTotal + 100
+      ).toFixed(2)}`;
+    });
   });
 
-  document.getElementById("Totalshow").innerHTML=`₹${total.toFixed(2)}`
-  document.getElementById("Grandtotal").innerHTML=`₹${(total+100).toFixed(2)}`
+  // Initial Total Display
+  document.getElementById("Totalshow").innerHTML = `₹${total.toFixed(2)}`;
+  document.getElementById("Grandtotal").innerHTML = `₹${(total + 100).toFixed(
+    2
+  )}`;
 };
 
-UiMaker()
+UiMaker();
 
-
-
+document.getElementById("GetOrder").addEventListener("click",()=>{
+  alert("ordered")
+})
