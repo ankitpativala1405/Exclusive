@@ -19,9 +19,6 @@ const CartController = {
     const updatedItem = await CartItem.findOneAndUpdate({ sku }, req.body, {
       new: true,
     });
-    // if (!updatedItem) {
-    //   return res.status(404).json({ message: "Item not found" });
-    // }
     res.status(200).json(updatedItem);
   },
 };

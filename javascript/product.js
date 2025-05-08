@@ -38,7 +38,6 @@ let data = [
   },
 ];
 
-let count=0
 const UiMaker = () => {
   document.getElementById("Product-List").innerHTML = "";
 
@@ -103,11 +102,6 @@ const UiMaker = () => {
     addToCartBtn.addEventListener("click", async () => {
       console.log(product);
 
-      // const req=await CartMethod.Post(product)
-      // const res=await req.json()
-      // console.log("cart added:", res);
-      // alert("cart added");
-
       let CartItem = await CartMethod.GetAll();
       console.log("CartItem", CartItem);
 
@@ -132,7 +126,6 @@ const UiMaker = () => {
         await CartMethod.Post(CartAdd);
         console.log("Product added to cart.");
         alert(`${product.name} added to cart!`);
-        count++
       }
     });
 
@@ -148,6 +141,7 @@ const UiMaker = () => {
   });
 };
 UiMaker();
+
 
 
 
