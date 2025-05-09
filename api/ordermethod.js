@@ -26,5 +26,10 @@ export const OrderMethod = {
     });
     return request;
   },
+    GetWishlist: async () => {
+    let req = await fetch(apiUrl.wishlist);
+    let res = await req.json();
+    return res;
+  },
 };
 

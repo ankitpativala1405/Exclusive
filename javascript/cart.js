@@ -98,7 +98,7 @@ const UiMaker = (CartItem) => {
 export const ExportCount = async () => {
   let item = await CartMethod.GetAll();
   let countitem = item.length;
-  console.log("countitem", countitem);
+  // console.log("countitem", countitem);
 
   return countitem;
 };
