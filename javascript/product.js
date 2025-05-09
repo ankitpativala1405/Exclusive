@@ -78,9 +78,7 @@ const UiMaker = () => {
     heartBtn.addEventListener("click", async () => {
       let req = await CartMethod.PostWishlist(product);
       let res = await req.json();
-
       console.log("add to wish list", res);
-
       alert("wishlist");
     });
 

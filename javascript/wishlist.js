@@ -1,3 +1,4 @@
+import { CartMethod } from "../api/cartmethod.js";
 import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
@@ -12,3 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("footer").innerHTML = Footer();
     document.getElementById("companypolicy").innerHTML=CompanyPolicy()
   });
+
+  let Item=await CartMethod.GetWishlist()
+  console.log("Item",Item);
+  
