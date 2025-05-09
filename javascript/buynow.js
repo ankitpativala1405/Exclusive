@@ -1,5 +1,4 @@
 import { CartMethod } from "../api/cartmethod.js";
-// import { OrderMethod } from "../api/ordermethod.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 

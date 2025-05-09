@@ -21,6 +21,20 @@ const CartController = {
     });
     res.status(200).json(updatedItem);
   },
+  delete:async (req, res) => {
+    try {
+      const { sku } = req.params;
+      const deletedItem = await CartItem.findOneAndDelete({ sku });
+  
+      if (!deletedItem) {
+        return res.status(404).json({ message: "Item not found" });
+      }
+  
+      res.status(200).json({ message: "Item deleted", item: deletedItem });
+    } catch (err) {
+      res.status(500).json({ message: "Server error", error: err.message });
+    }
+  }
 };
 
 module.exports = CartController;

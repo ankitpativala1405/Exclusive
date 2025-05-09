@@ -28,13 +28,17 @@ export const CartMethod = {
     });
   },
   DeleteAll: async () => {
-    const allItems = await CartMethod.GetAll();
-    const deleteall = allItems.map(item => 
-      fetch(`${apiUrl.carts}/${item.id}`, {
-        method: "DELETE",
-      })
-    );
-    await Promise.all(deleteall);
+    try {
+      const allItems = await CartMethod.GetAll();
+      const deleteall = allItems.map(item =>
+        fetch(`${apiUrl.carts}/${item.sku}`, {
+          method: "DELETE",
+        }).catch((e) => console.error(`Failed to delete SKU ${item.sku}`, e))
+      );
+      await Promise.all(deleteall);
+    } catch (e) {
+      console.error("DeleteAll failed:", e);
+    }
   },
   GetByID: async (id) => {
     let req = await fetch(`${apiUrl.carts}/${id}`);

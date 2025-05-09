@@ -5,5 +5,6 @@ const cartrouter = Router();
 cartrouter.get("/", CartController.getAll);
 cartrouter.post("/", CartController.post);
 cartrouter.patch("/:sku",CartController.update)
+cartrouter.delete("/:sku",CartController.delete );
 
 module.exports = cartrouter;
