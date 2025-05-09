@@ -2,15 +2,16 @@ import { CartMethod } from "../api/cartmethod.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 
-document.getElementById("navbar").innerHTML = Navbar();
-document.getElementById("footer").innerHTML = Footer();
+document.addEventListener("DOMContentLoaded", async () => {
+  document.getElementById("navbar").innerHTML = Navbar();
+  document.getElementById("footer").innerHTML = Footer();
 
-let CartItem = await CartMethod.GetAll();
-// console.log("CartItem", CartItem);
+  let CartItem = await CartMethod.GetAll();
+  UiMaker(CartItem);
+});
 
 let total = 0;
-const UiMaker = () => {
-  document.getElementById("tablebody").innerHTML = "";
+const UiMaker = (CartItem) => {
   total = 0;
 
   CartItem.forEach((item, index) => {
@@ -52,7 +53,6 @@ const UiMaker = () => {
     td4.textContent = `₹${subtotal}`;
     row.appendChild(td4);
 
-    document.getElementById("tablebody").appendChild(row);
     total += subtotal;
 
     // Quantity Change Listener
@@ -71,23 +71,17 @@ const UiMaker = () => {
         newTotal += i.price * i.quantity;
       });
 
-      document.getElementById("Totalshow").innerHTML = `₹${newTotal.toFixed(
-        2
-      )}`;
-      document.getElementById("Grandtotal").innerHTML = `₹${(
-        newTotal + 100
-      ).toFixed(2)}`;
+      document.getElementById("Totalshow").innerHTML = `₹${newTotal.toFixed(2)}`;
+      document.getElementById("Grandtotal").innerHTML = `₹${(newTotal + 100).toFixed(2)}`;
     });
+
+    document.getElementById("tablebody").append(row);
   });
 
   // Initial Total Display
   document.getElementById("Totalshow").innerHTML = `₹${total.toFixed(2)}`;
-  document.getElementById("Grandtotal").innerHTML = `₹${(total + 100).toFixed(
-    2
-  )}`;
+  document.getElementById("Grandtotal").innerHTML = `₹${(total + 100).toFixed(2)}`;
 };
-
-UiMaker();
 
 export const ExportCount = async () => {
   let item = await CartMethod.GetAll();

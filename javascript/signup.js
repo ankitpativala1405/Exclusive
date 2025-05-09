@@ -2,7 +2,8 @@ import UserMethod from "../api/usermethod.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 import { GetValue } from "../public/helper.js";
-// import { ExportCount } from "./cart.js";
+import { ExportCount } from "./cart.js";
+
 
 document.getElementById("navbar").innerHTML = Navbar();
 document.getElementById("footer").innerHTML = Footer();
@@ -24,9 +25,9 @@ document.getElementById("signupform").addEventListener("submit", async (e) => {
   alert("Signup successful!");
 }); 
 
+let count=ExportCount()
+console.log("count",count);
 
 
 
-//  let count=ExportCount()
-//  console.log("count",count);
  
