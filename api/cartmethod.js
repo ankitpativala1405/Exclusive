@@ -30,7 +30,7 @@ export const CartMethod = {
   DeleteAll: async () => {
     try {
       const allItems = await CartMethod.GetAll();
-      const deleteall = allItems.map(item =>
+      const deleteall = allItems.map((item) =>
         fetch(`${apiUrl.carts}/${item.sku}`, {
           method: "DELETE",
         }).catch((e) => console.error(`Failed to delete SKU ${item.sku}`, e))
@@ -47,6 +47,16 @@ export const CartMethod = {
   },
   Create: async (data) => {
     let request = await fetch(apiUrl.orders, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    return request;
+  },
+  PostWishlist: async (data) => {
+    let request = await fetch(apiUrl.wishlist, {
       method: "POST",
       headers: {
         "content-type": "application/json",

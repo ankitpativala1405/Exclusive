@@ -75,6 +75,14 @@ const UiMaker = () => {
     const heartBtn = document.createElement("button");
     heartBtn.className = "btn btn-light btn-sm rounded-circle";
     heartBtn.innerHTML = '<i class="fa-regular fa-heart text-dark"></i>';
+    heartBtn.addEventListener("click", async () => {
+      let req = await CartMethod.PostWishlist(product);
+      let res = await req.json();
+
+      console.log("add to wish list", res);
+
+      alert("wishlist");
+    });
 
     const eyeBtn = document.createElement("button");
     eyeBtn.className = "btn btn-light btn-sm rounded-circle";
@@ -122,7 +130,7 @@ const UiMaker = () => {
         console.log("sku", sku);
         let quantity = IsExist.quantity;
         console.log(quantity);
-  
+
         let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
         console.log("new cart", upadteitem);
 
@@ -148,8 +156,3 @@ const UiMaker = () => {
   });
 };
 UiMaker();
-
-
-
-
-
