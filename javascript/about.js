@@ -2,10 +2,17 @@ import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 import { counter } from "../utils/counter.js";
+import { ExportCount } from "./cart.js";
 
-document.getElementById("navbar").innerHTML = Navbar();
-document.getElementById("footer").innerHTML = Footer();
-document.getElementById("companypolicy").innerHTML=CompanyPolicy()
+document.addEventListener("DOMContentLoaded", async () => {
+  document.getElementById("navbar").innerHTML = Navbar();
+
+  const count = await ExportCount();
+  document.getElementById("cart-count").innerText = `(${count})`;
+
+  document.getElementById("footer").innerHTML = Footer();
+  document.getElementById("companypolicy").innerHTML=CompanyPolicy()
+});
 
 window.onload = () => {
   counter("value1");

@@ -4,10 +4,16 @@ import Navbar from "../components/navbar.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("navbar").innerHTML = Navbar();
+  const count = await ExportCount();
+  document.getElementById("cart-count").innerText = `(${count})`;
   document.getElementById("footer").innerHTML = Footer();
 
-  let CartItem = await CartMethod.GetAll();
-  UiMaker(CartItem);
+  const tableBody = document.getElementById("tablebody");
+
+  if (tableBody) {
+    let CartItem = await CartMethod.GetAll();
+    UiMaker(CartItem);
+  }
 });
 
 let total = 0;
@@ -71,8 +77,12 @@ const UiMaker = (CartItem) => {
         newTotal += i.price * i.quantity;
       });
 
-      document.getElementById("Totalshow").innerHTML = `₹${newTotal.toFixed(2)}`;
-      document.getElementById("Grandtotal").innerHTML = `₹${(newTotal + 100).toFixed(2)}`;
+      document.getElementById("Totalshow").innerHTML = `₹${newTotal.toFixed(
+        2
+      )}`;
+      document.getElementById("Grandtotal").innerHTML = `₹${(
+        newTotal + 100
+      ).toFixed(2)}`;
     });
 
     document.getElementById("tablebody").append(row);
@@ -80,7 +90,9 @@ const UiMaker = (CartItem) => {
 
   // Initial Total Display
   document.getElementById("Totalshow").innerHTML = `₹${total.toFixed(2)}`;
-  document.getElementById("Grandtotal").innerHTML = `₹${(total + 100).toFixed(2)}`;
+  document.getElementById("Grandtotal").innerHTML = `₹${(total + 100).toFixed(
+    2
+  )}`;
 };
 
 export const ExportCount = async () => {

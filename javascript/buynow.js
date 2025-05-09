@@ -1,9 +1,16 @@
 import { CartMethod } from "../api/cartmethod.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
+import { ExportCount } from "./cart.js";
 
-document.getElementById("navbar").innerHTML = Navbar();
-document.getElementById("footer").innerHTML = Footer();
+document.addEventListener("DOMContentLoaded", async () => {
+  document.getElementById("navbar").innerHTML = Navbar();
+
+  const count = await ExportCount();
+  document.getElementById("cart-count").innerText = `(${count})`;
+
+  document.getElementById("footer").innerHTML = Footer();
+});
 
 let WantItem = await CartMethod.GetAll();
 console.log("WantItem", WantItem);

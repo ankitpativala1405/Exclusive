@@ -4,9 +4,14 @@ import Navbar from "../components/navbar.js";
 import { GetValue } from "../public/helper.js";
 import { ExportCount } from "./cart.js";
 
+document.addEventListener("DOMContentLoaded", async () => {
+  document.getElementById("navbar").innerHTML = Navbar();
 
-document.getElementById("navbar").innerHTML = Navbar();
-document.getElementById("footer").innerHTML = Footer();
+  const count = await ExportCount();
+  document.getElementById("cart-count").innerText = `(${count})`;
+
+  document.getElementById("footer").innerHTML = Footer();
+});
 
 document.getElementById("signupform").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -16,18 +21,14 @@ document.getElementById("signupform").addEventListener("submit", async (e) => {
     email: GetValue("email"),
     number: GetValue("number"),
     password: GetValue("password"),
-  }; 
+  };
   console.log(user);
 
-  const req= await UserMethod.create(user)
-  const res=await req.json()
+  const req = await UserMethod.create(user);
+  const res = await req.json();
   console.log("User created:", res);
   alert("Signup successful!");
-}); 
+});
 
-let count=ExportCount()
-console.log("count",count);
-
-
-
- 
+// let count=ExportCount()
+// console.log("count",count);
