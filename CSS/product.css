@@ -306,3 +306,16 @@ footer{
   font-size: 24px;
   margin-top: 20px;
 }
+
+
+#pagination button:hover {
+  background-color: #DB4444 !important;
+  color: white !important;
+  border: none;
+}
+
+#pagination button.btn-dark {
+  background-color: #DB4444;
+  border-color: #DB4444;
+  border: none;
+}
