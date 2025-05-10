@@ -3,12 +3,17 @@ import WishlistMethod from "../api/wishlistmethod.js";
 import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
+import { ExportCartCount } from "./cart.js";
 
 document.getElementById("companypolicy").innerHTML = CompanyPolicy();
 document.getElementById("footer").innerHTML = Footer();
 document.getElementById("navbar").innerHTML = Navbar();
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+  let count= ExportCartCount()
+
+
   const tableBody = document.getElementById("wishlist-grid");
 
   if (tableBody) {
@@ -106,4 +111,10 @@ document.getElementById("MovetoCart").addEventListener("click", async () => {
 });
 
 
+//  let CartItem = await WishlistMethod.GetWishlist();
 
+export const ExportWishListCartCount = async () => {
+  let item = await WishlistMethod.GetWishlist();
+  let countitem = item.length;
+  return countitem;
+};

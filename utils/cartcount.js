@@ -1,4 +1,4 @@
-const ExportCount = async () => {
+const ExportCartCount = async () => {
   let item = await CartMethod.GetAll();
   let countitem = item.length;
   console.log("countitem", countitem);
@@ -6,4 +6,4 @@ const ExportCount = async () => {
   return countitem;
 };
 
-export default ExportCount
+export default ExportCartCount

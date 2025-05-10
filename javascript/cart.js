@@ -4,7 +4,7 @@ import Navbar from "../components/navbar.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("navbar").innerHTML = Navbar();
-  const count = await ExportCount();
+  const count = await ExportCartCount();
   document.getElementById("cart-count").innerText = `(${count})`;
   document.getElementById("footer").innerHTML = Footer();
 
@@ -95,7 +95,7 @@ const UiMaker = (CartItem) => {
   )}`;
 };
 
-export const ExportCount = async () => {
+export const ExportCartCount = async () => {
   let item = await CartMethod.GetAll();
   let countitem = item.length;
   return countitem;
