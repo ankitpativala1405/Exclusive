@@ -1,3 +1,4 @@
+import { CartMethod } from "../api/cartmethod.js";
 import WishlistMethod from "../api/wishlistmethod.js";
 import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
@@ -51,8 +52,33 @@ const UiMaker = (CartItem) => {
     addToCart.appendChild(cartIcon);
     addToCart.appendChild(document.createTextNode(" Add To Cart"));
     wishlistItem.appendChild(addToCart);
-    addToCart.addEventListener("click", () => {
-      alert("cart add wanted... ");
+    addToCart.addEventListener("click", async () => {
+      let CartItem = await CartMethod.GetAll();
+      console.log("CartItem", CartItem);
+
+      let IsExist = CartItem.find((item) => item.sku === item.sku);
+      console.log("IsExist", IsExist);
+
+      // if (IsExist) {
+      //   console.log("quantity", IsExist.quantity);
+
+      //   let sku = IsExist.sku;
+      //   console.log("sku", sku);
+      //   let quantity = IsExist.quantity;
+      //   console.log(quantity);
+
+      //   let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
+      //   console.log("new cart", upadteitem);
+
+      //   await CartMethod.Update(sku, upadteitem);
+      //   alert(`${item.name} has been increase in cart`);
+      // } else {
+      //   let CartAdd = { ...item, quantity: 1 };
+      //   await CartMethod.Post(CartAdd);
+      //   console.log("Product added to cart.");
+      //   alert(`${item.name} added to cart!`);
+      // }
+
     });
 
     const info = document.createElement("div");
