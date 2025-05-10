@@ -9,6 +9,9 @@ document.getElementById("companypolicy").innerHTML = CompanyPolicy();
 document.getElementById("footer").innerHTML = Footer();
 document.getElementById("navbar").innerHTML = Navbar();
 
+let currentPage = 1;
+const itemsPerPage = 12;
+let wishlistData = [];
 document.addEventListener("DOMContentLoaded", async () => {
 
   // wishlist-count
@@ -17,12 +20,47 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tableBody = document.getElementById("wishlist-grid");
 
   if (tableBody) {
-    let CartItem = await WishlistMethod.GetWishlist();
-    document.getElementById("CountShowHere").innerHTML = `Wishlist(${CartItem.length})`;
-       document.getElementById("wishlist-count").innerHTML = `(${CartItem.length})`;
-    UiMaker(CartItem);
+    // let CartItem = await WishlistMethod.GetWishlist();
+    // document.getElementById("CountShowHere").innerHTML = `Wishlist(${CartItem.length})`;
+    //    document.getElementById("wishlist-count").innerHTML = `(${CartItem.length})`;
+    // UiMaker(CartItem);
+        wishlistData = await WishlistMethod.GetWishlist();
+    document.getElementById("CountShowHere").innerHTML = `Wishlist(${wishlistData.length})`;
+    document.getElementById("wishlist-count").innerHTML = `(${wishlistData.length})`;
+    renderPagination(wishlistData);
+    renderWishlistPage(currentPage);
   }
 });
+const renderWishlistPage = (page) => {
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginatedItems = wishlistData.slice(start, end);
+  UiMaker(paginatedItems);
+};
+
+const renderPagination = (items) => {
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+  const paginationContainer = document.createElement("div");
+  paginationContainer.classList.add("pagination");
+
+  for (let i = 1; i <= totalPages; i++) {
+    const pageBtn = document.createElement("button");
+    pageBtn.textContent = i;
+    pageBtn.classList.add("page-btn");
+    if (i === currentPage) pageBtn.classList.add("active");
+
+    pageBtn.addEventListener("click", () => {
+      currentPage = i;
+      renderWishlistPage(currentPage);
+      document.querySelectorAll(".page-btn").forEach(btn => btn.classList.remove("active"));
+      pageBtn.classList.add("active");
+    });
+
+    paginationContainer.appendChild(pageBtn);
+  }
+
+  document.querySelector(".wishlist-container").appendChild(paginationContainer);
+};
 
 const UiMaker = (CartItem) => {
   document.getElementById("wishlist-grid").innerHTML = "";

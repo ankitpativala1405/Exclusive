@@ -103,3 +103,28 @@
     font-size: 0.9rem;
   }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.page-btn {
+  padding: 6px 12px;
+  border: 1px solid #DB4444;
+  background-color: white;
+  color: #DB4444;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.page-btn:hover {
+  background-color: #DB4444;
+  color: white;
+}
+
+.page-btn.active {
+  background-color: #DB4444;
+  color: white;
+}
