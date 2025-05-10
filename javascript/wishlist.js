@@ -56,29 +56,22 @@ const UiMaker = (CartItem) => {
       let CartItem = await CartMethod.GetAll();
       console.log("CartItem", CartItem);
 
-      let IsExist = CartItem.find((item) => item.sku === item.sku);
+      let IsExist = CartItem.find((items) => items.sku === item.sku);
       console.log("IsExist", IsExist);
 
-      // if (IsExist) {
-      //   console.log("quantity", IsExist.quantity);
-
-      //   let sku = IsExist.sku;
-      //   console.log("sku", sku);
-      //   let quantity = IsExist.quantity;
-      //   console.log(quantity);
-
-      //   let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
-      //   console.log("new cart", upadteitem);
-
-      //   await CartMethod.Update(sku, upadteitem);
-      //   alert(`${item.name} has been increase in cart`);
-      // } else {
-      //   let CartAdd = { ...item, quantity: 1 };
-      //   await CartMethod.Post(CartAdd);
-      //   console.log("Product added to cart.");
-      //   alert(`${item.name} added to cart!`);
-      // }
-
+      if (IsExist) {
+        console.log("IsExist.sku",IsExist.sku);
+        
+        let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
+        console.log("new cart", upadteitem);
+        await CartMethod.Update(IsExist.sku, upadteitem);
+        alert(`${item.name} has been increase in cart`);
+      } else {
+        let CartAdd = { ...item, quantity: 1 };
+        await CartMethod.Post(CartAdd);
+        console.log("Product added to cart.");
+        alert(`${item.name} added to cart!`);
+      }
     });
 
     const info = document.createElement("div");
