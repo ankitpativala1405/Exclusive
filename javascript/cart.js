@@ -61,6 +61,21 @@ const UiMaker = (CartItem) => {
 
     total += subtotal;
 
+        // Delete Button
+    let td5 = document.createElement("td");
+    let deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.style.backgroundColor = "red";
+    deleteBtn.style.color = "white";
+    deleteBtn.style.border = "none";
+    deleteBtn.style.padding = "5px 10px";
+    deleteBtn.style.cursor = "pointer";
+    td5.appendChild(deleteBtn);
+    row.appendChild(td5);
+    deleteBtn.addEventListener("click",()=>{
+      alert(`${item.name}  product Deleted`)
+    })
+
     // Quantity Change Listener
     input.addEventListener("input", () => {
       let newQty = parseInt(input.value);
