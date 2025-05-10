@@ -1,8 +1,6 @@
-import { apiUrl } from "../config/api";
-
 const WishlistMethod = {
   GetWishlist: async () => {
-    let req = await fetch(apiUrl.wishlist);
+    let req = await fetch("http://localhost:4000/wishlist");
     let res = await req.json();
     return res;
   },

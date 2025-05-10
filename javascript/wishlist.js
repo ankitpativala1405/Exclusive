@@ -1,14 +1,11 @@
-import { CartMethod } from "../api/cartmethod.js";
-import { ExportCount } from "./cart.js";
+import CompanyPolicy from "../components/companypolicy.js";
+import Footer from "../components/footer.js";
+import Navbar from "../components/navbar.js";
 
-const count = await ExportCount();
-console.log("count", count);
-document.getElementById("cart-count").innerText = `(${count})`;
+document.getElementById("companypolicy").innerHTML = CompanyPolicy();
+document.getElementById("footer").innerHTML = Footer();
+document.getElementById("navbar").innerHTML = Navbar();
 
 document.getElementById("MovetoCart").addEventListener("click", () => {
   alert("cart moved");
 });
-
- let item = await CartMethod.GetWishlist();
- console.log("wishlist items:", item);
-
