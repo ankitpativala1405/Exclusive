@@ -48,3 +48,35 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
 // const cliked=()=>{
 //   VerifyOTP()
 // }
+
+
+const twilio = require('twilio');
+
+const accountSid = 'ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'; 
+const authToken = 'your_auth_token_here'; 
+
+const client = new twilio(accountSid, authToken);
+function generateOtp() {
+    return Math.floor(100000 + Math.random() * 900000); 
+}
+
+function sendOtp(phoneNumber) {
+    const otp = generateOtp();
+    console.log(`Sending OTP: ${otp} to ${phoneNumber}`);
+
+    client.messages.create({
+        body: `Your OTP is: ${otp}`,    
+        from: '+1234567890',          
+        to: phoneNumber               
+    })
+    .then((message) => {
+        console.log('Message sent:', message.sid);
+    })
+    .catch((error) => {
+        console.error('Error sending OTP:', error);
+    });
+}
+
+// Example usage
+const phoneNumber = '+0987654321'; 
+sendOtp(phoneNumber);

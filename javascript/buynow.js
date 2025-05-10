@@ -12,6 +12,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("footer").innerHTML = Footer();
 });
 
+// document.getElementById("applyCoupon").addEventListener("click", () => {
+//   let couponValue = document.getElementById("couponCode").value;
+//   let subtotal = document.getElementById("subtotal").value;
+//   let discount = 0;
+
+//   subtotal = parseFloat(subtotal);
+
+//   if (isNaN(subtotal)) {
+//     alert("Please enter a valid subtotal value.");
+//     return;
+//   }
+
+//   if (couponValue === "save100") {
+//     discount = 100;
+//     alert("Coupon Applied: You saved ₹100!");
+//   } else {
+//     alert("Invalid Coupon Code.");
+//   }
+
+//   const newTotal = subtotal - discount;
+
+//   document.getElementById("total").innerText = `₹${newTotal.toFixed(2)}`;
+// });
+
 let WantItem = await CartMethod.GetAll();
 console.log("WantItem", WantItem);
 
@@ -31,7 +55,6 @@ const UiMaker = (WantItem) => {
     orderItemDiv.style.justifyContent = "space-between";
     orderItemDiv.style.alignItems = "center";
 
-    // Left: Item info (image + name)
     const itemInfoDiv = document.createElement("div");
     itemInfoDiv.classList.add("item-info");
 
@@ -42,22 +65,18 @@ const UiMaker = (WantItem) => {
     const nameSpan = document.createElement("span");
     nameSpan.textContent = item.name;
 
-    //   itemInfoDiv.appendChild(img);
     itemInfoDiv.appendChild(nameSpan);
 
-    // Right: Pricing info
     const priceInfoDiv = document.createElement("div");
     priceInfoDiv.textContent = `Price:₹${item.price}*Qty: ${quantity}=Total: ₹${totalPrice}`;
     priceInfoDiv.style.textAlign = "Right";
 
-    // Add to container
     orderItemDiv.appendChild(itemInfoDiv);
     orderItemDiv.appendChild(priceInfoDiv);
 
     container.appendChild(orderItemDiv);
   });
 
-  // Update subtotal and total
   document.getElementById("subtotal").textContent = `₹${subtotal}`;
   document.getElementById("total").textContent = `₹${subtotal + 100}`;
 };
@@ -68,9 +87,9 @@ document.getElementById("GetOrder").addEventListener("click", async () => {
   let CartItem = await CartMethod.GetAll();
   console.log("CartItemsssss", CartItem);
 
-  let req=await CartMethod.Create(CartItem)
+  let req = await CartMethod.Create(CartItem);
   let res = await req.json();
   console.log("Ordered Item", res);
   alert("Order successful!");
-  await CartMethod.DeleteAll()
+  await CartMethod.DeleteAll();
 });

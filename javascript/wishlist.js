@@ -8,10 +8,6 @@ document.getElementById("companypolicy").innerHTML = CompanyPolicy();
 document.getElementById("footer").innerHTML = Footer();
 document.getElementById("navbar").innerHTML = Navbar();
 
-document.getElementById("MovetoCart").addEventListener("click", () => {
-  alert("cart moved");
-});
-
 document.addEventListener("DOMContentLoaded", async () => {
   const tableBody = document.getElementById("wishlist-grid");
 
@@ -60,8 +56,8 @@ const UiMaker = (CartItem) => {
       console.log("IsExist", IsExist);
 
       if (IsExist) {
-        console.log("IsExist.sku",IsExist.sku);
-        
+        console.log("IsExist.sku", IsExist.sku);
+
         let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
         console.log("new cart", upadteitem);
         await CartMethod.Update(IsExist.sku, upadteitem);
@@ -97,3 +93,17 @@ const UiMaker = (CartItem) => {
     document.getElementById("wishlist-grid").appendChild(wishlistItem);
   });
 };
+
+document.getElementById("MovetoCart").addEventListener("click", async () => {
+  let WishlistItem = await WishlistMethod.GetWishlist();
+  console.log("CartItemsssss", WishlistItem);
+
+  let req = await WishlistMethod.CreateAll(WishlistItem);
+  let res = await req.json();
+  console.log("Cart Moved", res);
+  // await WishlistMethod.DeleteAll();
+  alert("Cart Moved successful!");
+});
+
+
+
