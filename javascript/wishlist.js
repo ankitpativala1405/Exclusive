@@ -10,15 +10,16 @@ document.getElementById("footer").innerHTML = Footer();
 document.getElementById("navbar").innerHTML = Navbar();
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+  // wishlist-count
   let count = ExportCartCount();
 
   const tableBody = document.getElementById("wishlist-grid");
 
   if (tableBody) {
     let CartItem = await WishlistMethod.GetWishlist();
-    document.getElementById(
-      "CountShowHere"
-    ).innerHTML = `Wishlist(${CartItem.length})`;
+    document.getElementById("CountShowHere").innerHTML = `Wishlist(${CartItem.length})`;
+       document.getElementById("wishlist-count").innerHTML = `(${CartItem.length})`;
     UiMaker(CartItem);
   }
 });
@@ -125,11 +126,13 @@ document.getElementById("MovetoCart").addEventListener("click", async () => {
       alert(`${wishItem.name} added to cart!`);
     }
   }
-
 });
 
-export const ExportWishListCartCount = async () => {
+export const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
+
   let countitem = item.length;
   return countitem;
+  // console.log("item", countitem);
 };
+// WishListCartCount();

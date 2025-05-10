@@ -16,22 +16,29 @@ document.addEventListener("DOMContentLoaded", async () => {
 document.getElementById("signupform").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const name = GetValue("name");
+  const email = GetValue("email");
+  const number = GetValue("number");
+  const password = GetValue("password");
+
+  const username =
+    number.slice(0, 3) +
+    name.replace(/\s+/g, "").toUpperCase().slice(0, 3) +
+    number.slice(-4);
+
   let user = {
-    name: GetValue("name"),
-    email: GetValue("email"),
-    number: GetValue("number"),
-    password: GetValue("password"),
+    name,
+    email,
+    number,
+    password,
+    username,
   };
-  console.log(user);
+
+  console.log("New user:", user);
 
   const req = await UserMethod.create(user);
   const res = await req.json();
   console.log("User created:", res);
   alert("Signup successful!");
+  alert(`Your username is ->${username}`);
 });
-
-// let count=ExportCartCount()
-// console.log("count",count);
-
-
-

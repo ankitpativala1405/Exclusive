@@ -14,19 +14,19 @@ const WishlistMethod = {
     });
     return request;
   },
-  DeleteAll: async () => {
-    try {
-      const allItems = await WishlistMethod.GetAll();
-      const deleteall = allItems.map((item) =>
-        fetch(`http://localhost:4000/wishlist/${item.sku}`, {
-          method: "DELETE",
-        }).catch((e) => console.error(`Failed to delete SKU ${item.sku}`, e))
-      );
-      await Promise.all(deleteall);
-    } catch (e) {
-      console.error("DeleteAll failed:", e);
-    }
-  },
+  // DeleteAll: async () => {
+  //   try {
+  //     const allItems = await WishlistMethod.GetAll();
+  //     const deleteall = allItems.map((item) =>
+  //       fetch(`http://localhost:4000/wishlist/${item.sku}`, {
+  //         method: "DELETE",
+  //       }).catch((e) => console.error(`Failed to delete SKU ${item.sku}`, e))
+  //     );
+  //     await Promise.all(deleteall);
+  //   } catch (e) {
+  //     console.error("DeleteAll failed:", e);
+  //   }
+  // },
 };
 
 export default WishlistMethod;
