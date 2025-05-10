@@ -10,14 +10,15 @@ document.getElementById("footer").innerHTML = Footer();
 document.getElementById("navbar").innerHTML = Navbar();
 
 document.addEventListener("DOMContentLoaded", async () => {
-
-  let count= ExportCartCount()
-
+  let count = ExportCartCount();
 
   const tableBody = document.getElementById("wishlist-grid");
 
   if (tableBody) {
     let CartItem = await WishlistMethod.GetWishlist();
+    document.getElementById(
+      "CountShowHere"
+    ).innerHTML = `Wishlist(${CartItem.length})`;
     UiMaker(CartItem);
   }
 });
@@ -101,17 +102,31 @@ const UiMaker = (CartItem) => {
 
 document.getElementById("MovetoCart").addEventListener("click", async () => {
   let WishlistItem = await WishlistMethod.GetWishlist();
-  console.log("CartItemsssss", WishlistItem);
+  console.log("WishlistItem", WishlistItem);
 
-  let req = await WishlistMethod.CreateAll(WishlistItem);
-  let res = await req.json();
-  console.log("Cart Moved", res);
-  // await WishlistMethod.DeleteAll();
-  alert("Cart Moved successful!");
+  let CartItem = await CartMethod.GetAll();
+  console.log("CartItem", CartItem);
+
+  for (let i = 0; i < WishlistItem.length; i++) {
+    let wishItem = WishlistItem[i];
+    let IsExist = CartItem.find((cartItem) => cartItem.sku === wishItem.sku);
+    console.log("isExist", IsExist);
+    if (IsExist) {
+      console.log("IsExist.sku", IsExist.sku);
+
+      let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
+      console.log("new cart", upadteitem);
+      await CartMethod.Update(IsExist.sku, upadteitem);
+      alert(`${IsExist.name} has been increase in cart`);
+    } else {
+      let CartAdd = { ...wishItem, quantity: 1 };
+      await CartMethod.Post(CartAdd);
+      console.log("Product added to cart.");
+      alert(`${wishItem.name} added to cart!`);
+    }
+  }
+
 });
-
-
-//  let CartItem = await WishlistMethod.GetWishlist();
 
 export const ExportWishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
