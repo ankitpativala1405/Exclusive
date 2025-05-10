@@ -61,7 +61,7 @@ const UiMaker = (CartItem) => {
 
     total += subtotal;
 
-        // Delete Button
+    // Delete Button
     let td5 = document.createElement("td");
     let deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
@@ -72,9 +72,18 @@ const UiMaker = (CartItem) => {
     deleteBtn.style.cursor = "pointer";
     td5.appendChild(deleteBtn);
     row.appendChild(td5);
-    deleteBtn.addEventListener("click",()=>{
-      alert(`${item.name}  product Deleted`)
-    })
+    // deleteBtn.addEventListener("click", async () => {
+    //   await CartMethod.Delete(item._id);
+
+    //   alert(`${item.name}  product Deleted`);
+    //   location.reload();
+    //   // UiMaker(CartItem)
+    // });
+    deleteBtn.addEventListener("click", async () => {
+  await CartMethod.Delete(item.sku); // <--- use item.sku here
+  alert(`${item.name} product Deleted`);
+  location.reload();
+});
 
     // Quantity Change Listener
     input.addEventListener("input", () => {

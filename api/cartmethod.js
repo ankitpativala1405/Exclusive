@@ -65,5 +65,10 @@ export const CartMethod = {
     });
     return request;
   },
-
+  Delete: async (id) => {
+   let req= await fetch(`${apiUrl.carts}/${id}`, {
+      method: "DELETE",
+    });
+    return req.json()
+  },
 };
