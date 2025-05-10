@@ -81,10 +81,10 @@ const UiMaker = (CartItem) => {
     td5.appendChild(deleteBtn);
     row.appendChild(td5);
     deleteBtn.addEventListener("click", async () => {
-  await CartMethod.Delete(item.sku); // <--- use item.sku here
-  alert(`${item.name} product Deleted`);
-  location.reload();
-});
+      await CartMethod.Delete(item.sku);
+      alert(`${item.name} product Deleted`);
+      location.reload();
+    });
 
     // Quantity Change Listener
     input.addEventListener("input", () => {

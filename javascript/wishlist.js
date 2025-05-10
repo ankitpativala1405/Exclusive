@@ -42,6 +42,11 @@ const UiMaker = (CartItem) => {
     removeIcon.classList.add("fas", "fa-trash");
     remove.appendChild(removeIcon);
     wishlistItem.appendChild(remove);
+    removeIcon.addEventListener("click",async()=>{
+      await WishlistMethod.Delete(item.sku)
+      alert(`${item.name} Remove From WishList`)
+      location.reload()
+    })
 
     const img = document.createElement("img");
     img.src = item.img;
@@ -69,11 +74,13 @@ const UiMaker = (CartItem) => {
         console.log("new cart", upadteitem);
         await CartMethod.Update(IsExist.sku, upadteitem);
         alert(`${item.name} has been increase in cart`);
+        location.reload()
       } else {
         let CartAdd = { ...item, quantity: 1 };
         await CartMethod.Post(CartAdd);
         console.log("Product added to cart.");
         alert(`${item.name} added to cart!`);
+        location.reload()
       }
     });
 

@@ -27,6 +27,12 @@ const WishlistMethod = {
   //     console.error("DeleteAll failed:", e);
   //   }
   // },
+  Delete: async (sku) => {
+    let req = await fetch(`http://localhost:4000/wishlist/${sku}`, {
+      method: "DELETE",
+    });
+    return req.json();
+  },
 };
 
 export default WishlistMethod;
