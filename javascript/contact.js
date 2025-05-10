@@ -1,3 +1,4 @@
+import WishlistMethod from "../api/wishlistmethod.js";
 import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
@@ -12,3 +13,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("footer").innerHTML = Footer();
     document.getElementById("companypolicy").innerHTML=CompanyPolicy()
   });
+  const WishListCartCount = async () => {
+  let item = await WishlistMethod.GetWishlist();
+  let countitem = item.length;
+  document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
+};
+WishListCartCount();

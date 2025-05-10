@@ -2,7 +2,7 @@ const Navbar = () => {
   
   return `   <header>
       Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!!
-      <span>ShopNow</span>
+      <span><a href="/PAGES/product.html" style="color: yellow;">ShopNow</a></span>
     </header>
     <nav>
       <div class="logo">Exclusive</div>

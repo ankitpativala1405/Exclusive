@@ -1,3 +1,4 @@
+import WishlistMethod from "../api/wishlistmethod.js";
 import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("cart-count").innerText = `(${count})`;
 
   document.getElementById("footer").innerHTML = Footer();
-  document.getElementById("companypolicy").innerHTML=CompanyPolicy()
+  document.getElementById("companypolicy").innerHTML = CompanyPolicy();
 });
 
 window.onload = () => {
@@ -20,3 +21,10 @@ window.onload = () => {
   counter("value3");
   counter("value4");
 };
+
+const WishListCartCount = async () => {
+  let item = await WishlistMethod.GetWishlist();
+  let countitem = item.length;
+  document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
+};
+WishListCartCount();

@@ -1,4 +1,5 @@
 import { CartMethod } from "../api/cartmethod.js";
+import WishlistMethod from "../api/wishlistmethod.js";
 import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
@@ -13,6 +14,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("footer").innerHTML = Footer();
   document.getElementById("companypolicy").innerHTML = CompanyPolicy();
 });
+
+const WishListCartCount = async () => {
+  let item = await WishlistMethod.GetWishlist();
+  let countitem = item.length;
+  document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
+};
+WishListCartCount();
 
 let data = [
   {
@@ -43,6 +51,13 @@ let data = [
     price: "500",
     sku: "E-DE-0705001",
   },
+  {
+    img: "https://cdn11.bigcommerce.com/s-eie9lsi1uc/images/stencil/1280x1280/products/100175/1015921/758664_FACK7_9768_009_084_0000_Light-Sac-de-voyage-avec-bande-Web-grande-taille_1__21197.1701428569.jpg?c=1",
+    name:"HAVIT HV-G92 Gamepad",
+    mrp:"260",
+    price:"120",
+    sku:"E-DE-1005001"
+  },
 ];
 
 const UiMaker = () => {
@@ -67,7 +82,7 @@ const UiMaker = () => {
     const discount = document.createElement("div");
     discount.id = "discount";
     discount.className = "position-absolute top-0 start-0 m-2";
-    discount.innerText = "-30%";
+    discount.innerText = `${Math.round(((parseFloat(product.price) * 100) / parseFloat(product.mrp)) - 100)}%`;
 
     const iconsWrapper = document.createElement("div");
     iconsWrapper.className = "position-absolute top-0 end-0 m-2 d-flex gap-1";
@@ -154,3 +169,5 @@ const UiMaker = () => {
   });
 };
 UiMaker();
+
+

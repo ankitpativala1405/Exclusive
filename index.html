@@ -6,7 +6,8 @@
     <title>Exclusive-Home Page</title>
     <link rel="stylesheet" href="./CSS/index.css" />
     <link
-      rel="stylesheet"~
+      rel="stylesheet"
+      ~
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
@@ -95,20 +96,29 @@
           <h2 style="color: #f33">Today's</h2>
         </div>
 
-        <div class="timer">
-          <div>
-            <h2>Flash Sales&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+        <div
+          class="timer"  style="  display: flex;  align-items: center; justify-content: space-between;">
+          <div style="flex: 1; text-align: left">
+            <h2>Flash Sales End:</h2>
           </div>
 
-          <div id="selestime">
-            <span>Days: <strong style="color: #f33">03</strong></span>
-            <span>Hours: <strong style="color: #f33">23</strong></span>
-            <span>Minutes: <strong style="color: #f33">19</strong></span>
-            <span>Seconds: <strong style="color: #f33">56</strong></span>
-          </div>
-          <div class="arrow-buttons">
-            <button class="circle-btn">&#8592;</button>
-            <button class="circle-btn">&#8594;</button>
+          <div id="selestime" style="flex: 1; text-align: center; margin-right: 350px;">
+            <span
+              >Days:
+              <strong style="color: #f33" id="SalesShowDay">00</strong></span
+            >
+            <span
+              >Hours:
+              <strong style="color: #f33" id="SalesShowHour">23</strong></span
+            >
+            <span
+              >Minutes:
+              <strong style="color: #f33" id="SalesShowMinute">19</strong></span
+            >
+            <span
+              >Seconds:
+              <strong style="color: #f33" id="SalesShowSecond">56</strong></span
+            >
           </div>
         </div>
 
@@ -121,7 +131,7 @@
             />
             <h3>HAVIT HV-G92 Gamepad</h3>
             <p>
-              <strong>₹120</strong> <span class="original-price">₹160</span>
+              <strong>₹120</strong> <span class="original-price">₹260</span>
             </p>
             <p class="rating">★★★★☆ (88)</p>
             <button class="add-to-cart">Add To Cart</button>
@@ -171,7 +181,7 @@
         </div>
 
         <div>
-          <button class="view-all">View All Products</button>
+          <button class="view-all" onclick="window.open('/PAGES/product.html')">View All Products</button>
         </div>
       </div>
     </section>
@@ -206,7 +216,7 @@
         <div class="tag">This Month</div>
         <div class="header-row">
           <h2>Best Selling Products</h2>
-          <button class="view-all">View All</button>
+          <button class="view-all" onclick="window.open('/PAGES/product.html')">View All</button>
         </div>
 
         <div class="product-grid">
@@ -303,56 +313,70 @@
         </div>
       </div>
     </section>
-  
-  <section id="new-arrival">
-    <div id="new-arrival-heading">
-      <button style="background-color: #f33"></button>
-      <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Featured</h2>
-      <h1>New Arrival</h1>
-    </div>
 
-    <div class="productsnew-grid">
-      <!-- PS5 -->
-      <div class="product-item">
-        <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/09/ps5-pro-close-up.jpg" alt="PlayStation 5">
-        <div class="product-content">
-          <h3>PlayStation 5 Pro</h3>
-          <p>Black and White version of the PS5 Pro coming out on sale.</p>
-          <button>Shop Now</button>
-        </div>
+    <section id="new-arrival">
+      <div id="new-arrival-heading">
+        <button style="background-color: #f33"></button>
+        <h2>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Featured
+        </h2>
+        <h1>New Arrival</h1>
       </div>
 
-      <!-- Women's Collection -->
-      <div class="product-item">
-        <img src="https://img.freepik.com/premium-photo/woman-black-dress-with-flowing-fabric-posing-black-background_14117-595818.jpg" alt="Women's Collections">
-        <div class="product-content">
-          <h3>Women's Collections</h3>
-          <p>Featured woman collections that give you another vibe.</p>
-          <button>Shop Now</button>
+      <div class="productsnew-grid">
+        <!-- PS5 -->
+        <div class="product-item">
+          <img
+            src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/09/ps5-pro-close-up.jpg"
+            alt="PlayStation 5"
+          />
+          <div class="product-content">
+            <h3>PlayStation 5 Pro</h3>
+            <p>Black and White version of the PS5 Pro coming out on sale.</p>
+            <button>Shop Now</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Speakers -->
-      <div class="product-item">
-        <img src="https://www.fluance.com/media/wysiwyg/Fluance/HFF/HFF-woofer_1.jpg" alt="Speakers">
-        <div class="product-content">
-          <h3>Speakers</h3>
-          <p>Amazon wireless speakers.</p>
-          <button>Shop Now</button>
+        <!-- Women's Collection -->
+        <div class="product-item">
+          <img
+            src="https://img.freepik.com/premium-photo/woman-black-dress-with-flowing-fabric-posing-black-background_14117-595818.jpg"
+            alt="Women's Collections"
+          />
+          <div class="product-content">
+            <h3>Women's Collections</h3>
+            <p>Featured woman collections that give you another vibe.</p>
+            <button>Shop Now</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Perfume -->
-      <div class="product-item">
-        <img src="https://png.pngtree.com/background/20211215/original/pngtree-perfume-hand-spraying-perfume-on-black-background-picture-image_1469057.jpg" alt="Perfume">
-        <div class="product-content">
-          <h3>Perfume</h3>
-          <p>GUCCI INTENSE GOLD EDP.</p>
-          <button>Shop Now</button>
+        <!-- Speakers -->
+        <div class="product-item">
+          <img
+            src="https://www.fluance.com/media/wysiwyg/Fluance/HFF/HFF-woofer_1.jpg"
+            alt="Speakers"
+          />
+          <div class="product-content">
+            <h3>Speakers</h3>
+            <p>Amazon wireless speakers.</p>
+            <button>Shop Now</button>
+          </div>
+        </div>
+
+        <!-- Perfume -->
+        <div class="product-item">
+          <img
+            src="https://png.pngtree.com/background/20211215/original/pngtree-perfume-hand-spraying-perfume-on-black-background-picture-image_1469057.jpg"
+            alt="Perfume"
+          />
+          <div class="product-content">
+            <h3>Perfume</h3>
+            <p>GUCCI INTENSE GOLD EDP.</p>
+            <button>Shop Now</button>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
     <div id="companypolicy"></div>
 
     <div id="footer"></div>

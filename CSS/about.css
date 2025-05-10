@@ -1,3 +1,5 @@
+@import '/CSS/index.css';
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -65,17 +67,6 @@
 .text-section {
   max-width: 50%;
 }
-
-@media (max-width: 768px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stat-bottom .stat-card {
-    width: 100%;
-  }
-}
-
 
 /* team section */
 

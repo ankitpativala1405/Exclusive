@@ -1,4 +1,5 @@
 import { CartMethod } from "../api/cartmethod.js";
+import WishlistMethod from "../api/wishlistmethod.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 
@@ -15,6 +16,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     UiMaker(CartItem);
   }
 });
+
+const WishListCartCount = async () => {
+  let item = await WishlistMethod.GetWishlist();
+  let countitem = item.length;
+  document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
+};
+WishListCartCount();
 
 let total = 0;
 const UiMaker = (CartItem) => {
@@ -72,13 +80,6 @@ const UiMaker = (CartItem) => {
     deleteBtn.style.cursor = "pointer";
     td5.appendChild(deleteBtn);
     row.appendChild(td5);
-    // deleteBtn.addEventListener("click", async () => {
-    //   await CartMethod.Delete(item._id);
-
-    //   alert(`${item.name}  product Deleted`);
-    //   location.reload();
-    //   // UiMaker(CartItem)
-    // });
     deleteBtn.addEventListener("click", async () => {
   await CartMethod.Delete(item.sku); // <--- use item.sku here
   alert(`${item.name} product Deleted`);

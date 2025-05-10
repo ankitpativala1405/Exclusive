@@ -1,4 +1,5 @@
 import UserMethod from "../api/usermethod.js";
+import WishlistMethod from "../api/wishlistmethod.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 import { GetValue } from "../public/helper.js";
@@ -12,6 +13,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.getElementById("footer").innerHTML = Footer();
 });
+const WishListCartCount = async () => {
+  let item = await WishlistMethod.GetWishlist();
+  let countitem = item.length;
+  document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
+};
+WishListCartCount();
 
 document.getElementById("signupform").addEventListener("submit", async (e) => {
   e.preventDefault();
