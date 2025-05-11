@@ -23,7 +23,7 @@ const WishListCartCount = async () => {
 };
 WishListCartCount();
 
-let data=ProductData
+let data = ProductData;
 
 let currentPage = 1;
 const itemsPerPage = 12;
@@ -66,8 +66,7 @@ const UiMaker = (page = 1) => {
     heartBtn.className = "btn btn-light btn-sm rounded-circle";
     heartBtn.innerHTML = '<i class="fa-regular fa-heart text-dark"></i>';
     heartBtn.addEventListener("click", async () => {
-      let req = await CartMethod.PostWishlist(product);
-      let res = await req.json();
+      await (await CartMethod.PostWishlist(product)).json();
       alert("Added to Wishlist");
       location.reload();
     });
@@ -75,6 +74,11 @@ const UiMaker = (page = 1) => {
     const eyeBtn = document.createElement("button");
     eyeBtn.className = "btn btn-light btn-sm rounded-circle";
     eyeBtn.innerHTML = '<i class="fa-regular fa-eye text-dark"></i>';
+    eyeBtn.addEventListener("click", () => {
+      localStorage.setItem("ViewProductDetail", JSON.stringify(product));
+      alert(`opening ${product.name}`);
+      window.location.href='/PAGES/productdetail.html'
+    });
 
     iconsWrapper.appendChild(heartBtn);
     iconsWrapper.appendChild(eyeBtn);
@@ -112,12 +116,12 @@ const UiMaker = (page = 1) => {
         let upadteitem = { ...IsExist, quantity: quantity + 1 };
         await CartMethod.Update(sku, upadteitem);
         alert(`${product.name} quantity increased in cart`);
-        location.reload()
+        location.reload();
       } else {
         let CartAdd = { ...product, quantity: 1 };
         await CartMethod.Post(CartAdd);
         alert(`${product.name} added to cart!`);
-        location.reload()
+        location.reload();
       }
     });
 
@@ -144,9 +148,9 @@ const createPagination = () => {
     const pageBtn = document.createElement("button");
     pageBtn.innerHTML = i;
     if (i === currentPage) {
-      pageBtn.setAttribute("class","btn btn-sm me-1 btn-dark")
-    }else{
-      pageBtn.setAttribute("class","btn btn-sm me-1 btn-outline-dark")
+      pageBtn.setAttribute("class", "btn btn-sm me-1 btn-dark");
+    } else {
+      pageBtn.setAttribute("class", "btn btn-sm me-1 btn-outline-dark");
     }
 
     pageBtn.addEventListener("click", () => {

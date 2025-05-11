@@ -71,7 +71,9 @@ const UiMaker = (CartItem) => {
 
     const discount = document.createElement("span");
     discount.classList.add("discount");
-    discount.textContent = "-35%";
+    discount.textContent = `${Math.round(
+      (parseFloat(item.price) * 100) / parseFloat(item.mrp) - 100
+    )}%`;
     wishlistItem.appendChild(discount);
 
     const remove = document.createElement("span");
@@ -131,13 +133,13 @@ const UiMaker = (CartItem) => {
 
     const price = document.createElement("span");
     price.classList.add("price");
-    price.textContent = ` ${item.price}`;
+    price.textContent = `₹${item.price}`;
     info.appendChild(price);
 
     const originalPrice = document.createElement("span");
     originalPrice.classList.add("original-price");
     originalPrice.style.marginLeft = "20px";
-    originalPrice.textContent = "₹1160";
+    originalPrice.textContent = `₹${item.mrp}`;
     info.appendChild(originalPrice);
 
     wishlistItem.appendChild(info);
