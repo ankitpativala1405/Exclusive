@@ -1,4 +1,8 @@
+import WishlistMethod from "../api/wishlistmethod.js";
+import CompanyPolicy from "../components/companypolicy.js";
+import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
+import { ExportCartCount } from "./cart.js";
 
 // Product gallery switching logic
 document.querySelectorAll(".product-gallery-thumb").forEach(function (thumb) {
@@ -20,5 +24,20 @@ document.getElementById("btn-increase").onclick = function () {
   qty.value = parseInt(qty.value, 10) + 1;
 };
 
+document.addEventListener("DOMContentLoaded", async () => {
+  document.getElementById("navbar").innerHTML = Navbar();
 
-document.getElementById("navbar").innerHTML=Navbar()
+  const count = await ExportCartCount();
+  document.getElementById("cart-count").innerText = `(${count})`;
+
+  document.getElementById("footer").innerHTML = Footer();
+  document.getElementById("companypolicy").innerHTML = CompanyPolicy();
+});
+
+const WishListCartCount = async () => {
+  let item = await WishlistMethod.GetWishlist();
+  let countitem = item.length;
+  document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
+};
+WishListCartCount();
+document.getElementById("companypolicy").innerHTML=CompanyPolicy()

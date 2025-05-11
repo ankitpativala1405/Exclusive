@@ -239,3 +239,25 @@ header {
     cursor: pointer;
     text-decoration: underline;
   }
+
+  
+  #socielmedia{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-left: -30px;
+    margin-top: 30px;
+  }
+
+  #socielmedia a {
+    color: white;
+  }
+
+  #socielmedia i {
+    font-size: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+  }
+
+  
