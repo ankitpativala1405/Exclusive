@@ -105,24 +105,24 @@
           <div id="selestime" style="flex: 1; text-align: center; margin-right: 350px;">
             <span
               >Days:
-              <strong style="color: #f33" id="SalesShowDay">00</strong></span
+              <strong style="color: #f33; font-size:24px" id="SalesShowDay">00</strong></span
             >
             <span
               >Hours:
-              <strong style="color: #f33" id="SalesShowHour">23</strong></span
+              <strong style="color: #f33; font-size:24px" id="SalesShowHour">23</strong></span
             >
             <span
               >Minutes:
-              <strong style="color: #f33" id="SalesShowMinute">19</strong></span
+              <strong style="color: #f33; font-size:24px" id="SalesShowMinute">19</strong></span
             >
             <span
               >Seconds:
-              <strong style="color: #f33" id="SalesShowSecond">56</strong></span
+              <strong style="color: #f33; font-size:24px" id="SalesShowSecond">56</strong></span
             >
           </div>
         </div>
 
-        <div class="products">
+        <div class="products" id="TodaySaleProducts">
           <div class="product">
             <div id="discount">-40%</div>
             <img
@@ -178,6 +178,7 @@
             <p class="rating">★★★★☆ (99)</p>
             <button class="add-to-cart">Add To Cart</button>
           </div>
+
         </div>
 
         <div>
@@ -216,7 +217,7 @@
         <div class="tag">This Month</div>
         <div class="header-row">
           <h2>Best Selling Products</h2>
-          <button class="view-all" onclick="window.open('/PAGES/product.html')">View All</button>
+          <button class="view-all" id="view-all" onclick="window.open('/PAGES/product.html')">View All</button>
         </div>
 
         <div class="product-grid">

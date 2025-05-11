@@ -1,0 +1,107 @@
+  body {
+      background: #fafbfc;
+      font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  .product-gallery-thumb {
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      transition: border 0.2s;
+      height: 150px;
+      width: 150px;
+  }
+
+  .product-gallery-thumb {}
+
+  .product-gallery-thumb.active {
+      border: 2px solid #1565c0;
+  }
+
+  .product-size .btn-check:checked+.btn {
+      background-color: #1565c0;
+      color: #fff;
+      border-color: #1565c0;
+  }
+
+  .btn-buy {
+      background: #e53935;
+      color: #fff;
+      border: none;
+      transition: background 0.2s;
+  }
+
+  .btn-buy:hover {
+      background: #c62828;
+      color: #fff;
+  }
+
+  .related-title {
+      color: #e53935;
+      font-weight: bold;
+      margin-top: 32px;
+      letter-spacing: 0.5px;
+  }
+
+  .product-card .card {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border-radius: 20px;
+      transition: box-shadow 0.2s;
+  }
+
+  .product-card .card:hover {
+      box-shadow: 0 4px 32px rgba(0, 0, 0, 0.10);
+  }
+
+  .sale-badge {
+      background: #e53935;
+      color: #fff;
+      border-radius: 12px;
+      font-size: 12px;
+      padding: 2px 10px;
+      position: absolute;
+      left: 12px;
+      top: 12px;
+  }
+
+  .add-to-cart-btn {
+      background: #1565c0;
+      color: #fff;
+      border-radius: 8px;
+      border: none;
+      padding: 5px 15px;
+  }
+
+  #MainImage {
+      margin-left: -50px;
+  }
+
+  #qty-input::-webkit-inner-spin-button,
+  #qty-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+
+  #qty-input {
+      -moz-appearance: textfield;
+  }
+
+  #ProductInfoDetail {
+      display: flex;
+      justify-content: space-between;
+  }
+
+  @media (max-width: 991px) {
+
+      .gallery-col,
+      .main-img-col,
+      .info-col {
+          flex-basis: 100%;
+          max-width: 100%;
+      }
+
+      .main-img-col {
+          margin-bottom: 28px;
+      }
+  }
