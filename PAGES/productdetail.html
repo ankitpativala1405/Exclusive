@@ -1,162 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gamepad Product Page</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/CSS/productdetail.css">
-  <style>
-  
-  </style>
-</head>
-<body>
-<div class="container py-5">
-  <div class="row g-4 align-items-start" id="ProductInfoDetail">
-    <!-- Gallery column -->
-    <div class="col-lg-2 gallery-col">
-      <div id="gallery-thumbs">
-        <img src="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-1.jpg" class="img-fluid product-gallery-thumb active" data-large="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-1.jpg" alt="Thumbnail 1">
-        <img src="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-2.jpg" class="img-fluid product-gallery-thumb" data-large="https://img.icons8.com/color/400/000000/controller.png" alt="Thumbnail 2">
-        <img src="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-3.jpg" class="img-fluid product-gallery-thumb" data-large="https://img.icons8.com/doodle/400/000000/controller.png" alt="Thumbnail 3">
-        <img src="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-4.jpg" class="img-fluid product-gallery-thumb" data-large="https://img.icons8.com/office/400/000000/controller.png" alt="Thumbnail 4">
-      </div>
-    </div>
-
-    <!-- Main image column -->
-    <div class="col-lg-5 main-img-col text-center " id="MainImage">
-      <img id="mainProductImage"
-        src="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-main.jpg"
-        class="img-fluid rounded"
-        style="width:600px; height: 600px; background:#fff; padding:24px; margin-left:-21px"
-        alt="Main Product Image">
-    </div>
-
-    <!-- Product info column -->
-    <div class="col-lg-5 info-col">
-      <h4>Magic Silicone Cleaning Hand Glove</h4>
-      <div class="d-flex align-items-center mb-2">
-        <div class="me-2">
-          <span class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-          <span class="text-muted ms-1">(150 Reviews)</span>
-        </div>
-        <span class="badge bg-success ms-2">In Stock</span>
-      </div>
-      <div class="fs-4 fw-bold mb-2" style="color:#232323;">$192.00</div>
-      <div class="mb-3 small text-secondary">
-        PlayStation 5 Controller Skin: High quality vinyl with air channel adhesive for easy bubble free install & mess free removal. Pressure sensitive.
-      </div>
-      <!-- Color selection -->
-      <div class="mb-2">
-        <span class="me-2">Colours:</span>
-        <button class="btn btn-sm rounded-circle" style="background:#222; width:28px; height:28px; border:1.5px solid #ccc;"></button>
-        <button class="btn btn-sm rounded-circle" style="background:#e9ecef; width:28px; height:28px; border:1.5px solid #ccc;"></button>
-      </div>
-      <!-- Size selection -->
-      <div class="mb-2 product-size">
-        <span class="me-2">Size:</span>
-        <input type="radio" class="btn-check" name="size" id="sizeXS" autocomplete="off">
-        <label class="btn btn-outline-secondary btn-sm" for="sizeXS">XS</label>
-        <input type="radio" class="btn-check" name="size" id="sizeS" autocomplete="off">
-        <label class="btn btn-outline-secondary btn-sm" for="sizeS">S</label>
-        <input type="radio" class="btn-check" name="size" id="sizeM" autocomplete="off" checked>
-        <label class="btn btn-outline-secondary btn-sm" for="sizeM">M</label>
-        <input type="radio" class="btn-check" name="size" id="sizeL" autocomplete="off">
-        <label class="btn btn-outline-secondary btn-sm" for="sizeL">L</label>
-        <input type="radio" class="btn-check" name="size" id="sizeXL" autocomplete="off">
-        <label class="btn btn-outline-secondary btn-sm" for="sizeXL">XL</label>
-      </div>
-      <!-- Quantity & Add to cart -->
-      <div class="d-flex align-items-center mb-3">
-        <div class="input-group me-3" style="width:110px;">
-          <button class="btn btn-outline-secondary" id="btn-decrease" type="button">-</button>
-          <input type="number" class="form-control text-center" style="width:40px;" id="qty-input" value="1" min="1">
-          <button class="btn btn-outline-secondary" id="btn-increase" type="button">+</button>
-        </div>
-        <button class="btn btn-buy px-4" type="button">
-          <i class="bi bi-cart-fill"></i> Add to Cart
-        </button>
-        <button class="btn btn-outline-secondary ms-2" style="border-radius:10%;" title="Add to wishlist">
-          <i class="bi bi-heart"></i>
-        </button>
-      </div>
-      <!-- Delivery info -->
-      <div class="border rounded p-3 bg-white mt-3 small">
-        <div class="d-flex align-items-center mb-1">
-          <i class="bi bi-truck me-2"></i>
-          <div>
-            <strong>Free Delivery</strong><br>
-            <a href="#" class="text-decoration-underline small">Enter your postal code for Delivery Availability</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gamepad Product Page</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      ~
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/CSS/productdetail.css" />
+    <style></style>
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div class="container py-5">
+      <div class="row g-4 align-items-start" id="ProductInfoDetail">
+        <!-- Gallery column -->
+        <div class="col-lg-2 gallery-col">
+          <div id="gallery-thumbs">
+            <img
+              src="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-1.jpg"
+              class="img-fluid product-gallery-thumb active"
+              data-large="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-1.jpg"
+              alt="Thumbnail 1"
+            />
+            <img
+              src="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-2.jpg"
+              class="img-fluid product-gallery-thumb"
+              data-large="https://img.icons8.com/color/400/000000/controller.png"
+              alt="Thumbnail 2"
+            />
+            <img
+              src="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-3.jpg"
+              class="img-fluid product-gallery-thumb"
+              data-large="https://img.icons8.com/doodle/400/000000/controller.png"
+              alt="Thumbnail 3"
+            />
+            <img
+              src="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-4.jpg"
+              class="img-fluid product-gallery-thumb"
+              data-large="https://img.icons8.com/office/400/000000/controller.png"
+              alt="Thumbnail 4"
+            />
           </div>
         </div>
-        <div class="d-flex align-items-center mt-2">
-          <i class="bi bi-arrow-counterclockwise me-2"></i>
-          <div>
-            <strong>Return Delivery</strong><br>Free 30 Days Delivery Returns. <a href="#" class="text-decoration-underline small">Details</a>
+
+        <!-- Main image column -->
+        <div class="col-lg-5 main-img-col text-center" id="MainImage">
+          <img
+            id="mainProductImage"
+            src="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-main.jpg"
+            class="img-fluid rounded"
+            style="
+              width: 600px;
+              height: 600px;
+              background: #fff;
+              padding: 24px;
+              margin-left: -21px;
+            "
+            alt="Main Product Image"
+          />
+        </div>
+
+        <!-- Product info column -->
+        <div class="col-lg-5 info-col">
+          <h4>Magic Silicone Cleaning Hand Glove</h4>
+          <div class="d-flex align-items-center mb-2">
+            <div class="me-2">
+              <span class="text-warning"
+                >&#9733;&#9733;&#9733;&#9733;&#9734;</span
+              >
+              <span class="text-muted ms-1">(150 Reviews)</span>
+            </div>
+            <span class="badge bg-success ms-2">In Stock</span>
+          </div>
+          <div class="fs-4 fw-bold mb-2" style="color: #232323">$192.00</div>
+          <div class="mb-3 small text-secondary">
+            PlayStation 5 Controller Skin: High quality vinyl with air channel
+            adhesive for easy bubble free install & mess free removal. Pressure
+            sensitive.
+          </div>
+          <!-- Color selection -->
+          <div class="mb-2">
+            <span class="me-2">Colours:</span>
+            <button
+              class="btn btn-sm rounded-circle"
+              style="
+                background: #222;
+                width: 28px;
+                height: 28px;
+                border: 1.5px solid #ccc;
+              "
+            ></button>
+            <button
+              class="btn btn-sm rounded-circle"
+              style="
+                background: #e9ecef;
+                width: 28px;
+                height: 28px;
+                border: 1.5px solid #ccc;
+              "
+            ></button>
+          </div>
+          <!-- Size selection -->
+          <div class="mb-2 product-size">
+            <span class="me-2">Size:</span>
+            <input
+              type="radio"
+              class="btn-check"
+              name="size"
+              id="sizeXS"
+              autocomplete="off"
+            />
+            <label class="btn btn-outline-secondary btn-sm" for="sizeXS"
+              >XS</label
+            >
+            <input
+              type="radio"
+              class="btn-check"
+              name="size"
+              id="sizeS"
+              autocomplete="off"
+            />
+            <label class="btn btn-outline-secondary btn-sm" for="sizeS"
+              >S</label
+            >
+            <input
+              type="radio"
+              class="btn-check"
+              name="size"
+              id="sizeM"
+              autocomplete="off"
+              checked
+            />
+            <label class="btn btn-outline-secondary btn-sm" for="sizeM"
+              >M</label
+            >
+            <input
+              type="radio"
+              class="btn-check"
+              name="size"
+              id="sizeL"
+              autocomplete="off"
+            />
+            <label class="btn btn-outline-secondary btn-sm" for="sizeL"
+              >L</label
+            >
+            <input
+              type="radio"
+              class="btn-check"
+              name="size"
+              id="sizeXL"
+              autocomplete="off"
+            />
+            <label class="btn btn-outline-secondary btn-sm" for="sizeXL"
+              >XL</label
+            >
+          </div>
+          <!-- Quantity & Add to cart -->
+          <div class="d-flex align-items-center mb-3">
+            <div class="input-group me-3" style="width: 110px">
+              <button
+                class="btn btn-outline-secondary"
+                id="btn-decrease"
+                type="button"
+              >
+                -
+              </button>
+              <input
+                type="number"
+                class="form-control text-center"
+                style="width: 40px"
+                id="qty-input"
+                value="1"
+                min="1"
+              />
+              <button
+                class="btn btn-outline-secondary"
+                id="btn-increase"
+                type="button"
+              >
+                +
+              </button>
+            </div>
+            <button class="btn btn-buy px-4" type="button">
+              <i class="bi bi-cart-fill"></i> Add to Cart
+            </button>
+            <button
+              class="btn btn-outline-secondary ms-2"
+              style="border-radius: 10%"
+              title="Add to wishlist"
+            >
+              <i class="bi bi-heart"></i>
+            </button>
+          </div>
+          <!-- Delivery info -->
+          <div class="border rounded p-3 bg-white mt-3 small">
+            <div class="d-flex align-items-center mb-1">
+              <i class="bi bi-truck me-2"></i>
+              <div>
+                <strong>Free Delivery</strong><br />
+                <a href="#" class="text-decoration-underline small"
+                  >Enter your postal code for Delivery Availability</a
+                >
+              </div>
+            </div>
+            <div class="d-flex align-items-center mt-2">
+              <i class="bi bi-arrow-counterclockwise me-2"></i>
+              <div>
+                <strong>Return Delivery</strong><br />Free 30 Days Delivery
+                Returns.
+                <a href="#" class="text-decoration-underline small">Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Items Section -->
+      <div class="related-title mt-5 mb-3">Related Item</div>
+      <div class="row product-card mb-5 gy-4">
+        <div class="col-md-3 col-6">
+          <div class="card position-relative">
+            <span class="sale-badge">44% OFF</span>
+            <img
+              src="https://img.icons8.com/color/250/000000/controller.png"
+              class="card-img-top"
+              alt="Gamepad"
+            />
+            <div class="card-body pb-2">
+              <h6 class="card-title mb-0">HAVIT HV-G92 Gamepad</h6>
+              <div class="mt-1">
+                <span class="fw-bold" style="color: #e53935">$120</span>
+                <span class="text-decoration-line-through text-muted small"
+                  >$160</span
+                >
+              </div>
+              <div class="small text-warning">
+                &#9733;&#9733;&#9733;&#9733;&#9733;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="card position-relative">
+            <span class="sale-badge">36% OFF</span>
+            <img
+              src="https://img.icons8.com/color/250/000000/keyboard.png"
+              class="card-img-top"
+              alt="Keyboard"
+            />
+            <div class="card-body pb-2">
+              <h6 class="card-title mb-2">AK-900 Wired Keyboard</h6>
+              <div class="mb-2">
+                <span class="fw-bold" style="color: #e53935">$960</span>
+                <span class="text-decoration-line-through text-muted small"
+                  >$1500</span
+                >
+              </div>
+              <button class="add-to-cart-btn w-100 mb-1">Add To Cart</button>
+              <div class="small text-warning">
+                &#9733;&#9733;&#9733;&#9733;&#9734;
+                <span class="text-muted">(75)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="card position-relative">
+            <span class="sale-badge">27% OFF</span>
+            <img
+              src="https://img.icons8.com/color/250/000000/monitor.png"
+              class="card-img-top"
+              alt="Monitor"
+            />
+            <div class="card-body pb-2">
+              <h6 class="card-title mb-0">IPS LCD Gaming Monitor</h6>
+              <div class="mt-1">
+                <span class="fw-bold" style="color: #e53935">$370</span>
+                <span class="text-decoration-line-through text-muted small"
+                  >$400</span
+                >
+              </div>
+              <div class="small text-warning">
+                &#9733;&#9733;&#9733;&#9733;&#9733;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="card position-relative">
+            <span class="sale-badge">19% OFF</span>
+            <img
+              src="https://img.icons8.com/color/250/000000/processor.png"
+              class="card-img-top"
+              alt="Cooler"
+            />
+            <div class="card-body pb-2">
+              <h6 class="card-title mb-0">RGB Liquid CPU Cooler</h6>
+              <div class="mt-1">
+                <span class="fw-bold" style="color: #e53935">$160</span>
+                <span class="text-decoration-line-through text-muted small"
+                  >$170</span
+                >
+              </div>
+              <div class="small text-warning">
+                &#9733;&#9733;&#9733;&#9733;&#9734;
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Related Items Section -->
-  <div class="related-title mt-5 mb-3">Related Item</div>
-  <div class="row product-card mb-5 gy-4">
-    <div class="col-md-3 col-6">
-      <div class="card position-relative">
-        <span class="sale-badge">44% OFF</span>
-        <img src="https://img.icons8.com/color/250/000000/controller.png" class="card-img-top" alt="Gamepad">
-        <div class="card-body pb-2">
-          <h6 class="card-title mb-0">HAVIT HV-G92 Gamepad</h6>
-          <div class="mt-1"><span class="fw-bold" style="color:#e53935">$120</span> <span class="text-decoration-line-through text-muted small">$160</span></div>
-          <div class="small text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 col-6">
-      <div class="card position-relative">
-        <span class="sale-badge">36% OFF</span>
-        <img src="https://img.icons8.com/color/250/000000/keyboard.png" class="card-img-top" alt="Keyboard">
-        <div class="card-body pb-2">
-          <h6 class="card-title mb-2">AK-900 Wired Keyboard</h6>
-          <div class="mb-2"><span class="fw-bold" style="color:#e53935">$960</span> <span class="text-decoration-line-through text-muted small">$1500</span></div>
-          <button class="add-to-cart-btn w-100 mb-1">Add To Cart</button>
-          <div class="small text-warning">&#9733;&#9733;&#9733;&#9733;&#9734; <span class="text-muted">(75)</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 col-6">
-      <div class="card position-relative">
-        <span class="sale-badge">27% OFF</span>
-        <img src="https://img.icons8.com/color/250/000000/monitor.png" class="card-img-top" alt="Monitor">
-        <div class="card-body pb-2">
-          <h6 class="card-title mb-0">IPS LCD Gaming Monitor</h6>
-          <div class="mt-1"><span class="fw-bold" style="color:#e53935">$370</span> <span class="text-decoration-line-through text-muted small">$400</span></div>
-          <div class="small text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 col-6">
-      <div class="card position-relative">
-        <span class="sale-badge">19% OFF</span>
-        <img src="https://img.icons8.com/color/250/000000/processor.png" class="card-img-top" alt="Cooler">
-        <div class="card-body pb-2">
-          <h6 class="card-title mb-0">RGB Liquid CPU Cooler</h6>
-          <div class="mt-1"><span class="fw-bold" style="color:#e53935">$160</span> <span class="text-decoration-line-through text-muted small">$170</span></div>
-          <div class="small text-warning">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Bootstrap JS, popper, icons -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-<script>
-
-</script>
-</body>
-<script type="module" src="/javascript/productdetail.js"></script>
+    <!-- Bootstrap JS, popper, icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </body>
+  <script type="module" src="/javascript/productdetail.js"></script>
 </html>
