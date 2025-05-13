@@ -7,6 +7,7 @@ const wishlistSchema = new mongoose.Schema(
     price: { type: String },
     mrp: { type: String },
     sku: { type: String, required: true, unique: true },
+    username: { type: String },
   },
   {
     timestamps: true,
