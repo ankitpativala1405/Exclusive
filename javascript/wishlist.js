@@ -13,20 +13,30 @@ let currentPage = 1;
 const itemsPerPage = 12;
 let wishlistData = [];
 document.addEventListener("DOMContentLoaded", async () => {
-
   // wishlist-count
   let count = ExportCartCount();
 
   const tableBody = document.getElementById("wishlist-grid");
 
   if (tableBody) {
-    // let CartItem = await WishlistMethod.GetWishlist();
-    // document.getElementById("CountShowHere").innerHTML = `Wishlist(${CartItem.length})`;
-    //    document.getElementById("wishlist-count").innerHTML = `(${CartItem.length})`;
-    // UiMaker(CartItem);
-        wishlistData = await WishlistMethod.GetWishlist();
-    document.getElementById("CountShowHere").innerHTML = `Wishlist(${wishlistData.length})`;
-    document.getElementById("wishlist-count").innerHTML = `(${wishlistData.length})`;
+    let AllWishlist = await WishlistMethod.GetWishlist();
+    console.log("AllWishlist", AllWishlist);
+
+    let LsUser = JSON.parse(localStorage.getItem("user"));
+    console.log("LuUSer",LsUser.username);
+
+    let WishlistByUser=AllWishlist.filter((user)=>user.username == LsUser.username)
+
+    console.log("WishlistByUser",WishlistByUser);
+    
+    wishlistData = WishlistByUser
+
+    document.getElementById(
+      "CountShowHere"
+    ).innerHTML = `Wishlist(${wishlistData.length})`;
+    document.getElementById(
+      "wishlist-count"
+    ).innerHTML = `(${wishlistData.length})`;
     renderPagination(wishlistData);
     renderWishlistPage(currentPage);
   }
@@ -52,14 +62,18 @@ const renderPagination = (items) => {
     pageBtn.addEventListener("click", () => {
       currentPage = i;
       renderWishlistPage(currentPage);
-      document.querySelectorAll(".page-btn").forEach(btn => btn.classList.remove("active"));
+      document
+        .querySelectorAll(".page-btn")
+        .forEach((btn) => btn.classList.remove("active"));
       pageBtn.classList.add("active");
     });
 
     paginationContainer.appendChild(pageBtn);
   }
 
-  document.querySelector(".wishlist-container").appendChild(paginationContainer);
+  document
+    .querySelector(".wishlist-container")
+    .appendChild(paginationContainer);
 };
 
 const UiMaker = (CartItem) => {
@@ -82,11 +96,11 @@ const UiMaker = (CartItem) => {
     removeIcon.classList.add("fas", "fa-trash");
     remove.appendChild(removeIcon);
     wishlistItem.appendChild(remove);
-    removeIcon.addEventListener("click",async()=>{
-      await WishlistMethod.Delete(item.sku)
-      alert(`${item.name} Remove From WishList`)
-      location.reload()
-    })
+    removeIcon.addEventListener("click", async () => {
+      await WishlistMethod.Delete(item.sku);
+      alert(`${item.name} Remove From WishList`);
+      location.reload();
+    });
 
     const img = document.createElement("img");
     img.src = item.img;
@@ -102,25 +116,19 @@ const UiMaker = (CartItem) => {
     wishlistItem.appendChild(addToCart);
     addToCart.addEventListener("click", async () => {
       let CartItem = await CartMethod.GetAll();
-      console.log("CartItem", CartItem);
 
       let IsExist = CartItem.find((items) => items.sku === item.sku);
-      console.log("IsExist", IsExist);
 
       if (IsExist) {
-        console.log("IsExist.sku", IsExist.sku);
-
         let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
-        console.log("new cart", upadteitem);
         await CartMethod.Update(IsExist.sku, upadteitem);
         alert(`${item.name} has been increase in cart`);
-        location.reload()
+        location.reload();
       } else {
         let CartAdd = { ...item, quantity: 1 };
         await CartMethod.Post(CartAdd);
-        console.log("Product added to cart.");
         alert(`${item.name} added to cart!`);
-        location.reload()
+        location.reload();
       }
     });
 
@@ -150,26 +158,19 @@ const UiMaker = (CartItem) => {
 
 document.getElementById("MovetoCart").addEventListener("click", async () => {
   let WishlistItem = await WishlistMethod.GetWishlist();
-  console.log("WishlistItem", WishlistItem);
 
   let CartItem = await CartMethod.GetAll();
-  console.log("CartItem", CartItem);
 
   for (let i = 0; i < WishlistItem.length; i++) {
     let wishItem = WishlistItem[i];
     let IsExist = CartItem.find((cartItem) => cartItem.sku === wishItem.sku);
-    console.log("isExist", IsExist);
     if (IsExist) {
-      console.log("IsExist.sku", IsExist.sku);
-
       let upadteitem = { ...IsExist, quantity: IsExist.quantity + 1 };
-      console.log("new cart", upadteitem);
       await CartMethod.Update(IsExist.sku, upadteitem);
       alert(`${IsExist.name} has been increase in cart`);
     } else {
       let CartAdd = { ...wishItem, quantity: 1 };
       await CartMethod.Post(CartAdd);
-      console.log("Product added to cart.");
       alert(`${wishItem.name} added to cart!`);
     }
   }
@@ -183,4 +184,3 @@ export const WishListCartCount = async () => {
   // console.log("item", countitem);
 };
 // WishListCartCount();
-
