@@ -1,3 +1,4 @@
+import LoginMethod from "../api/loginmethod.js";
 import UserMethod from "../api/usermethod.js";
 import WishlistMethod from "../api/wishlistmethod.js";
 import Footer from "../components/footer.js";
@@ -34,15 +35,14 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
 
   const user = users.find((data) => data.email === email);
 
-  console.log("user", user);
   if (!user) {
     alert("USer not exist");
     return;
   } else {
     console.log(user.password);
-
     if (user.password == password) {
       document.getElementById("otpbox").style.display = "flex";
+      let Login = await LoginMethod.create(user);
       localStorage.setItem("loggedin", true);
       localStorage.setItem("user", JSON.stringify(user));
       window.location.href = "/index.html";
@@ -56,34 +56,34 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
 //   VerifyOTP()
 // }
 
+// const twilio = require("twilio");
 
-const twilio = require('twilio');
+// const accountSid = "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+// const authToken = "your_auth_token_here";
 
-const accountSid = 'ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'; 
-const authToken = 'your_auth_token_here'; 
+// const client = new twilio(accountSid, authToken);
+// function generateOtp() {
+//   return Math.floor(100000 + Math.random() * 900000);
+// }
 
-const client = new twilio(accountSid, authToken);
-function generateOtp() {
-    return Math.floor(100000 + Math.random() * 900000); 
-}
+// function sendOtp(phoneNumber) {
+//   const otp = generateOtp();
+//   console.log(`Sending OTP: ${otp} to ${phoneNumber}`);
 
-function sendOtp(phoneNumber) {
-    const otp = generateOtp();
-    console.log(`Sending OTP: ${otp} to ${phoneNumber}`);
-
-    client.messages.create({
-        body: `Your OTP is: ${otp}`,    
-        from: '+1234567890',          
-        to: phoneNumber               
-    })
-    .then((message) => {
-        console.log('Message sent:', message.sid);
-    })
-    .catch((error) => {
-        console.error('Error sending OTP:', error);
-    });
-}
+//   client.messages
+//     .create({
+//       body: `Your OTP is: ${otp}`,
+//       from: "+1234567890",
+//       to: phoneNumber,
+//     })
+//     .then((message) => {
+//       console.log("Message sent:", message.sid);
+//     })
+//     .catch((error) => {
+//       console.error("Error sending OTP:", error);
+//     });
+// }
 
 // Example usage
-const phoneNumber = '+0987654321'; 
-sendOtp(phoneNumber);
+// const phoneNumber = "+0987654321";
+// sendOtp(phoneNumber);

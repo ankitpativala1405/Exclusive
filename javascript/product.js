@@ -1,4 +1,5 @@
 import { CartMethod } from "../api/cartmethod.js";
+import LoginMethod from "../api/loginmethod.js";
 import WishlistMethod from "../api/wishlistmethod.js";
 import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
@@ -77,7 +78,7 @@ const UiMaker = (page = 1) => {
     eyeBtn.addEventListener("click", () => {
       localStorage.setItem("ViewProductDetail", JSON.stringify(product));
       alert(`opening ${product.name}`);
-      window.location.href='/PAGES/productdetail.html'
+      window.location.href = "/PAGES/productdetail.html";
     });
 
     iconsWrapper.appendChild(heartBtn);
@@ -108,17 +109,37 @@ const UiMaker = (page = 1) => {
     addToCartBtn.innerText = "Add To Cart";
     addToCartBtn.addEventListener("click", async () => {
       let CartItem = await CartMethod.GetAll();
+      let LsUser = JSON.parse(localStorage.getItem("user"));
+      console.log(LsUser);
+      if (!LsUser) {
+        alert("You Are Not Still loggedIn Please Login First...");
+        return;
+      }
+
+      let MUser = await LoginMethod.GetAll();
+      console.log("MUser", MUser);
+
+      let LoggedUser = MUser.find((user) => user.username == LsUser.username);
+
+      let LoggedUsername = LoggedUser.username;
+
+      console.log("LoggedUser", LoggedUsername);
+
       let IsExist = CartItem.find((item) => item.sku === product.sku);
 
       if (IsExist) {
         let sku = IsExist.sku;
         let quantity = IsExist.quantity;
-        let upadteitem = { ...IsExist, quantity: quantity + 1 };
+        let upadteitem = {
+          ...IsExist,
+          username: LoggedUsername,
+          quantity: quantity + 1,
+        };
         await CartMethod.Update(sku, upadteitem);
         alert(`${product.name} quantity increased in cart`);
         location.reload();
       } else {
-        let CartAdd = { ...product, quantity: 1 };
+        let CartAdd = { ...product, username: LoggedUsername, quantity: 1 };
         await CartMethod.Post(CartAdd);
         alert(`${product.name} added to cart!`);
         location.reload();
