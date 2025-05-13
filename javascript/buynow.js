@@ -19,6 +19,7 @@ const WishListCartCount = async () => {
 };
 WishListCartCount();
 
+
 let WantItem = await CartMethod.GetAll();
 let discountAmount = 0;
 let appliedCoupon = null;
