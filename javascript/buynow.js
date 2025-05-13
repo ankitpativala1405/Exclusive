@@ -173,7 +173,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const validCoupons = {
     SAVE10: 10,   // 10% off
     FLAT50: 50,   // ₹50 off
-    FLAT100: 100  // ₹100 off
+    FLAT100: 100, // ₹100 off
+    SAVE15:15  //15% off
   };
 
   const UiMaker = (WantItem) => {
@@ -258,6 +259,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("Ordered Item", res);
     alert("Order successful!");
 
-    // await CartMethod.DeleteAll();
+    await CartMethod.DeleteAll();
   });
 })();

@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     let LoggedUser = MUser.find((user) => user.username == LsUser.username);
     console.log("LoggedUser", LoggedUser);
 
-    let UserCart = CartItem.filter((item) => item.username == LoggedUser.username);
+    let UserCart = CartItem.filter(
+      (item) => item.username == LoggedUser.username
+    );
     console.log("UserCart", UserCart);
 
     UiMaker(UserCart);
@@ -136,7 +138,24 @@ const UiMaker = (CartItem) => {
 };
 
 export const ExportCartCount = async () => {
-  let item = await CartMethod.GetAll();
-  let countitem = item.length;
+  // let item = await CartMethod.GetAll();
+
+  let CartItem = await CartMethod.GetAll();
+  let LsUser = JSON.parse(localStorage.getItem("user"));
+  console.log(LsUser);
+  if (!LsUser) {
+    alert("You Are Not Still loggedIn Please Login First...");
+    return;
+  }
+  let MUser = await LoginMethod.GetAll();
+  console.log("MUser", MUser);
+  let LoggedUser = MUser.find((user) => user.username == LsUser.username);
+  console.log("LoggedUser", LoggedUser);
+
+  let UserCart = CartItem.filter(
+    (item) => item.username == LoggedUser.username
+  );
+  console.log("UserCart", UserCart);
+  let countitem = UserCart.length;
   return countitem;
 };
