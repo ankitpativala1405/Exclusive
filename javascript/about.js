@@ -24,7 +24,12 @@ window.onload = () => {
 
 const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
-  let countitem = item.length;
+
+  let LsUser = JSON.parse(localStorage.getItem("user"));
+  console.log("LuUSer", LsUser.username);
+  let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
+
+  let countitem = WishlistByUser.length;
   document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
 };
 WishListCartCount();

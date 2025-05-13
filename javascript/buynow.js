@@ -13,12 +13,17 @@
 
 //   document.getElementById("footer").innerHTML = Footer();
 // });
-// const WishListCartCount = async () => {
-//   let item = await WishlistMethod.GetWishlist();
-//   let countitem = item.length;
-//   document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
-// };
-// WishListCartCount();
+const WishListCartCount = async () => {
+  let item = await WishlistMethod.GetWishlist();
+
+  let LsUser = JSON.parse(localStorage.getItem("user"));
+  console.log("LuUSer", LsUser.username);
+  let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
+
+  let countitem = WishlistByUser.length;
+  document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
+};
+WishListCartCount();
 
 // let CartItem = await CartMethod.GetAll();
 // let LsUser = JSON.parse(localStorage.getItem("user"));
