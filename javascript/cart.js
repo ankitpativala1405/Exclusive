@@ -1,4 +1,5 @@
 import { CartMethod } from "../api/cartmethod.js";
+import LoginMethod from "../api/loginmethod.js";
 import WishlistMethod from "../api/wishlistmethod.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
@@ -13,7 +14,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (tableBody) {
     let CartItem = await CartMethod.GetAll();
-    UiMaker(CartItem);
+    let LsUser = JSON.parse(localStorage.getItem("user"));
+    console.log(LsUser);
+    if (!LsUser) {
+      alert("You Are Not Still loggedIn Please Login First...");
+      return;
+    }
+    let MUser = await LoginMethod.GetAll();
+    console.log("MUser", MUser);
+    let LoggedUser = MUser.find((user) => user.username == LsUser.username);
+    console.log("LoggedUser", LoggedUser);
+
+    let UserCart = CartItem.filter((item) => item.username == LoggedUser.username);
+    console.log("UserCart", UserCart);
+
+    UiMaker(UserCart);
   }
 });
 

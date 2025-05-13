@@ -7,6 +7,7 @@ const OrderSchema = new mongoose.Schema(
     price: { type: String },
     quantity: { type: Number },
     sku: { type: String },
+    username: { type: String },
   },
   {
     timestamps: true,
