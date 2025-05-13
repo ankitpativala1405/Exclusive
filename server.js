@@ -1,7 +1,7 @@
 const DbConnect = require("./config/dbconnect");
 const express = require("express");
 const app = express();
-app.use(express.json());
+
 const cors = require("cors");
 app.use(cors());
 require("dotenv").config();
@@ -12,6 +12,7 @@ const orderrouter = require("./routes/orderrouter");
 const wishlistrouter = require("./routes/wishlistrouter");
 const LoggedRouter = require("./routes/loggeduser");
 
+app.use(express.json());
 app.use("/user", router);
 app.use("/cart", cartrouter);
 app.use("/order", orderrouter);
