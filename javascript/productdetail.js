@@ -18,6 +18,10 @@ import { ExportCartCount } from "./cart.js";
 //   var qty = document.getElementById("qty-input");
 //   qty.value = Math.max(1, parseInt(qty.value, 10) - 1);
 // };
+// document.getElementById("btn-decrease").addEventListener("click", () => {
+//   let qty = document.getElementById("qty-input");
+//   qty.value = Math.max(1, parseInt(qty.value, 10) - 1);
+// });
 // document.getElementById("btn-increase").onclick = function () {
 //   var qty = document.getElementById("qty-input");
 //   qty.value = parseInt(qty.value, 10) + 1;
@@ -33,6 +37,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("companypolicy").innerHTML = CompanyPolicy();
 
   ShowDataDisplay();
+
+  //decrease quantity
+  document.getElementById("btn-decrease").addEventListener("click", () => {
+    let InputValue = document.getElementById("qty-input").value;
+    if (InputValue <= 1) {
+      alert("Should Not Be Value In 0 or Minus.....");
+      return;
+    }
+    let NewValue = parseFloat(InputValue) - 1;
+    document.getElementById("qty-input").value = NewValue;
+  });
+
+  //increase quantity
+  document.getElementById("btn-increase").addEventListener("click", () => {
+    let InputValue = document.getElementById("qty-input").value;
+    let NewValue = parseFloat(InputValue) + 1;
+    document.getElementById("qty-input").value = NewValue;
+  });
 });
 
 const WishListCartCount = async () => {
@@ -152,7 +174,7 @@ const ShowDataDisplay = () => {
               <input type="number" class="form-control text-center" style="width: 40px" id="qty-input" value="1" min="1"/>
               <button class="btn btn-outline-secondary" id="btn-increase" type="button">+</button>
             </div>
-            <button class="btn btn-buy px-4" type="button">
+            <button class="btn btn-buy px-4" type="button" onclick="AddToCart(${ShowData})">
               <i class="bi bi-cart-fill"></i> Add to Cart
             </button>
             <button class="btn btn-outline-secondary ms-2" style="border-radius: 10%" title="Add to wishlist">
@@ -185,3 +207,39 @@ const ShowDataDisplay = () => {
       "<p class='text-danger'>Product not found</p>";
   }
 };
+
+const AddToCart= async(ShowData)=> {
+      let CartItem = await CartMethod.GetAll();
+      let LsUser = JSON.parse(localStorage.getItem("user"));
+      if (!LsUser) {
+        alert("You Are Not Still loggedIn Please Login First...");
+        return;
+      }
+
+      let MUser = await LoginMethod.GetAll();
+
+      let LoggedUser = MUser.find((user) => user.username == LsUser.username);
+
+      let LoggedUsername = LoggedUser.username;
+
+      let IsExist = CartItem.find((item) => item.sku === ShowData.sku);
+
+      if (IsExist) {
+        let sku = IsExist.sku;
+        let quantity = IsExist.quantity;
+        let upadteitem = {
+          ...IsExist,
+          username: LoggedUsername,
+          quantity: quantity + 1,
+        };
+        await CartMethod.Update(sku, upadteitem);
+        alert(`${product.name} quantity increased in cart`);
+        location.reload();
+      } else {
+        let CartAdd = { ...ShowData, username: LoggedUsername, quantity: 1 };
+        await CartMethod.Post(CartAdd);
+        alert(`${product.name} added to cart!`);
+        location.reload();
+      }
+  
+}
