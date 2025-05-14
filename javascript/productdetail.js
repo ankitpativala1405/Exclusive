@@ -1,3 +1,5 @@
+import { CartMethod } from "../api/cartmethod.js";
+import LoginMethod from "../api/loginmethod.js";
 import WishlistMethod from "../api/wishlistmethod.js";
 import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
@@ -142,11 +144,6 @@ const ShowDataDisplay = () => {
             <span class="badge bg-success ms-2">In Stock</span>
           </div>
           <div class="fs-4 fw-bold mb-2" style="color: #232323">₹${ShowData.price}</div>
-          <div class="mb-3 small text-secondary">
-            PlayStation 5 Controller Skin: High quality vinyl with air channel
-            adhesive for easy bubble free install & mess free removal. Pressure
-            sensitive.
-          </div>
           <!-- Color selection -->
           <div class="mb-2">
             <span class="me-2">Colours:</span>
@@ -174,7 +171,7 @@ const ShowDataDisplay = () => {
               <input type="number" class="form-control text-center" style="width: 40px" id="qty-input" value="1" min="1"/>
               <button class="btn btn-outline-secondary" id="btn-increase" type="button">+</button>
             </div>
-            <button class="btn btn-buy px-4" type="button" onclick="AddToCart(${ShowData})">
+            <button class="btn btn-buy px-4" type="button" id="addToCartBtn">
               <i class="bi bi-cart-fill"></i> Add to Cart
             </button>
             <button class="btn btn-outline-secondary ms-2" style="border-radius: 10%" title="Add to wishlist">
@@ -199,47 +196,62 @@ const ShowDataDisplay = () => {
               </div>
             </div>
           </div>
+          <div class="mb-3 small text-secondary description">
+            PlayStation 5 Controller Skin: High quality vinyl with air channel
+            adhesive for easy bubble free install & mess free removal. Pressure
+            sensitive.
+          </div>
         </div>
       </div>
   `;
+
+    document.getElementById("addToCartBtn").addEventListener("click", () => {
+      // alert("cart added")
+      AddToCart(ShowData);
+    });
   } else {
     document.getElementById("FindProductview").innerHTML =
       "<p class='text-danger'>Product not found</p>";
   }
 };
 
-const AddToCart= async(ShowData)=> {
-      let CartItem = await CartMethod.GetAll();
-      let LsUser = JSON.parse(localStorage.getItem("user"));
-      if (!LsUser) {
-        alert("You Are Not Still loggedIn Please Login First...");
-        return;
-      }
+const AddToCart = async (ShowData) => {
+  // alert("cart added");
+  let CartItem = await CartMethod.GetAll();
+  let LsUser = JSON.parse(localStorage.getItem("user"));
+  if (!LsUser) {
+    alert("You Are Not Still loggedIn Please Login First...");
+    return;
+  }
 
-      let MUser = await LoginMethod.GetAll();
+   let InputValue = document.getElementById("qty-input").value;
+  //  if(InputValue>1){
+  //   alert("you can not more than ")
+  //  }
 
-      let LoggedUser = MUser.find((user) => user.username == LsUser.username);
+  let MUser = await LoginMethod.GetAll();
 
-      let LoggedUsername = LoggedUser.username;
+  let LoggedUser = MUser.find((user) => user.username == LsUser.username);
 
-      let IsExist = CartItem.find((item) => item.sku === ShowData.sku);
+  let LoggedUsername = LoggedUser.username;
 
-      if (IsExist) {
-        let sku = IsExist.sku;
-        let quantity = IsExist.quantity;
-        let upadteitem = {
-          ...IsExist,
-          username: LoggedUsername,
-          quantity: quantity + 1,
-        };
-        await CartMethod.Update(sku, upadteitem);
-        alert(`${product.name} quantity increased in cart`);
-        location.reload();
-      } else {
-        let CartAdd = { ...ShowData, username: LoggedUsername, quantity: 1 };
-        await CartMethod.Post(CartAdd);
-        alert(`${product.name} added to cart!`);
-        location.reload();
-      }
-  
-}
+  let IsExist = CartItem.find((item) => item.sku === ShowData.sku);
+
+  if (IsExist) {
+    let sku = IsExist.sku;
+    let quantity = IsExist.quantity;
+    let upadteitem = {
+      ...IsExist,
+      username: LoggedUsername,
+      quantity: quantity + 1,
+    };
+    await CartMethod.Update(sku, upadteitem);
+    alert(`${ShowData.name} quantity increased in cart`);
+    location.reload();
+  } else {
+    let CartAdd = { ...ShowData, username: LoggedUsername, quantity: 1 };
+    await CartMethod.Post(CartAdd);
+    alert(`${ShowData.name} added to cart!`);
+    location.reload();
+  }
+};
