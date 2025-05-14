@@ -17,7 +17,6 @@ export const CartMethod = {
     return request;
   },
   Update: async (sku, data) => {
-
     await fetch(`${apiUrl.carts}/${sku}`, {
       method: "PATCH",
       headers: {
@@ -27,17 +26,18 @@ export const CartMethod = {
     });
   },
   DeleteAll: async () => {
-    try {
-      const allItems = await CartMethod.GetAll();
-      const deleteall = allItems.map((item) =>
-        fetch(`${apiUrl.carts}/${item.sku}`, {
-          method: "DELETE",
-        }).catch((e) => console.error(`Failed to delete SKU ${item.sku}`, e))
-      );
-      await Promise.all(deleteall);
-    } catch (e) {
-      console.error("DeleteAll failed:", e);
-    }
+    let CartItem = await CartMethod.GetAll();
+    let LsUser = JSON.parse(localStorage.getItem("user"));
+    const allItems = CartItem.filter(
+      (products) => products.username == LsUser.username
+    );
+    console.log("allItems", allItems);
+    const deleteall = allItems.map((item) =>
+      fetch(`${apiUrl.carts}/${item.sku}`, {
+        method: "DELETE",
+      }).catch((e) => console.error(`Failed to delete SKU ${item.sku}`, e))
+    );
+    await Promise.all(deleteall);
   },
   GetByID: async (id) => {
     let req = await fetch(`${apiUrl.carts}/${id}`);
@@ -65,9 +65,9 @@ export const CartMethod = {
     return request;
   },
   Delete: async (id) => {
-   let req= await fetch(`${apiUrl.carts}/${id}`, {
+    let req = await fetch(`${apiUrl.carts}/${id}`, {
       method: "DELETE",
     });
-    return req.json()
+    return req.json();
   },
 };
