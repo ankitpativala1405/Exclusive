@@ -3,6 +3,7 @@ import WishlistMethod from "../api/wishlistmethod.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 import { GetValue } from "../public/helper.js";
+import { navbarclassactive } from "../utils/navbarclassactive.js";
 import { ExportCartCount } from "./cart.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -24,6 +25,7 @@ const WishListCartCount = async () => {
   document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
 };
 WishListCartCount();
+navbarclassactive()
 
 document.getElementById("signupform").addEventListener("submit", async (e) => {
   e.preventDefault();

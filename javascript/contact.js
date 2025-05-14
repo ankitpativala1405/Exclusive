@@ -2,6 +2,7 @@ import WishlistMethod from "../api/wishlistmethod.js";
 import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
+import { navbarclassactive } from "../utils/navbarclassactive.js";
 import { ExportCartCount } from "./cart.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -24,3 +25,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
 };
 WishListCartCount();
+navbarclassactive()

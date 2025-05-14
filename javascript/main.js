@@ -5,6 +5,7 @@ import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 import ProductData from "../public/productdata.js";
+import { navbarclassactive } from "../utils/navbarclassactive.js";
 import { ExportCartCount } from "./cart.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -28,6 +29,7 @@ const WishListCartCount = async () => {
   document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
 };
 WishListCartCount();
+navbarclassactive()
 
 function updateCountdownToMidnight() {
   const now = new Date();

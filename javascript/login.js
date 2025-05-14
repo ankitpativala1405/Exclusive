@@ -5,6 +5,7 @@ import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 import { GetValue } from "../public/helper.js";
 import { VerifyOTP } from "../utils/loginotp.js";
+import { navbarclassactive } from "../utils/navbarclassactive.js";
 import { ExportCartCount } from "./cart.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -26,6 +27,7 @@ const WishListCartCount = async () => {
   document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
 };
 WishListCartCount();
+navbarclassactive()
 
 document.getElementById("loginform").addEventListener("submit", async (e) => {
   e.preventDefault();
