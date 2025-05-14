@@ -7,7 +7,7 @@
   max-width: 90%;
   justify-content: center;
   align-items: center;
- 
+
   margin: auto;
 }
 
@@ -55,22 +55,25 @@
 }
 
 .container {
+  margin: 0 auto;
+  max-width: 90%;
   display: flex;
 }
 
-.image-section img {
-  border-radius: 10px;
-  height: 500px;
-  width: 900px;
+.container .text-section img{
+   border-radius: 10px;
 }
 
-.text-section {
-  max-width: 50%;
+.container .text-section p{
+  font-size: 18px;
+   
 }
+
 
 /* team section */
 
-.team-section {
+
+ .team-section {
   display: flex;
   justify-content: center;
   gap: 40px;
