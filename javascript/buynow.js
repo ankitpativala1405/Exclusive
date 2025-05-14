@@ -17,7 +17,6 @@ const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
 
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  console.log("LuUSer", LsUser.username);
   let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
 
   let countitem = WishlistByUser.length;
@@ -27,18 +26,14 @@ WishListCartCount();
 
 // let CartItem = await CartMethod.GetAll();
 // let LsUser = JSON.parse(localStorage.getItem("user"));
-// console.log(LsUser);
 // if (!LsUser) {
 //   alert("You Are Not Still loggedIn Please Login First...");
 //   return;
 // }
 // let MUser = await LoginMethod.GetAll();
-// console.log("MUser", MUser);
 // let LoggedUser = MUser.find((user) => user.username == LsUser.username);
-// console.log("LoggedUser", LoggedUser);
 
 // let UserCart = CartItem.filter((item) => item.username == LoggedUser.username);
-// console.log("UserCart", UserCart);
 
 // let WantItem = UserCart;
 // let discountAmount = 0;
@@ -122,11 +117,9 @@ WishListCartCount();
 
 // document.getElementById("GetOrder").addEventListener("click", async () => {
 //   let CartItem = await CartMethod.GetAll();
-//   console.log("CartItemsssss", CartItem);
 
 //   let req = await CartMethod.Create(CartItem);
 //   let res = await req.json();
-//   console.log("Ordered Item", res);
 //   alert("Order successful!");
 //   await CartMethod.DeleteAll();
 // });
@@ -154,7 +147,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 (async () => {
   let CartItem = await CartMethod.GetAll();
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  console.log("Logged-in local user:", LsUser);
 
   if (!LsUser) {
     alert("You Are Not Still loggedIn. Please Login First...");
@@ -162,13 +154,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   let MUser = await LoginMethod.GetAll();
-  console.log("All users:", MUser);
 
   let LoggedUser = MUser.find((user) => user.username === LsUser.username);
-  console.log("Matched User:", LoggedUser);
 
   let UserCart = CartItem.filter((item) => item.username === LoggedUser.username);
-  console.log("User's Cart:", UserCart);
 
   let WantItem = UserCart;
   let discountAmount = 0;
@@ -260,8 +249,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const req = await CartMethod.Create(WantItem);
     const res = await req.json();
-
-    console.log("Ordered Item", res);
     alert("Order successful!");
 
     await CartMethod.DeleteAll();

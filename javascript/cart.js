@@ -15,20 +15,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (tableBody) {
     let CartItem = await CartMethod.GetAll();
     let LsUser = JSON.parse(localStorage.getItem("user"));
-    console.log(LsUser);
     if (!LsUser) {
       alert("You Are Not Still loggedIn Please Login First...");
       return;
     }
     let MUser = await LoginMethod.GetAll();
-    console.log("MUser", MUser);
     let LoggedUser = MUser.find((user) => user.username == LsUser.username);
-    console.log("LoggedUser", LoggedUser);
 
     let UserCart = CartItem.filter(
       (item) => item.username == LoggedUser.username
     );
-    console.log("UserCart", UserCart);
 
     UiMaker(UserCart);
   }
@@ -38,7 +34,6 @@ const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
 
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  console.log("LuUSer", LsUser.username);
   let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
 
   let countitem = WishlistByUser.length;
@@ -289,20 +284,16 @@ export const ExportCartCount = async () => {
 
   let CartItem = await CartMethod.GetAll();
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  console.log(LsUser);
   if (!LsUser) {
     alert("You Are Not Still loggedIn Please Login First...");
     return;
   }
   let MUser = await LoginMethod.GetAll();
-  console.log("MUser", MUser);
   let LoggedUser = MUser.find((user) => user.username == LsUser.username);
-  console.log("LoggedUser", LoggedUser);
 
   let UserCart = CartItem.filter(
     (item) => item.username == LoggedUser.username
   );
-  console.log("UserCart", UserCart);
   let countitem = UserCart.length;
   return countitem;
 };

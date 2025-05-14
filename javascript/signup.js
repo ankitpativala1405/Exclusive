@@ -18,7 +18,6 @@ const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
 
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  console.log("LuUSer", LsUser.username);
   let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
 
   let countitem = WishlistByUser.length;
@@ -48,11 +47,8 @@ document.getElementById("signupform").addEventListener("submit", async (e) => {
     username,
   };
 
-  console.log("New user:", user);
-
   const req = await UserMethod.create(user);
   const res = await req.json();
-  console.log("User created:", res);
   alert("Signup successful!");
   alert(`Your username is ->${username}`);
 });

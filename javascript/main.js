@@ -22,7 +22,6 @@ const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
 
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  console.log("LuUSer", LsUser.username);
   let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
 
   let countitem = WishlistByUser.length;
@@ -66,7 +65,6 @@ updateCountdownToMidnight();
 
 // TodaySaleProducts
 let data = ProductData;
-console.log(data);
 
 function getRandomProducts(data, count) {
   let Random = data.sort(() => 0.5 - Math.random());

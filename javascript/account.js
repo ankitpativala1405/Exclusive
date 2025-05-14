@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   let item = await WishlistMethod.GetWishlist();
 
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  console.log("LuUSer", LsUser.username);
   let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
 
   let countitem = WishlistByUser.length;

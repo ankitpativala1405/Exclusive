@@ -22,7 +22,6 @@ const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
 
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  console.log("LuUSer", LsUser.username);
   let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
 
   let countitem = WishlistByUser.length;
@@ -75,16 +74,13 @@ const UiMaker = (page = 1) => {
     heartBtn.innerHTML = '<i class="fa-regular fa-heart text-dark"></i>';
     heartBtn.addEventListener("click", async () => {
       let LsUser = JSON.parse(localStorage.getItem("user"));
-      console.log(LsUser);
       if (!LsUser) {
         alert("You Are Not Still loggedIn Please Login First...");
         return;
       }
       let MUser = await LoginMethod.GetAll();
-      console.log("MUser", MUser);
       let LoggedUser = MUser.find((user) => user.username == LsUser.username);
       let LoggedUsername = LoggedUser.username;
-      console.log("LoggedUser", LoggedUsername);
       let wishlistAdd = { ...product, username: LoggedUsername };
       await (await CartMethod.PostWishlist(wishlistAdd)).json();
       alert("Added to Wishlist");
@@ -129,20 +125,16 @@ const UiMaker = (page = 1) => {
     addToCartBtn.addEventListener("click", async () => {
       let CartItem = await CartMethod.GetAll();
       let LsUser = JSON.parse(localStorage.getItem("user"));
-      console.log(LsUser);
       if (!LsUser) {
         alert("You Are Not Still loggedIn Please Login First...");
         return;
       }
 
       let MUser = await LoginMethod.GetAll();
-      console.log("MUser", MUser);
 
       let LoggedUser = MUser.find((user) => user.username == LsUser.username);
 
       let LoggedUsername = LoggedUser.username;
-
-      console.log("LoggedUser", LoggedUsername);
 
       let IsExist = CartItem.find((item) => item.sku === product.sku);
 

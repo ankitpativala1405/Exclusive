@@ -20,15 +20,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (tableBody) {
     let AllWishlist = await WishlistMethod.GetWishlist();
-    console.log("AllWishlist", AllWishlist);
 
     let LsUser = JSON.parse(localStorage.getItem("user"));
-    console.log("LuUSer",LsUser.username);
 
     let WishlistByUser=AllWishlist.filter((user)=>user.username == LsUser.username)
-
-    console.log("WishlistByUser",WishlistByUser);
-    
+   
     wishlistData = WishlistByUser
 
     document.getElementById(
@@ -179,14 +175,9 @@ document.getElementById("MovetoCart").addEventListener("click", async () => {
 export const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
 
-    console.log("AllWishlist", item);
-
     let LsUser = JSON.parse(localStorage.getItem("user"));
-    console.log("LuUSer",LsUser.username);
 
     let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
-
-    console.log("WishlistByUser",WishlistByUser);
 
   let countitem = WishlistByUser.length;
   return countitem;

@@ -20,7 +20,6 @@ const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
 
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  console.log("LuUSer", LsUser.username);
   let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
 
   let countitem = WishlistByUser.length;
@@ -34,11 +33,8 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
 
   const email = GetValue("email");
   const password = GetValue("password");
-  console.log(email);
-  console.log(password);
 
   const users = await UserMethod.GetAll();
-  console.log("users", users);
 
   const user = users.find((data) => data.email === email);
 
@@ -46,7 +42,6 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
     alert("USer not exist");
     return;
   } else {
-    console.log(user.password);
     if (user.password == password) {
       document.getElementById("otpbox").style.display = "flex";
       let Login = await LoginMethod.create(user);
