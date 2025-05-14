@@ -1,0 +1,41 @@
+Copyright © 2021 Exclusive. All rights reserved.
+
+This license governs the use of the e-commerce website and any associated content, software, databases, APIs, or services ("Website") provided by Exclusive, a legally registered business entity ("Licensor"). By accessing or using the Website, you agree to the terms of this license. If you do not agree, do not access or use the Website.
+
+1. GRANT OF LICENSE
+Subject to your compliance with these terms, Exclusive grants you a limited, non-exclusive, non-transferable, and revocable license to access and use the Website for your personal or commercial use solely for purchasing products or services offered by the Website.
+
+2. RESTRICTIONS
+You shall not:
+- Copy, modify, reproduce, distribute, display, transmit, publish, license, create derivative works from, or sell any content or code from this Website;
+- Reverse engineer, decompile, or disassemble any part of the Website or its underlying code;
+- Use any automated system (including bots, crawlers, or spiders) to extract data from the Website for any purpose;
+- Use the Website in a manner that violates any local, state, national, or international law;
+- Access or use the Website for purposes of creating a competing service or platform.
+
+3. OWNERSHIP AND INTELLECTUAL PROPERTY
+All intellectual property rights in the Website, including but not limited to source code, design, layout, text, graphics, logos, trademarks, icons, and images, are owned by or licensed to Exclusive and are protected by copyright and other intellectual property laws. Nothing in this license transfers any ownership rights to you.
+
+4. USER CONTENT
+Any content you submit to the Website (e.g., product reviews, feedback, or comments) becomes the property of Exclusive. By submitting content, you grant Exclusive a perpetual, irrevocable, worldwide, royalty-free license to use, reproduce, modify, publish, and distribute such content for any purpose.
+
+5. LIMITATION OF LIABILITY
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, Exclusive SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, GOODWILL, USE, DATA, OR OTHER INTANGIBLE LOSSES RESULTING FROM THE USE OR INABILITY TO USE THE WEBSITE.
+
+6. WARRANTY DISCLAIMER
+THE WEBSITE AND ALL ASSOCIATED SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+
+7. TERMINATION
+This license is effective until terminated. It will terminate automatically without notice from Exclusive if you fail to comply with any term of this license. Upon termination, you must immediately cease all use of the Website.
+
+8. GOVERNING LAW
+This License shall be governed by and construed in accordance with the laws of Gujarat/India, without regard to its conflict of laws principles.
+
+9. CONTACT
+For questions about this license or to request permission for any use not expressly granted herein, please contact:
+
+Exclusive  
+Attn: Legal Department    
+Email: pativalaankit@gmail.com  
+
+---
