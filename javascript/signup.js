@@ -18,13 +18,13 @@ const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
 
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
+  let WishlistByUser = item.filter((user) => user.username == LsUser.username);
 
   let countitem = WishlistByUser.length;
   document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
 };
 WishListCartCount();
-navbarclassactive()
+navbarclassactive();
 
 document.getElementById("signupform").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -46,6 +46,24 @@ document.getElementById("signupform").addEventListener("submit", async (e) => {
     password,
     username,
   };
+
+  let AllUser = await UserMethod.GetAll();
+  let IsExist = AllUser.find((users) => users.number == user.number);
+  let IsExistEmail = AllUser.find((users) => users.email == user.email);
+  if (IsExist && IsExistEmail) {
+    alert("Your Number And Email Has Already Taken Please please Try with Another Number And Email ...");
+    return;
+  }
+  if (IsExist) {
+    alert("Your Number Has Already Taken Please please Try with Another Number...");
+    return;
+  }
+   if (IsExistEmail) {
+    alert(
+      "Your Email Has Already Taken Please please Try with Another Email..."
+    );
+    return;
+  }
 
   const req = await UserMethod.create(user);
   const res = await req.json();
