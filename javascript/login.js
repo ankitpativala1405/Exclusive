@@ -36,7 +36,7 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
 
   const users = await UserMethod.GetAll();
 
-  const user = users.find((data) => data.email === email);
+  const user = users.find((data) => data.email === email || data.number === email || data.username === email);
 
   if (!user) {
     alert("USer not exist");
@@ -44,7 +44,7 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
   } else {
     if (user.password == password) {
       document.getElementById("otpbox").style.display = "flex";
-      let Login = await LoginMethod.create(user);
+     await LoginMethod.create(user);
       localStorage.setItem("loggedin", true);
       localStorage.setItem("user", JSON.stringify(user));
       window.location.href = "/index.html";
@@ -54,14 +54,16 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
   }
 });
 
+
+
 // const cliked=()=>{
 //   VerifyOTP()
 // }
 
 // const twilio = require("twilio");
 
-// const accountSid = "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-// const authToken = "your_auth_token_here";
+// const accountSid = "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" || process.env.accountSid;
+// const authToken = "your_auth_token_here" || process.env.authToken;
 
 // const client = new twilio(accountSid, authToken);
 // function generateOtp() {
