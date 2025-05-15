@@ -206,7 +206,6 @@ const ShowDataDisplay = () => {
   `;
 
     document.getElementById("addToCartBtn").addEventListener("click", () => {
-      // alert("cart added")
       AddToCart(ShowData);
     });
   } else {
@@ -225,9 +224,6 @@ const AddToCart = async (ShowData) => {
   }
 
    let InputValue = document.getElementById("qty-input").value;
-  //  if(InputValue>1){
-  //   alert("you can not more than ")
-  //  }
 
   let MUser = await LoginMethod.GetAll();
 
@@ -243,13 +239,13 @@ const AddToCart = async (ShowData) => {
     let upadteitem = {
       ...IsExist,
       username: LoggedUsername,
-      quantity: quantity + 1,
+      quantity: quantity + parseFloat(InputValue),
     };
     await CartMethod.Update(sku, upadteitem);
     alert(`${ShowData.name} quantity increased in cart`);
     location.reload();
   } else {
-    let CartAdd = { ...ShowData, username: LoggedUsername, quantity: 1 };
+    let CartAdd = { ...ShowData, username: LoggedUsername, quantity: parseFloat(InputValue) };
     await CartMethod.Post(CartAdd);
     alert(`${ShowData.name} added to cart!`);
     location.reload();
