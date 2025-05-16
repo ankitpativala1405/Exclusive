@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("companypolicy").innerHTML = CompanyPolicy();
 
   ShowDataDisplay();
-   ShowRelatedItems(); 
+  ShowRelatedItems();
 
   //decrease quantity
   document.getElementById("btn-decrease").addEventListener("click", () => {
@@ -58,7 +58,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     let NewValue = parseFloat(InputValue) + 1;
     document.getElementById("qty-input").value = NewValue;
   });
-
 });
 
 const WishListCartCount = async () => {
@@ -225,7 +224,7 @@ const AddToCart = async (ShowData) => {
     return;
   }
 
-   let InputValue = document.getElementById("qty-input").value;
+  let InputValue = document.getElementById("qty-input").value;
 
   let MUser = await LoginMethod.GetAll();
 
@@ -247,7 +246,11 @@ const AddToCart = async (ShowData) => {
     alert(`${ShowData.name} quantity increased in cart`);
     location.reload();
   } else {
-    let CartAdd = { ...ShowData, username: LoggedUsername, quantity: parseFloat(InputValue) };
+    let CartAdd = {
+      ...ShowData,
+      username: LoggedUsername,
+      quantity: parseFloat(InputValue),
+    };
     await CartMethod.Post(CartAdd);
     alert(`${ShowData.name} added to cart!`);
     location.reload();
@@ -257,12 +260,14 @@ const AddToCart = async (ShowData) => {
 const ShowRelatedItems = () => {
   const allProducts = ProductData;
   const currentProduct = JSON.parse(localStorage.getItem("ViewProductDetail"));
-  const filteredProducts = allProducts.filter(p => p.sku !== currentProduct.sku);
+  const filteredProducts = allProducts.filter(
+    (p) => p.sku !== currentProduct.sku
+  );
   const shuffled = filteredProducts.sort(() => 0.5 - Math.random());
   const selectedProducts = shuffled.slice(0, 4);
 
   let html = "";
-  selectedProducts.forEach(product => {
+  selectedProducts.forEach((product) => {
     html += `
       <div class="col-md-3 col-6">
         <div class="card position-relative">
@@ -272,7 +277,7 @@ const ShowRelatedItems = () => {
             <div class="mb-1">
               <span class="fw-bold" style="color: #e53935">₹${product.price}</span>
             </div>
-            <button class="add-to-cart-btn w-100 mb-1" onclick='AddToCart(${JSON.stringify(product)})'>Add To Cart</button>
+            <button class="add-to-cart-btn w-100 mb-1" data-sku="${product.sku}">Add To Cart</button>
             <div class="small text-warning">
               &#9733;&#9733;&#9733;&#9733;&#9733;
             </div>
@@ -282,4 +287,11 @@ const ShowRelatedItems = () => {
   });
 
   document.querySelector(".row.product-card").innerHTML = html;
+  document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const sku = button.getAttribute("data-sku");
+      const productToAdd = ProductData.find((p) => p.sku === sku);
+      AddToCart(productToAdd);
+    });
+  });
 };
