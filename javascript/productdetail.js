@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("companypolicy").innerHTML = CompanyPolicy();
 
   ShowDataDisplay();
+   ShowRelatedItems(); 
 
   //decrease quantity
   document.getElementById("btn-decrease").addEventListener("click", () => {
@@ -57,6 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let NewValue = parseFloat(InputValue) + 1;
     document.getElementById("qty-input").value = NewValue;
   });
+
 });
 
 const WishListCartCount = async () => {
@@ -250,4 +252,34 @@ const AddToCart = async (ShowData) => {
     alert(`${ShowData.name} added to cart!`);
     location.reload();
   }
+};
+
+const ShowRelatedItems = () => {
+  const allProducts = ProductData;
+  const currentProduct = JSON.parse(localStorage.getItem("ViewProductDetail"));
+  const filteredProducts = allProducts.filter(p => p.sku !== currentProduct.sku);
+  const shuffled = filteredProducts.sort(() => 0.5 - Math.random());
+  const selectedProducts = shuffled.slice(0, 4);
+
+  let html = "";
+  selectedProducts.forEach(product => {
+    html += `
+      <div class="col-md-3 col-6">
+        <div class="card position-relative">
+          <img src="${product.img}" class="card-img-top images" alt="${product.name}" />
+          <div class="card-body pb-2">
+            <h6 class="card-title mb-1">${product.name}</h6>
+            <div class="mb-1">
+              <span class="fw-bold" style="color: #e53935">₹${product.price}</span>
+            </div>
+            <button class="add-to-cart-btn w-100 mb-1" onclick='AddToCart(${JSON.stringify(product)})'>Add To Cart</button>
+            <div class="small text-warning">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+          </div>
+        </div>
+      </div>`;
+  });
+
+  document.querySelector(".row.product-card").innerHTML = html;
 };
