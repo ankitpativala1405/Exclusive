@@ -129,3 +129,67 @@ select {
     gap: 10px;
   }
 }
+
+
+/* dynamic from js */
+
+/* Product info layout: image + name */
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Product image styling */
+.product-info img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* Quantity control container */
+.quantity-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Quantity input styling */
+.quantity-container input[type="number"] {
+  width: 50px;
+  height: 28px;
+  text-align: center;
+}
+
+/* Quantity buttons */
+.quantity-container button {
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Delete button */
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Table cell padding */
+#tablebody td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Total and grand total */
+#Totalshow,
+#Grandtotal {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}

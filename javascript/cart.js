@@ -32,30 +32,33 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
-
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
-
+  let WishlistByUser = item.filter((user) => user.username == LsUser.username);
   let countitem = WishlistByUser.length;
   document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
 };
 WishListCartCount();
 
-let total = 0;
 // const UiMaker = (CartItem) => {
-//   total = 0;
-//   document.getElementById("tablebody").innerHTML = ""; 
+//   let total = 0;
+//   const tableBody = document.getElementById("tablebody");
+//   tableBody.innerHTML = "";
 
 //   CartItem.forEach((item, index) => {
 //     let row = document.createElement("tr");
 
-//     // Product Info
+//     // --- Product Info ---
 //     let td1 = document.createElement("td");
 //     let productInfoDiv = document.createElement("div");
 //     productInfoDiv.classList.add("product-info");
 
 //     let img = document.createElement("img");
 //     img.src = item.img;
+//     img.style.width = "50px";
+//     img.style.height = "50px";
+//     img.style.objectFit = "cover";
+//     img.style.marginRight = "10px";
+
 //     let span = document.createElement("span");
 //     span.textContent = item.name;
 
@@ -64,30 +67,48 @@ let total = 0;
 //     td1.appendChild(productInfoDiv);
 //     row.appendChild(td1);
 
-//     // Price
+//     // --- Price ---
 //     let td2 = document.createElement("td");
 //     td2.textContent = `₹${item.price}`;
 //     row.appendChild(td2);
 
-//     // Quantity Input
+//     // --- Quantity Controls ---
 //     let td3 = document.createElement("td");
+//     let quantityContainer = document.createElement("div");
+//     quantityContainer.style.display = "flex";
+//     quantityContainer.style.alignItems = "center";
+//     quantityContainer.style.gap = "5px";
+
+//     let decreaseBtn = document.createElement("button");
+//     decreaseBtn.textContent = "-";
+//     decreaseBtn.style.padding = "5px 10px";
+//     decreaseBtn.style.cursor = "pointer";
+
 //     let input = document.createElement("input");
 //     input.type = "number";
 //     input.value = item.quantity;
 //     input.min = "1";
 //     input.max = "100";
-//     td3.appendChild(input);
+//     input.style.width = "50px";
+//     input.style.height="28px"
+//     input.style.textAlign = "center";
+
+//     let increaseBtn = document.createElement("button");
+//     increaseBtn.textContent = "+";
+//     increaseBtn.style.padding = "5px 10px";
+//     increaseBtn.style.cursor = "pointer";
+
+//     quantityContainer.append(decreaseBtn, input, increaseBtn);
+//     td3.appendChild(quantityContainer);
 //     row.appendChild(td3);
 
-//     // Subtotal
+//     // --- Subtotal ---
 //     let td4 = document.createElement("td");
 //     let subtotal = item.price * item.quantity;
 //     td4.textContent = `₹${subtotal}`;
 //     row.appendChild(td4);
 
-//     total += subtotal;
-
-//     // Delete Button
+//     // --- Delete Button ---
 //     let td5 = document.createElement("td");
 //     let deleteBtn = document.createElement("button");
 //     deleteBtn.textContent = "Delete";
@@ -98,53 +119,83 @@ let total = 0;
 //     deleteBtn.style.cursor = "pointer";
 //     td5.appendChild(deleteBtn);
 //     row.appendChild(td5);
+
+//     tableBody.appendChild(row);
+//     total += subtotal;
+
+//     // --- Helper Functions ---
+//     function updateTotals() {
+//       let newTotal = 0;
+//       CartItem.forEach((i) => {
+//         newTotal += i.price * i.quantity;
+//       });
+//       document.getElementById("Totalshow").innerHTML = `₹${newTotal.toFixed(2)}`;
+//       document.getElementById("Grandtotal").innerHTML = `₹${(newTotal + 100).toFixed(2)}`;
+//     }
+
+//     function updateSubtotal() {
+//       const updatedSubtotal = item.price * item.quantity;
+//       td4.textContent = `₹${updatedSubtotal}`;
+//       updateTotals();
+//     }
+
+//     async function updateQuantityInDB(newQty) {
+//       try {
+//         await CartMethod.Update(item.sku, { quantity: newQty });
+//       } catch (error) {
+//         console.error("Failed to update quantity:", error);
+//         alert("Error updating quantity. Please try again.");
+//       }
+//     }
+
+//     // --- Event Listeners ---
+//     increaseBtn.addEventListener("click", async () => {
+//       if (item.quantity < 100) {
+//         item.quantity++;
+//         input.value = item.quantity;
+//         updateSubtotal();
+//         await updateQuantityInDB(item.quantity);
+//       }
+//     });
+
+//     decreaseBtn.addEventListener("click", async () => {
+//       if (item.quantity > 1) {
+//         item.quantity--;
+//         input.value = item.quantity;
+//         updateSubtotal();
+//         await updateQuantityInDB(item.quantity);
+//       }
+//     });
+
+//     input.addEventListener("input", async () => {
+//       let newQty = parseInt(input.value);
+//       if (isNaN(newQty) || newQty < 1) newQty = 1;
+//       if (newQty > 100) newQty = 100;
+
+//       item.quantity = newQty;
+//       input.value = newQty;
+//       updateSubtotal();
+//       await updateQuantityInDB(item.quantity);
+//     });
+
 //     deleteBtn.addEventListener("click", async () => {
 //       await CartMethod.Delete(item.sku);
 //       alert(`${item.name} product Deleted`);
 //       location.reload();
 //     });
-
-//     // Quantity Change Listener
-//     input.addEventListener("input", () => {
-//       let newQty = parseInt(input.value);
-//       if (isNaN(newQty) || newQty < 1) newQty = 1;
-
-//       CartItem[index].quantity = newQty;
-
-//       const updatedSubtotal = newQty * item.price;
-//       td4.textContent = `₹${updatedSubtotal}`;
-
-//       // Update total
-//       let newTotal = 0;
-//       CartItem.forEach((i) => {
-//         newTotal += i.price * i.quantity;
-//       });
-
-//       document.getElementById("Totalshow").innerHTML = `₹${newTotal.toFixed(
-//         2
-//       )}`;
-//       document.getElementById("Grandtotal").innerHTML = `₹${(
-//         newTotal + 100
-//       ).toFixed(2)}`;
-//     });
-
-//     document.getElementById("tablebody").append(row);
 //   });
 
-//   // Initial Total Display
+//   // Final totals
 //   document.getElementById("Totalshow").innerHTML = `₹${total.toFixed(2)}`;
-//   document.getElementById("Grandtotal").innerHTML = `₹${(total + 100).toFixed(
-//     2
-//   )}`;
+//   document.getElementById("Grandtotal").innerHTML = `₹${(total + 100).toFixed(2)}`;
 // };
 
 const UiMaker = (CartItem) => {
   let total = 0;
-
   const tableBody = document.getElementById("tablebody");
-  tableBody.innerHTML = ""; // Clear existing rows if any
+  tableBody.innerHTML = "";
 
-  CartItem.forEach((item, index) => {
+  CartItem.forEach((item) => {
     let row = document.createElement("tr");
 
     // --- Product Info ---
@@ -154,16 +205,12 @@ const UiMaker = (CartItem) => {
 
     let img = document.createElement("img");
     img.src = item.img;
-    img.style.width = "50px";
-    img.style.height = "50px";
-    img.style.objectFit = "cover";
-    img.style.marginRight = "10px";
+    img.alt = item.name;
 
     let span = document.createElement("span");
     span.textContent = item.name;
 
-    productInfoDiv.appendChild(img);
-    productInfoDiv.appendChild(span);
+    productInfoDiv.append(img, span);
     td1.appendChild(productInfoDiv);
     row.appendChild(td1);
 
@@ -175,29 +222,21 @@ const UiMaker = (CartItem) => {
     // --- Quantity Controls ---
     let td3 = document.createElement("td");
     let quantityContainer = document.createElement("div");
-    quantityContainer.style.display = "flex";
-    quantityContainer.style.alignItems = "center";
-    quantityContainer.style.gap = "5px";
+    quantityContainer.classList.add("quantity-container");
 
     let decreaseBtn = document.createElement("button");
     decreaseBtn.textContent = "-";
-    decreaseBtn.style.padding = "5px 10px";
-    decreaseBtn.style.cursor = "pointer";
 
     let input = document.createElement("input");
     input.type = "number";
     input.value = item.quantity;
     input.min = "1";
     input.max = "100";
-    input.style.width = "50px";
-    input.style.textAlign = "center";
 
     let increaseBtn = document.createElement("button");
     increaseBtn.textContent = "+";
-    increaseBtn.style.padding = "5px 10px";
-    increaseBtn.style.cursor = "pointer";
 
-    quantityContainer.append(decreaseBtn,input,increaseBtn)
+    quantityContainer.append(decreaseBtn, input, increaseBtn);
     td3.appendChild(quantityContainer);
     row.appendChild(td3);
 
@@ -211,17 +250,11 @@ const UiMaker = (CartItem) => {
     let td5 = document.createElement("td");
     let deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
-    deleteBtn.style.backgroundColor = "red";
-    deleteBtn.style.color = "white";
-    deleteBtn.style.border = "none";
-    deleteBtn.style.padding = "5px 10px";
-    deleteBtn.style.cursor = "pointer";
+    deleteBtn.classList.add("delete-btn");
     td5.appendChild(deleteBtn);
     row.appendChild(td5);
 
-    // Append row to table
     tableBody.appendChild(row);
-
     total += subtotal;
 
     // --- Helper Functions ---
@@ -240,24 +273,35 @@ const UiMaker = (CartItem) => {
       updateTotals();
     }
 
+    async function updateQuantityInDB(newQty) {
+      try {
+        await CartMethod.Update(item.sku, { quantity: newQty });
+      } catch (error) {
+        console.error("Failed to update quantity:", error);
+        alert("Error updating quantity. Please try again.");
+      }
+    }
+
     // --- Event Listeners ---
-    increaseBtn.addEventListener("click", () => {
+    increaseBtn.addEventListener("click", async () => {
       if (item.quantity < 100) {
         item.quantity++;
         input.value = item.quantity;
         updateSubtotal();
+        await updateQuantityInDB(item.quantity);
       }
     });
 
-    decreaseBtn.addEventListener("click", () => {
+    decreaseBtn.addEventListener("click", async () => {
       if (item.quantity > 1) {
         item.quantity--;
         input.value = item.quantity;
         updateSubtotal();
+        await updateQuantityInDB(item.quantity);
       }
     });
 
-    input.addEventListener("input", () => {
+    input.addEventListener("input", async () => {
       let newQty = parseInt(input.value);
       if (isNaN(newQty) || newQty < 1) newQty = 1;
       if (newQty > 100) newQty = 100;
@@ -265,6 +309,7 @@ const UiMaker = (CartItem) => {
       item.quantity = newQty;
       input.value = newQty;
       updateSubtotal();
+      await updateQuantityInDB(item.quantity);
     });
 
     deleteBtn.addEventListener("click", async () => {
@@ -274,14 +319,11 @@ const UiMaker = (CartItem) => {
     });
   });
 
-  // --- Final Total Display ---
+  // Final totals
   document.getElementById("Totalshow").innerHTML = `₹${total.toFixed(2)}`;
   document.getElementById("Grandtotal").innerHTML = `₹${(total + 100).toFixed(2)}`;
 };
-
 export const ExportCartCount = async () => {
-  // let item = await CartMethod.GetAll();
-
   let CartItem = await CartMethod.GetAll();
   let LsUser = JSON.parse(localStorage.getItem("user"));
   if (!LsUser) {
