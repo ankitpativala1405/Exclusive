@@ -1,0 +1,35 @@
+.order-card {
+  background: #fff;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.order-card .info {
+  flex: 1;
+}
+
+.order-card .info p {
+  margin: 4px 0;
+}
+
+.order-card .thumbnail {
+  width: 100px;
+  height: 100px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  margin-left: 20px;
+  background-size: cover;
+  background-position: center;
+}
+
+.order-card .actions {
+  margin-top: 10px;
+}
+
+.order-card .actions .btn {
+  margin-right: 10px;
+}

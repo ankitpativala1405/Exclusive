@@ -70,3 +70,21 @@ body {
   width: 36px;
   margin-left: 5px;
 }
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#coupon-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+p.error {
+  color: #28a745;
+  margin-top: 10px;
+  font-weight: 600;
+}

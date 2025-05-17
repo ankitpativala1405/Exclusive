@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Order History</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" href="/CSS/orderhistory.css">
+  <style>
+    /* see CSS section below */
+  </style>
+</head>
+<body class="bg-light">
+
+  <div class="container py-4">
+
+    <!-- Top Filters -->
+    <div class="row mb-4 align-items-center">
+      <div class="col-md-5">
+        <input id="orderSearch" type="text" class="form-control" placeholder="Search orders… by order id or sku">
+      </div>
+      <div class="col-md-3">
+        <select id="sortSelect" class="form-control">
+          <option value="latest">Latest</option>
+          <option value="oldest">Oldest</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <select id="statusSelect" class="form-control">
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="processing">Processing</option>
+          <option value="shipped">Shipped</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <select id="methodSelect" class="form-control">
+          <option value="">All Methods</option>
+          <option value="cod">Cash on Delivery</option>
+          <option value="card">Card</option>
+          <option value="bank">Bank Transfer</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Orders List -->
+    <div id="ordersList" class="mb-4"></div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center mb-5">
+      <button id="prevBtn" class="btn btn-success mr-2">Prev</button>
+      <button id="nextBtn" class="btn btn-success">Next</button>
+    </div>
+
+  </div>
+
+</body>
+<script type="module" src="/javascript/orderhistory.js"></script>
+</html>
