@@ -1,70 +1,111 @@
+import { CartMethod } from "../api/cartmethod.js";
+import LoginMethod from "../api/loginmethod.js";
+import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
+import { ExportCartCount } from "./cart.js";
 
-document.getElementById("navbar").innerHTML=Navbar()
-document.getElementById("footer").innerHTML=Footer()
-async function fetchOrders({ page, search, sort, status, method }) {
-  await new Promise(r => setTimeout(r, 200));
-  return Array.from({ length: 5 }).map((_, i) => ({
-    id: page*5 + i + 1,
-    sku: "usb sealer machine",
-    date: "28/3/2025, 8:15:59 pm",
-    status: ["pending","shipped","completed"][i%3],
-    price: 199,
-    quantity: i+1,
-    total: 199*(i+1),
-    payment: i%2 ? "Cash on Delivery" : "Card",
-    img: "" 
-  }));
-}
+document.addEventListener("DOMContentLoaded", async () => {
+  document.getElementById("navbar").innerHTML = Navbar();
+  document.getElementById("companypolicy").innerHTML = CompanyPolicy();
+  document.getElementById("footer").innerHTML = Footer();
 
-let currentPage = 0;
+  const count = await ExportCartCount();
+  document.getElementById("cart-count").innerText = `(${count})`;
 
-async function loadOrders() {
-  const search = document.getElementById("orderSearch").value;
-  const sort   = document.getElementById("sortSelect").value;
-  const status = document.getElementById("statusSelect").value;
-  const method = document.getElementById("methodSelect").value;
+  const ordersList = document.getElementById("ordersList");
 
-  const orders = await fetchOrders({ page: currentPage, search, sort, status, method });
-  const container = document.getElementById("ordersList");
-  container.innerHTML = "";
+  if (ordersList) {
+    let OrderItem = await CartMethod.GetAllOrder();
+    let LsUser = JSON.parse(localStorage.getItem("user"));
+    if (!LsUser) {
+      alert("You Are Not Still loggedIn Please Login First...");
+      return;
+    }
+    let MUser = await LoginMethod.GetAll();
+    let LoggedUser = MUser.find((user) => user.username == LsUser.username);
 
-  orders.forEach(o => {
-    const card = document.createElement("div");
-    card.className = "order-card";
+    let UserOrder = OrderItem.filter(
+      (item) => item.username == LoggedUser.username
+    );
 
-    card.innerHTML = `
-      <div class="info">
-        <p><strong>Order ID</strong> #${o.id}</p>
-        <p><strong>SKU:</strong> ${o.sku}</p>
-        <p><strong>Date:</strong> ${o.date}</p>
-        <p><strong>Status:</strong> ${o.status}</p>
-        <p><strong>Price:</strong> ₹${o.price}</p>
-        <p><strong>Quantity:</strong> ${o.quantity}</p>
-        <p><strong>Total:</strong> ₹${o.total}</p>
-        <p><strong>Payment:</strong> ${o.payment}</p>
-        <div class="actions">
-          <button class="btn btn-success btn-sm">View Details</button>
-          <button class="btn btn-success btn-sm">Reorder</button>
-        </div>
-      </div>
-      <div class="thumbnail" style="background-image:url('${o.img||""}')"></div>
-    `;
-    container.appendChild(card);
+    UiMaker(UserOrder);
+  }
+});
+
+const WishListCartCount = async () => {
+  let item = await WishlistMethod.GetWishlist();
+
+  let LsUser = JSON.parse(localStorage.getItem("user"));
+  let WishlistByUser = item.filter((user) => user.username == LsUser.username);
+
+  let countitem = WishlistByUser.length;
+  document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
+};
+WishListCartCount();
+
+
+
+const UiMaker = (orders) => {
+
+  document.getElementById("ordersList").innerHTML=''
+
+  orders.map((product) => {
+    let div=document.createElement("div")
+    div.setAttribute("class","order-card")
+  
+    let info = document.createElement("div");
+    info.className = "info";
+
+    let pOrderId = document.createElement("p");
+    pOrderId.innerHTML = `<strong>Order ID</strong> #${product.id}`;
+
+    let pSKU = document.createElement("p");
+    pSKU.innerHTML = `<strong>SKU:</strong> ${product.sku}`;
+
+    let pDate = document.createElement("p");
+    pDate.innerHTML = `<strong>Date:</strong> ${product.date}`;
+
+    let pStatus = document.createElement("p");
+    pStatus.innerHTML = `<strong>Status:</strong> ${product.status}`;
+
+    let pPrice = document.createElement("p");
+    pPrice.innerHTML = `<strong>Price:</strong> ₹${product.price}`;
+
+    let pQuantity = document.createElement("p");
+    pQuantity.innerHTML = `<strong>Quantity:</strong> ${product.quantity}`;
+
+    let pTotal = document.createElement("p");
+    pTotal.innerHTML = `<strong>Total:</strong> ₹${product.total}`;
+
+    let pPayment = document.createElement("p");
+    pPayment.innerHTML = `<strong>Payment:</strong> ${product.payment}`;
+
+    let actions = document.createElement("div");
+    actions.className = "actions";
+
+    let btnViewDetails = document.createElement("button");
+    btnViewDetails.className = "btn btn-success btn-sm";
+    btnViewDetails.textContent = "View Details";
+    actions.appendChild(btnViewDetails);
+
+    let btnReorder = document.createElement("button");
+    btnReorder.className = "btn btn-success btn-sm";
+    btnReorder.textContent = "Reorder";
+    actions.appendChild(btnReorder);
+
+    let thumbnail = document.createElement("div");
+    thumbnail.className = "thumbnail";
+    if (product.img) {
+      thumbnail.style.backgroundImage = `url('${product.img}')`;
+    }
+
+    info.append(pOrderId,pSKU,pDate,pStatus,pPrice,pQuantity,pTotal,pPayment,actions)
+
+    div.append(info,thumbnail);
+
+     document.getElementById("ordersList").append(div)
+  
   });
-}
 
-["orderSearch","sortSelect","statusSelect","methodSelect"]
-  .forEach(id => document.getElementById(id).addEventListener("change", () => { currentPage=0; loadOrders(); }));
-
-document.getElementById("prevBtn").addEventListener("click", () => {
-  if (currentPage>0) currentPage--;
-  loadOrders();
-});
-document.getElementById("nextBtn").addEventListener("click", () => {
-  currentPage++;
-  loadOrders();
-});
-
-loadOrders();
+};

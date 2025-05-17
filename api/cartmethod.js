@@ -70,4 +70,9 @@ export const CartMethod = {
     });
     return req.json();
   },
+  GetAllOrder: async () => {
+    let req = await fetch("http://localhost:4000/order");
+    let res = await req.json();
+    return res;
+  },
 };

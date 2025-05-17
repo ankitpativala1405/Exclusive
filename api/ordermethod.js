@@ -1,8 +1,8 @@
 import { apiUrl } from "../config/api";
 
-export const OrderMethod = {
+const OrderMethod = {
   GetAll: async () => {
-    let req = await fetch(apiUrl.orders);
+    let req = await fetch("http://localhost:4000/order");
     let res = await req.json();
     return res;
   },
@@ -28,3 +28,4 @@ export const OrderMethod = {
   },
 };
 
+export default OrderMethod;

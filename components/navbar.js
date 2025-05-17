@@ -40,7 +40,7 @@ const Navbar = () => {
         </div>
         <div class="dropdown">
           <a href="/PAGES/account.html"><i class="fas fa-user-cog"></i> Manage My Account</a>
-          <a href="#"><i class="fas fa-box"></i> My Order</a>
+          <a href="/PAGES/orderhistory.html"><i class="fas fa-box"></i> My Order</a>
           <a href="#"><i class="fas fa-times-circle"></i> My Cancellations</a>
           <a href="#"><i class="fas fa-star"></i> My Reviews</a>
           <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
