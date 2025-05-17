@@ -55,6 +55,7 @@ select {
   background: #fff;
   cursor: pointer;
   font-weight: 500;
+  border-radius: 5px;
 }
 
 .coupon-checkout-wrapper {
@@ -148,27 +149,6 @@ select {
   margin-right: 10px;
 }
 
-/* Quantity control container */
-.quantity-container {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-/* Quantity input styling */
-.quantity-container input[type="number"] {
-  width: 50px;
-  height: 28px;
-  text-align: center;
-}
-
-/* Quantity buttons */
-.quantity-container button {
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
 /* Delete button */
 .delete-btn {
   background-color: red;
@@ -177,6 +157,7 @@ select {
   padding: 5px 10px;
   cursor: pointer;
   font-weight: bold;
+  border-radius: 5px;
 }
 
 /* Table cell padding */
@@ -192,4 +173,58 @@ select {
   font-weight: bold;
   font-size: 1.1rem;
   margin-top: 10px;
+}
+
+.quantity-container {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fafafa;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+
+}
+
+.quantity-container button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-container button:hover{
+  background-color: #6C757D;
+  color: white;
+}
+.quantity-container button:active {
+  background: #eee;
+}
+
+/* 6c757d */
+.quantity-container input[type="number"] {
+  width: 40px;
+  height: 32px;
+  padding: 0;
+  text-align: center;
+  border: none;
+  -moz-appearance: textfield;
+}
+.quantity-container input[type="number"]::-webkit-inner-spin-button,
+.quantity-container input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantity-container input:focus,
+.quantity-container button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(100, 150, 250, 0.5);
 }

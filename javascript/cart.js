@@ -232,6 +232,7 @@ const UiMaker = (CartItem) => {
     input.value = item.quantity;
     input.min = "1";
     input.max = "100";
+    
 
     let increaseBtn = document.createElement("button");
     increaseBtn.textContent = "+";
