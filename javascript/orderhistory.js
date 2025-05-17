@@ -1,3 +1,6 @@
+import Navbar from "../components/navbar.js";
+
+document.getElementById("navbar").innerHTML=Navbar()
 async function fetchOrders({ page, search, sort, status, method }) {
   await new Promise(r => setTimeout(r, 200));
   return Array.from({ length: 5 }).map((_, i) => ({
