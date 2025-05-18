@@ -319,3 +319,16 @@ footer{
   border-color: #DB4444;
   border: none;
 }
+
+/* sliderbar */
+
+#sliderbar{
+  display: flex;
+  position: relative;
+}
+
+#sliderbar div{
+  position: absolute;
+  top: 0;
+  right: 0;
+}

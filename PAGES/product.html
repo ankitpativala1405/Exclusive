@@ -27,11 +27,60 @@
   </head>
   <body>
     <div id="navbar"></div>
+    
     <div class="container">
       <div class="mb-4">
         <p class="text-danger fw-semibold ourproduct">Our Products</p>
         <h1 class="fw-bold">Explore Our Products</h1>
       </div>
+
+      <div class="container mb-4">
+  <div class="row g-3 align-items-end">
+    <!-- Category -->
+    <div class="col-md-3 col-sm-12">
+      <label for="categoryFilter" class="form-label fw-semibold">Category</label>
+      <select id="categoryFilter" class="form-select">
+        <option value="all">All</option>
+        <option value="clothing">Clothing</option>
+        <option value="electronics">Electronics</option>
+        <option value="home">Home</option>
+        <!-- Add more categories as needed -->
+      </select>
+    </div>
+
+    <!-- Price -->
+    <div class="col-md-3 col-sm-12">
+    <div id="sliderbar">
+      <label for="priceRange" class="form-label fw-semibold">Max Price (₹)</label>
+      <div>Up to ₹<span id="priceRangeValue">10000</span></div>
+    </div>
+      <input type="range" class="form-range" id="priceRange" min="0" max="10000" step="100">
+      <!--  -->
+    </div>
+
+    <!-- High to low/low to high -->
+     <div class="col-md-3 col-sm-12">
+      <label for="sortby" class="form-label fw-semibold">Sort By</label>
+      <select  id="sortby" class="form-select">
+        <option value="lth">Low To High</option>
+        <option value="htl">High To Low</option>
+      </select>
+     </div>
+
+    <!-- Rating -->
+    <div class="col-md-3 col-sm-12">
+      <label for="ratingFilter" class="form-label fw-semibold">Minimum Rating</label>
+      <select id="ratingFilter" class="form-select">
+        <option value="0">All</option>
+        <option value="4">4★ & up</option>
+        <option value="3">3★ & up</option>
+        <option value="2">2★ & up</option>
+        <option value="1">1★ & up</option>
+      </select>
+    </div>
+  </div>
+</div>
+
 
       <div class="row g-4" id="Product-List">
       </div>
