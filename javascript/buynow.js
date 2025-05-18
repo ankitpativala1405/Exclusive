@@ -151,31 +151,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  // document.getElementById("GetOrder").addEventListener("click", async () => {
-  //   const orderId = `ODR${Date.now()}`;
-  //   let selectedPaymentInput = document.querySelector('input[name="payment"]:checked');
-  //   if (!selectedPaymentInput) {
-  //     alert("Please select a payment method.");
-  //     return;
-  //   }
-  //   let SelectedPayment = selectedPaymentInput.value;
-
-  //   const orderItemsWithId = WantItem.map((item) => ({
-  //     ...item,
-  //     orderId: orderId,
-  //     date: new Date().toLocaleString(),
-  //     status: "Pending",
-  //     payment: SelectedPayment,
-  //     total: item.price * (item.quantity || 1),
-  //   }));
-
-  //   const req = await CartMethod.Create(orderItemsWithId);
-  //   const res = await req.json();
-
-  //   alert(`Order successful! Order ID: ${orderId}`);
-  //   // await CartMethod.DeleteAll();
-  // });
-
   document.getElementById("GetOrder").addEventListener("click", async () => {
   const orderId = `ODR${Date.now()}`;
   let selectedPaymentInput = document.querySelector('input[name="payment"]:checked');
@@ -190,7 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const orderItemsWithId = WantItem.map((item) => ({
     ...item,
     orderId: orderId,
-    date: new Date().toLocaleString(),
+    date: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata", hour12: true }),
     status: "Pending",
     payment: SelectedPayment,
     total: item.price * (item.quantity || 1),

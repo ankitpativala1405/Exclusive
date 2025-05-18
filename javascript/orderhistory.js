@@ -6,7 +6,7 @@ import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 import { ExportCartCount } from "./cart.js";
 
-let filteredOrders = []; 
+let filteredOrders = [];
 let currentPage = 1;
 const itemsPerPage = 10;
 
@@ -64,7 +64,7 @@ const UiMaker = (orders, page = 1) => {
     info.className = "info";
 
     info.innerHTML = `
-      <p><strong>Order ID : </strong> #${product.orderId}</p>
+      <p><strong>Order ID : </strong> ${product.orderId}</p>
       <p><strong>Product Name : </strong>${product.name}</p>
       <p><strong>SKU : </strong> ${product.sku}</p>
       <p><strong>Date : </strong> ${product.date}</p>
@@ -85,6 +85,9 @@ const UiMaker = (orders, page = 1) => {
     btnViewDetails.style.border = "none";
     btnViewDetails.style.color = "white";
     btnViewDetails.style.marginRight = "8px";
+    btnViewDetails.addEventListener("click",()=>{
+      alert("btnViewDetails")
+    })
 
     let btnReorder = document.createElement("button");
     btnReorder.className = "btn btn-sm btn-red";
@@ -92,9 +95,9 @@ const UiMaker = (orders, page = 1) => {
     btnReorder.style.backgroundColor = "#e53935";
     btnReorder.style.border = "none";
     btnReorder.style.color = "white";
-    btnReorder.addEventListener("click",()=>{
-      alert("reorderd")
-    })
+    btnReorder.addEventListener("click", () => {
+      alert("reorderd");
+    });
 
     actions.append(btnViewDetails, btnReorder);
     info.append(actions);
@@ -134,4 +137,55 @@ const createPagination = () => {
   }
 };
 
+//filter by status
+document.getElementById("statusSelect").addEventListener("change", () => {
+  let filter = document.getElementById("statusSelect").value;
+  if (filter === "all") {
+    UiMaker(filteredOrders, currentPage);
+  } else {
+    let temp = filteredOrders.filter(
+      (ele) => ele.status.toString() === filter.toString()
+    );
+    UiMaker(temp, currentPage);
+  }
+});
 
+//filter by payment method
+document.getElementById("methodSelect").addEventListener("change", () => {
+  let filter = document.getElementById("methodSelect").value;
+
+  if (filter === "all") {
+    UiMaker(filteredOrders, currentPage);
+  } else {
+    let temp = filteredOrders.filter(
+      (ele) => ele.payment.toString() === filter.toString()
+    );
+    UiMaker(temp, currentPage);
+  }
+});
+
+//sort by latest-oldest
+document.getElementById("sortSelect").addEventListener("change", () => {
+  const sortValue = document.getElementById("sortSelect").value;
+  console.log("sortValue", sortValue);
+
+  if (sortValue === "latest") {
+    filteredOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
+  } else if (sortValue === "oldest") {
+    filteredOrders.sort((a, b) => new Date(a.date) - new Date(b.date));
+  }
+
+  UiMaker(filteredOrders, currentPage);
+});
+
+//search by Product-Name or SKU or OrderID
+document.getElementById("orderSearch").addEventListener("input", (e) => {
+  let SearchValue = e.target.value.trim();
+  console.log("SearchValue", SearchValue);
+  for (let i = 0; i < filteredOrders.length; i++) {
+    let temp = filteredOrders.filter( (ele) => ele.orderId.toString().includes(SearchValue) || ele.sku.toLowerCase().includes(SearchValue.toLowerCase()) ||
+    ele.name.toLowerCase().includes(SearchValue.toLowerCase())
+    );
+    UiMaker(temp , currentPage);
+  }
+});
