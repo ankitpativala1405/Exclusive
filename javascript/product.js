@@ -195,5 +195,12 @@ const createPagination = () => {
 
 UiMaker(currentPage);
 
+//slider of filterbar
+document.getElementById("priceRange").addEventListener("input", function() {
+  let Price = document.getElementById("priceRange").value;
+  document.getElementById("priceRangeValue").innerHTML = Price;
 
+  let temp = data.filter((product) => parseFloat(product.price) <= parseFloat(Price));
+  uimaker(temp); 
+});
 
