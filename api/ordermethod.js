@@ -1,5 +1,3 @@
-import { apiUrl } from "../config/api";
-
 const OrderMethod = {
   GetAll: async () => {
     let req = await fetch("http://localhost:4000/order");
@@ -7,7 +5,7 @@ const OrderMethod = {
     return res;
   },
   Post: async (data) => {
-    let request = await fetch(apiUrl.orders, {
+    let request = await fetch("http://localhost:4000/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -17,7 +15,7 @@ const OrderMethod = {
     return request;
   },
   Create: async (data) => {
-    let request = await fetch(apiUrl.orders, {
+    let request = await fetch("http://localhost:4000/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",

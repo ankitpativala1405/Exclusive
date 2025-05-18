@@ -9,5 +9,9 @@ const OrderController = {
       res.send(error);
     }
   },
+  getAll: async (_, res) => {
+    let user = await OrderItem.find();
+    res.send(user);
+  },
 };
 module.exports = OrderController;
