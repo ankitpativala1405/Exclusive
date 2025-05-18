@@ -86,7 +86,9 @@ const UiMaker = (orders, page = 1) => {
     btnViewDetails.style.color = "white";
     btnViewDetails.style.marginRight = "8px";
     btnViewDetails.addEventListener("click",()=>{
-      alert("btnViewDetails")
+      // alert("btnViewDetails")
+      localStorage.setItem("ViewOrderDetail", JSON.stringify(product));
+      alert(`opening ${product.name}`);
     })
 
     let btnReorder = document.createElement("button");

@@ -1,0 +1,186 @@
+@import "/CSS/index.css";
+
+body {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  /* background: #fafafa; */
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+.main-container {
+    width: 80%;
+  /* max-width: 800px; */
+  margin: 32px auto;
+  padding: 0 16px;
+}
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.order-id {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #444;
+}
+.order-id span {
+  color: #444;
+  font-weight: 700;
+}
+.order-sub {
+  color: #bbb;
+  font-size: 1rem;
+  margin-top: 4px;
+  font-weight: 400;
+}
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+.btn-outline {
+  padding: 10px 20px;
+  border: 1.5px solid #eaeaea;
+  background: #fff;
+  color: #333;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+.btn-outline:hover {
+  border-color: #ff6f2c;
+}
+.btn-orange {
+  padding: 10px 20px;
+  border: none;
+  background: #ff6f2c;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-orange:hover {
+  background: #e25c16;
+}
+
+.card-status {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(22,20,19,0.03);
+  padding: 22px 24px 16px 24px;
+  border: 1px solid #eee;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+.card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: #222;
+}
+.dot {
+  width: 11px;
+  height: 11px;
+  background: #ff6f2c;
+  border-radius: 50%;
+  display: inline-block;
+}
+.card-header-right {
+  color: #777;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.resi {
+  color: #444;
+  font-weight: 600;
+}
+.order-progress {
+  display: flex;
+  justify-content: space-around;
+  /* gap: 28px; */
+  align-items: center;
+  margin-top: 6px;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 115px;
+  flex: 1 1 0;
+}
+.step-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7.5px;
+  background: #fff0e5;
+  margin-bottom: 7px;
+  border: none;
+  box-sizing: border-box;
+}
+.orange-bg {
+  background: #fff0e5;
+}
+.orange-outline {
+  background: #fff;
+  border: 2.5px solid #ff6f2c;
+}
+.step-label {
+  font-size: 1.01rem;
+  font-weight: 500;
+  color: #444;
+}
+.step-sub {
+  font-size: 0.97rem;
+  color: #bababa;
+  margin-top: 1px;
+  font-weight: 400;
+}
+.orange-text {
+  color: #ff6f2c;
+}
+.orange-sub {
+  color: #ff6f2c;
+}
+.step-active .step-label,
+.step-active .step-sub {
+  color: #ff6f2c;
+  font-weight: 600;
+}
+@media (max-width: 750px) {
+  .main-container {
+    padding: 0 4px;
+  }
+  .order-progress {
+    gap: 8px;
+  }
+}
+@media (max-width: 600px) {
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .card-status {
+    padding: 12px 5px 12px 5px;
+  }
+  .order-progress {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .step {
+    max-width: 100%;
+    align-items: flex-start;
+  }
+}
