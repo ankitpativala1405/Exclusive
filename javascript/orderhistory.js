@@ -70,7 +70,7 @@ const UiMaker = (orders) => {
     info.className = "info";
 
     let pOrderId = document.createElement("p");
-    pOrderId.innerHTML = `<strong>Order ID</strong> #${product.id}`;
+    pOrderId.innerHTML = `<strong>Order ID</strong> #${product.orderId}`;
 
     let pSKU = document.createElement("p");
     pSKU.innerHTML = `<strong>SKU:</strong> ${product.sku}`;

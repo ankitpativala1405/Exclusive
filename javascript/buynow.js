@@ -19,7 +19,7 @@ WishListCartCount();
 const errordetail = (wrapperId, msg) => {
   const wrapper = document.querySelector(`#${wrapperId} .input-wrapper`);
 
-  wrapper.querySelectorAll("p.error").forEach(p => p.remove());
+  wrapper.querySelectorAll("p.error").forEach((p) => p.remove());
 
   const error = document.createElement("p");
   error.className = "error";
@@ -27,9 +27,6 @@ const errordetail = (wrapperId, msg) => {
 
   wrapper.appendChild(error);
 };
-
-
-
 
 document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("navbar").innerHTML = Navbar();
@@ -144,17 +141,37 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       alert(`Coupon "${code}" applied! Discount: ₹${discountAmount}`);
       UiMaker(WantItem);
-      errordetail("coupon-wrapper", `Coupon "${code}" applied!!... Discount: ₹${discountAmount}`);
+      errordetail(
+        "coupon-wrapper",
+        `Coupon "${code}" applied!!... Discount: ₹${discountAmount}`
+      );
     } else {
       alert("Invalid coupon code.");
     }
   });
 
   document.getElementById("GetOrder").addEventListener("click", async () => {
-    const req = await CartMethod.Create(WantItem);
-    const res = await req.json();
-    alert("Order successful!");
+    const orderId = `ODR${Date.now()}`;
+    let selectedPaymentInput = document.querySelector('input[name="payment"]:checked');
+    if (!selectedPaymentInput) {
+      alert("Please select a payment method.");
+      return;
+    }
+    let SelectedPayment = selectedPaymentInput.value;
 
-    await CartMethod.DeleteAll();
+    const orderItemsWithId = WantItem.map((item) => ({
+      ...item,
+      orderId: orderId,
+      date: new Date().toLocaleString(),
+      status: "Pending",
+      payment: SelectedPayment,
+      total: item.price * (item.quantity || 1),
+    }));
+
+    const req = await CartMethod.Create(orderItemsWithId);
+    const res = await req.json();
+
+    alert(`Order successful! Order ID: ${orderId}`);
+    // await CartMethod.DeleteAll();
   });
 })();

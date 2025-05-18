@@ -8,6 +8,11 @@ const OrderSchema = new mongoose.Schema(
     quantity: { type: Number },
     sku: { type: String },
     username: { type: String },
+    orderId: { type: String, required: true },
+    date: { type: String, required: true },
+    status: { type: String, default: "pending" },
+    payment: { type: String },
+    total: { type: String },
   },
   {
     timestamps: true,
@@ -16,3 +21,4 @@ const OrderSchema = new mongoose.Schema(
 
 const OrderItem = mongoose.model("Order", OrderSchema);
 module.exports = OrderItem;
+

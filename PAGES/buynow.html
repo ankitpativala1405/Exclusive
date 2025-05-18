@@ -116,59 +116,40 @@
         </div>
 
         <hr />
+
         <div>
-          <div
-            class="form-check mb-2 payment-option"
-            style="display: flex; align-items: center"
-          >
-            <input
-              type="radio"
-              name="payment"
-              class="form-check-input"
-              id="bank"
-            />
-            <label
-              for="bank"
-              style="display: flex; align-items: center; gap: 10px"
-            >
+          <!-- Bank Option -->
+          <div class="form-check mb-2 payment-option" style="display: flex; align-items: center">
+            <input type="radio" name="payment" class="form-check-input" id="bank" value="Bank"/>
+            <label for="bank" style=" display: flex; align-items: center; gap: 10px; margin-left: 5px;">
               <span>Bank</span>
               <img src="https://img.icons8.com/color/36/visa.png" alt="Visa" />
-              <img
-                src="https://img.icons8.com/color/36/mastercard-logo.png"
-                alt="Mastercard"
-              />
-              <img
-                src="https://img.icons8.com/color/36/discover.png"
-                alt="Discover"
-              />
+              <img src="https://img.icons8.com/color/36/mastercard-logo.png" alt="Mastercard"/>
+              <img src="https://img.icons8.com/color/36/discover.png" alt="Discover"/>
             </label>
           </div>
-          <div class="form-check payment-option">
-            <input
-              type="radio"
-              name="CDCard"
-              class="form-check-input"
-              id="CDCard"
-            />
-            <label class="form-check-label" for="CDCard"
-              >Credit/Debit Card</label
-            >
+
+          <!-- Credit/Debit Card Option -->
+          <div class="form-check payment-option" style="margin-bottom: 10px">
+            <input type="radio" name="payment" class="form-check-input" id="CDCard" value="Credit/Debit Card"/>
+            <label class="form-check-label" for="CDCard">Credit/Debit Card</label>
           </div>
+
+          <!-- Cash on Delivery Option -->
           <div class="form-check payment-option">
-            <input
-              type="radio"
-              name="payment"
-              class="form-check-input"
-              id="cod"
-              checked
-            />
-            <label class="form-check-label" for="cod">Cash on delivery</label>
+            <input type="radio" name="payment" class="form-check-input" id="cod" value="Cash On Delivery" />
+            <label class="form-check-label" for="cod">Cash on Delivery</label>
           </div>
         </div>
 
         <div class="coupon-section mt-3" id="coupon-wrapper">
           <div class="input-wrapper">
-            <input type="text" class="form-control" id="couponCode" placeholder="Coupon Code"/>
+            <input
+              type="text"
+              class="form-control"
+              id="couponCode"
+              placeholder="Coupon Code"
+            />
             <!-- error <p> will go right below this input -->
           </div>
           <button class="btn btn-red" id="applyCoupon">Apply Coupon</button>

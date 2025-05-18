@@ -24,6 +24,12 @@ const OrderMethod = {
     });
     return request;
   },
+  delete: async (id) => {
+    let req = await fetch(`http://localhost:4000/order/${id}`, {
+      method: "DELETE",
+    });
+    return req.json();
+  },
 };
 
 export default OrderMethod;

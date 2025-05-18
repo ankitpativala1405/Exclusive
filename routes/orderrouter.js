@@ -4,6 +4,6 @@ const orderrouter = Router();
 
 orderrouter.get("/",OrderController.getAll)
 orderrouter.post("/",OrderController.post)
-
+orderrouter.delete("/:sku",OrderController.delete)
 
 module.exports=orderrouter

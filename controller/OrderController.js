@@ -13,5 +13,19 @@ const OrderController = {
     let user = await OrderItem.find();
     res.send(user);
   },
+  delete: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deletedItem = await OrderItem.findOneAndDelete({ id });
+
+      if (!deletedItem) {
+        return res.status(404).json({ message: "Item not found" });
+      }
+
+      res.status(200).json({ message: "Item deleted", item: deletedItem });
+    } catch (err) {
+      res.status(500).json({ message: "Server error", error: err.message });
+    }
+  },
 };
 module.exports = OrderController;
