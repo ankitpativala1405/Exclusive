@@ -6,6 +6,10 @@ import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
 import { ExportCartCount } from "./cart.js";
 
+let filteredOrders = []; 
+let currentPage = 1;
+const itemsPerPage = 10;
+
 document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("navbar").innerHTML = Navbar();
   document.getElementById("companypolicy").innerHTML = CompanyPolicy();
@@ -17,37 +21,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   const ordersList = document.getElementById("ordersList");
 
   if (ordersList) {
-
-    let OrderItem= await OrderMethod.GetAll()
-    console.log("OrderItem",OrderItem);
-    
+    let OrderItem = await OrderMethod.GetAll();
     let LsUser = JSON.parse(localStorage.getItem("user"));
-    console.log("LsUser",LsUser);
-    
+
     if (!LsUser) {
       alert("You Are Not Still loggedIn Please Login First...");
       return;
     }
-    let MUser = await LoginMethod.GetAll();
-    console.log("MUser",MUser);
-    
-    let LoggedUser = MUser.find((user) => user.username == LsUser.username);
-    console.log("LoggedUser",LoggedUser);
-    
 
-    let UserOrder = OrderItem.filter(
+    let MUser = await LoginMethod.GetAll();
+    let LoggedUser = MUser.find((user) => user.username == LsUser.username);
+
+    filteredOrders = OrderItem.filter(
       (item) => item.username == LoggedUser.username
     );
 
-    console.log("UserOrder",UserOrder);
-    
-    UiMaker(UserOrder);
+    UiMaker(filteredOrders, currentPage);
   }
 });
 
 const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
-
   let LsUser = JSON.parse(localStorage.getItem("user"));
   let WishlistByUser = item.filter((user) => user.username == LsUser.username);
 
@@ -56,55 +50,50 @@ const WishListCartCount = async () => {
 };
 WishListCartCount();
 
+const UiMaker = (orders, page = 1) => {
+  document.getElementById("ordersList").innerHTML = "";
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginatedItems = orders.slice(start, end);
 
+  paginatedItems.forEach((product) => {
+    let div = document.createElement("div");
+    div.setAttribute("class", "order-card");
 
-const UiMaker = (orders) => {
-
-  document.getElementById("ordersList").innerHTML=''
-
-  orders.map((product) => {
-    let div=document.createElement("div")
-    div.setAttribute("class","order-card")
-  
     let info = document.createElement("div");
     info.className = "info";
 
-    let pOrderId = document.createElement("p");
-    pOrderId.innerHTML = `<strong>Order ID</strong> #${product.orderId}`;
-
-    let pSKU = document.createElement("p");
-    pSKU.innerHTML = `<strong>SKU:</strong> ${product.sku}`;
-
-    let pDate = document.createElement("p");
-    pDate.innerHTML = `<strong>Date:</strong> ${product.date}`;
-
-    let pStatus = document.createElement("p");
-    pStatus.innerHTML = `<strong>Status:</strong> ${product.status}`;
-
-    let pPrice = document.createElement("p");
-    pPrice.innerHTML = `<strong>Price:</strong> ₹${product.price}`;
-
-    let pQuantity = document.createElement("p");
-    pQuantity.innerHTML = `<strong>Quantity:</strong> ${product.quantity}`;
-
-    let pTotal = document.createElement("p");
-    pTotal.innerHTML = `<strong>Total:</strong> ₹${product.total}`;
-
-    let pPayment = document.createElement("p");
-    pPayment.innerHTML = `<strong>Payment:</strong> ${product.payment}`;
+    info.innerHTML = `
+      <p><strong>Order ID</strong> #${product.orderId}</p>
+      <p><strong>SKU:</strong> ${product.sku}</p>
+      <p><strong>Date:</strong> ${product.date}</p>
+      <p><strong>Status:</strong> ${product.status}</p>
+      <p><strong>Price:</strong> ₹${product.price}</p>
+      <p><strong>Quantity:</strong> ${product.quantity}</p>
+      <p><strong>Total:</strong> ₹${product.total}</p>
+      <p><strong>Payment:</strong> ${product.payment}</p>
+    `;
 
     let actions = document.createElement("div");
     actions.className = "actions";
 
     let btnViewDetails = document.createElement("button");
-    btnViewDetails.className = "btn btn-success btn-sm";
+    btnViewDetails.className = "btn btn-sm btn-red";
     btnViewDetails.textContent = "View Details";
-    actions.appendChild(btnViewDetails);
+    btnViewDetails.style.backgroundColor = "#e53935";
+    btnViewDetails.style.border = "none";
+    btnViewDetails.style.color = "white";
+    btnViewDetails.style.marginRight = "8px";
 
     let btnReorder = document.createElement("button");
-    btnReorder.className = "btn btn-success btn-sm";
+    btnReorder.className = "btn btn-sm btn-red";
     btnReorder.textContent = "Reorder";
-    actions.appendChild(btnReorder);
+    btnReorder.style.backgroundColor = "#e53935";
+    btnReorder.style.border = "none";
+    btnReorder.style.color = "white";
+
+    actions.append(btnViewDetails, btnReorder);
+    info.append(actions);
 
     let thumbnail = document.createElement("div");
     thumbnail.className = "thumbnail";
@@ -112,12 +101,32 @@ const UiMaker = (orders) => {
       thumbnail.style.backgroundImage = `url('${product.img}')`;
     }
 
-    info.append(pOrderId,pSKU,pDate,pStatus,pPrice,pQuantity,pTotal,pPayment,actions)
-
-    div.append(info,thumbnail);
-
-     document.getElementById("ordersList").append(div)
-  
+    div.append(info, thumbnail);
+    document.getElementById("ordersList").append(div);
   });
 
+  createPagination();
 };
+
+const createPagination = () => {
+  const totalPages = Math.ceil(filteredOrders.length / itemsPerPage);
+  document.getElementById("pagination").innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    const pageBtn = document.createElement("button");
+    pageBtn.innerHTML = i;
+    if (i === currentPage) {
+      pageBtn.setAttribute("class", "btn btn-sm me-1 btn-dark");
+    } else {
+      pageBtn.setAttribute("class", "btn btn-sm me-1 btn-outline-dark");
+    }
+
+    pageBtn.addEventListener("click", () => {
+      currentPage = i;
+      UiMaker(filteredOrders, currentPage);
+    });
+
+    document.getElementById("pagination").appendChild(pageBtn);
+  }
+};
+
