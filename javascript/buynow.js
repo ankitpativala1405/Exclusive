@@ -1,5 +1,6 @@
 import { CartMethod } from "../api/cartmethod.js";
 import LoginMethod from "../api/loginmethod.js";
+import OrderMethod from "../api/ordermethod.js";
 import WishlistMethod from "../api/wishlistmethod.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
@@ -150,28 +151,59 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  // document.getElementById("GetOrder").addEventListener("click", async () => {
+  //   const orderId = `ODR${Date.now()}`;
+  //   let selectedPaymentInput = document.querySelector('input[name="payment"]:checked');
+  //   if (!selectedPaymentInput) {
+  //     alert("Please select a payment method.");
+  //     return;
+  //   }
+  //   let SelectedPayment = selectedPaymentInput.value;
+
+  //   const orderItemsWithId = WantItem.map((item) => ({
+  //     ...item,
+  //     orderId: orderId,
+  //     date: new Date().toLocaleString(),
+  //     status: "Pending",
+  //     payment: SelectedPayment,
+  //     total: item.price * (item.quantity || 1),
+  //   }));
+
+  //   const req = await CartMethod.Create(orderItemsWithId);
+  //   const res = await req.json();
+
+  //   alert(`Order successful! Order ID: ${orderId}`);
+  //   // await CartMethod.DeleteAll();
+  // });
+
   document.getElementById("GetOrder").addEventListener("click", async () => {
-    const orderId = `ODR${Date.now()}`;
-    let selectedPaymentInput = document.querySelector('input[name="payment"]:checked');
-    if (!selectedPaymentInput) {
-      alert("Please select a payment method.");
-      return;
-    }
-    let SelectedPayment = selectedPaymentInput.value;
+  const orderId = `ODR${Date.now()}`;
+  let selectedPaymentInput = document.querySelector('input[name="payment"]:checked');
 
-    const orderItemsWithId = WantItem.map((item) => ({
-      ...item,
-      orderId: orderId,
-      date: new Date().toLocaleString(),
-      status: "Pending",
-      payment: SelectedPayment,
-      total: item.price * (item.quantity || 1),
-    }));
+  if (!selectedPaymentInput) {
+    alert("Please select a payment method.");
+    return;
+  }
 
-    const req = await CartMethod.Create(orderItemsWithId);
-    const res = await req.json();
+  let SelectedPayment = selectedPaymentInput.value;
 
-    alert(`Order successful! Order ID: ${orderId}`);
-    // await CartMethod.DeleteAll();
-  });
+  const orderItemsWithId = WantItem.map((item) => ({
+    ...item,
+    orderId: orderId,
+    date: new Date().toLocaleString(),
+    status: "Pending",
+    payment: SelectedPayment,
+    total: item.price * (item.quantity || 1),
+  }));
+
+  // Use OrderMethod instead of CartMethod here
+  const req = await OrderMethod.Create(orderItemsWithId);
+  const res = await req.json();
+
+  alert(`Order successful! Order ID: ${orderId}`);
+  
+  // Optionally clear the cart
+  // await CartMethod.DeleteAll();
+});
+
 })();

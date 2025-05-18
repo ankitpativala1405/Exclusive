@@ -64,14 +64,15 @@ const UiMaker = (orders, page = 1) => {
     info.className = "info";
 
     info.innerHTML = `
-      <p><strong>Order ID</strong> #${product.orderId}</p>
-      <p><strong>SKU:</strong> ${product.sku}</p>
-      <p><strong>Date:</strong> ${product.date}</p>
-      <p><strong>Status:</strong> ${product.status}</p>
-      <p><strong>Price:</strong> ₹${product.price}</p>
-      <p><strong>Quantity:</strong> ${product.quantity}</p>
-      <p><strong>Total:</strong> ₹${product.total}</p>
-      <p><strong>Payment:</strong> ${product.payment}</p>
+      <p><strong>Order ID : </strong> #${product.orderId}</p>
+      <p><strong>Product Name : </strong>${product.name}</p>
+      <p><strong>SKU : </strong> ${product.sku}</p>
+      <p><strong>Date : </strong> ${product.date}</p>
+      <p><strong>Status : </strong> ${product.status}</p>
+      <p><strong>Price : </strong> ₹${product.price}</p>
+      <p><strong>Quantity : </strong> ${product.quantity}</p>
+      <p><strong>Total : </strong> ₹${product.total}</p>
+      <p><strong>Payment : </strong> ${product.payment}</p>
     `;
 
     let actions = document.createElement("div");
@@ -91,6 +92,9 @@ const UiMaker = (orders, page = 1) => {
     btnReorder.style.backgroundColor = "#e53935";
     btnReorder.style.border = "none";
     btnReorder.style.color = "white";
+    btnReorder.addEventListener("click",()=>{
+      alert("reorderd")
+    })
 
     actions.append(btnViewDetails, btnReorder);
     info.append(actions);
@@ -129,4 +133,5 @@ const createPagination = () => {
     document.getElementById("pagination").appendChild(pageBtn);
   }
 };
+
 

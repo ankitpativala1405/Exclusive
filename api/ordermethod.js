@@ -14,22 +14,41 @@ const OrderMethod = {
     });
     return request;
   },
-  Create: async (data) => {
-    let request = await fetch("http://localhost:4000/order", {
-      method: "POST",
+  Update: async (id, data) => {
+    await fetch(`http://localhost:4000/order/${id}`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(data),
     });
-    return request;
   },
+  // Create: async (data) => {
+  //   let request = await fetch("http://localhost:4000/order", {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   });
+  //   return request;
+  // },
   delete: async (id) => {
     let req = await fetch(`http://localhost:4000/order/${id}`, {
       method: "DELETE",
     });
     return req.json();
   },
+  Create: async (data) => {
+  let request = await fetch("http://localhost:4000/order", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return request; // you'll call .json() later in handler
+},
 };
 
 export default OrderMethod;
