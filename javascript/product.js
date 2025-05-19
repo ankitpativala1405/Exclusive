@@ -96,12 +96,8 @@ const UiMaker = (page = 1) => {
       window.location.href = "/PAGES/productdetail.html";
     });
 
-    iconsWrapper.appendChild(heartBtn);
-    iconsWrapper.appendChild(eyeBtn);
-
-    imageWrapper.appendChild(img);
-    imageWrapper.appendChild(discount);
-    imageWrapper.appendChild(iconsWrapper);
+    iconsWrapper.append(heartBtn,eyeBtn)
+    imageWrapper.append(img,discount,iconsWrapper)
 
     const name = document.createElement("p");
     name.className = "fw-medium";
@@ -157,12 +153,7 @@ const UiMaker = (page = 1) => {
       }
     });
 
-    card.appendChild(imageWrapper);
-    card.appendChild(name);
-    card.appendChild(sku);
-    card.appendChild(rating);
-    card.appendChild(price);
-    card.appendChild(addToCartBtn);
+    card.append(imageWrapper,name,sku,rating,price,addToCartBtn)
 
     col.appendChild(card);
     document.getElementById("Product-List").appendChild(col);
@@ -201,6 +192,6 @@ document.getElementById("priceRange").addEventListener("input", function() {
   document.getElementById("priceRangeValue").innerHTML = Price;
 
   let temp = data.filter((product) => parseFloat(product.price) <= parseFloat(Price));
-  uimaker(temp); 
+  UiMaker(temp); 
 });
 
