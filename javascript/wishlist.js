@@ -183,4 +183,3 @@ export const WishListCartCount = async () => {
   return countitem;
 
 };
-// WishListCartCount();
