@@ -36,9 +36,10 @@ const ShowDataOnDisplay = async () => {
   let matchedOrders = allOrders.filter((order) =>order.username === sessionData.username && order.orderId === sessionData.orderId &&
    order.sku === sessionData.sku);
 
-  console.log("Matched Orders:", matchedOrders);
+
 
   if(matchedOrders){
+      console.log("Matched Orders:", matchedOrders);
     document.getElementById("orderCard").innerHTML=`
           <div class="order-card">
      <div class="container">
@@ -156,22 +157,6 @@ const ShowDataOnDisplay = async () => {
             </div>
             <div class="mt-4">
               <div class="fw-semibold fs-5 mb-3">Order Item</div>
-              <!-- Item 1 -->
-              <div class="d-flex align-items-start mb-3 order-items">
-                <img
-                  src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80"
-                  alt="Sneaker"
-                />
-                <div>
-                  <div style="color: #bbb; font-size: 14px">Sneaker</div>
-                  <div class="fw-semibold" style="font-size: 18px">
-                    Sneakers
-                  </div>
-                  <div style="font-size: 14px; color: #555">
-                    Color : Black &nbsp; | &nbsp; Size :44
-                  </div>
-                </div>
-              </div>
               <!-- Item 2 -->
               <div class="d-flex align-items-start mb-3 order-items">
                 <img
