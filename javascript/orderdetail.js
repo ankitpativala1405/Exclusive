@@ -12,5 +12,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   const count = await ExportCartCount();
   document.getElementById("cart-count").innerText = `( ${count} )`;
 
+  let WantData=JSON.parse(sessionStorage.getItem("ViewOrderDetail"))
+  console.log(WantData.orderId);
   
+  document.getElementsByTagName("h2")[0].innerHTML = `Order ID : ${WantData.orderId}`;
 });
+
+document.getElementById("ContactSeller").addEventListener("click",()=>{
+  window.location.href="/PAGES/contact.html"
+})
+document.getElementById("ViewInvoice").addEventListener("click",()=>{
+  alert("Your Invoice is Generating...")
+})
+
+const ShowDataOnDisplay=()=>{
+  
+}
