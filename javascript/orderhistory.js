@@ -98,7 +98,9 @@ const UiMaker = (orders, page = 1) => {
     btnReorder.style.border = "none";
     btnReorder.style.color = "white";
     btnReorder.addEventListener("click", () => {
-      alert("reorderd");
+      console.log(product);
+      localStorage.setItem("ReorderItem",JSON.stringify(product)) 
+      alert("srored")
     });
 
     actions.append(btnViewDetails, btnReorder);
