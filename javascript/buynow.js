@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("GetOrder").addEventListener("click", async () => {
-  const orderId = `ODR${Date.now()}`;
+  const orderId = `EDEO${Date.now()}`;
   let selectedPaymentInput = document.querySelector('input[name="payment"]:checked');
 
   if (!selectedPaymentInput) {

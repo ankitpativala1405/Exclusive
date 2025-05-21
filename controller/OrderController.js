@@ -46,7 +46,7 @@ const OrderController = {
   },
   update: async (req, res) => {
     const { id } = req.params;
-    const updatedItem = await CartItem.findOneAndUpdate({ id }, req.body, {
+    const updatedItem = await OrderItem.findOneAndUpdate({ id }, req.body, {
       new: true,
     });
     res.status(200).json(updatedItem);

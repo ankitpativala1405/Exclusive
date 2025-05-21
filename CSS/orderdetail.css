@@ -240,12 +240,19 @@ header span {
   gap: 10px;
 }
 
+.status-step .icon-box  {
+  color: #ce7979;
+  width: 60px;
+  height: 60px;
+}
+
 .status-step .icon-box i {
-  font-size: 28px;
+  font-size: 38px;
   color: #bbb;
 }
 
-.status-step.completed .icon-box i,
+.status-step.completed 
+.icon-box i,
 .status-step.active .icon-box i {
   color: #e53935;
 }

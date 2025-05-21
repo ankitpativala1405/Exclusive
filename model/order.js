@@ -10,7 +10,7 @@ const OrderSchema = new mongoose.Schema(
     username: { type: String },
     orderId: { type: String, required: true },
     date: { type: String, required: true },
-    status: { type: String, default: "pending" },
+    status: { type: String, default: "Ordered" },
     payment: { type: String },
     total: { type: String },
   },
