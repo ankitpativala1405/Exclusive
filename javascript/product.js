@@ -186,18 +186,54 @@ const createPagination = () => {
 
 UiMaker(currentPage);
 
+//sorting
+document.getElementById("sortby").addEventListener("change",()=>{
+  let value=document.getElementById("sortby").value
+  console.log(value);
+  if(value=="lth"){
+    data.sort((a,b)=>parseFloat(a.price)-parseFloat(b.price))
+  }else if(value=="htl"){
+    data.sort((a,b)=>parseFloat(b.price)-parseFloat(a.price))
+  }
+  UiMaker(currentPage); 
+})
+
+//ratingFilter
+// document.getElementById("ratingFilter").addEventListener("change",()=>{
+//   let value=document.getElementById("ratingFilter").value
+//   console.log(value);
+//   if(value=="4"){
+//     data=data.filter((product)=>parseFloat(product.rating)>=4)
+//   }else if(value=="3"){
+//     data=data.filter((product)=>parseFloat(product.rating)>=3)
+//   }else if(value=="2"){
+//     data=data.filter((product)=>parseFloat(product.rating)>=2)
+//   }else if(value=="1"){
+//     data=data.filter((product)=>parseFloat(product.rating)>=1)
+//   }
+//   UiMaker(currentPage); 
+// })
+
 //slider of filterbar
 // document.getElementById("priceRange").addEventListener("input", function() {
 //   let Price = document.getElementById("priceRange").value;
 //   document.getElementById("priceRangeValue").innerHTML = Price;
 
-//   let temp = data.filter((product) => parseFloat(product.price) <= parseFloat(Price));
-//   UiMaker(temp); 
+//   let datas = data.filter((product) => parseFloat(product.price) <= Price);
+//   console.log(datas);
+
+//   UiMaker(currentPage);
+
 // });
 
-
-//sorting
-
-document.getElementById("sortby").addEventListener("change",()=>{
-  let value=document.getElementById("sortby").value
+//filter by category
+document.getElementById("categoryFilter").addEventListener("change",()=>{
+  let value=document.getElementById("categoryFilter").value
+  console.log(value);
+  if(value=="all"){
+    data=ProductData
+  }else{
+    data=data.filter((product)=>product.categoty==value)
+  }
+  UiMaker(currentPage); 
 })
