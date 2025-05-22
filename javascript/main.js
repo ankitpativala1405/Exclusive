@@ -82,48 +82,32 @@ function getRandomProducts(data, count) {
 }
 
 const displayProductsTodaySell = (products) => {
-  document.getElementById("TodaySaleProducts").innerHTML = "";
+  const container = document.getElementById("TodaySaleProducts");
+  container.innerHTML = ""; // Clear first
 
-  products.map((product) => {
-    const productDiv = document.createElement("div");
-    productDiv.className = "product";
+  products.forEach((product, index) => {
+    container.insertAdjacentHTML("beforeend", `
+      <div class="product">
+        <div id="discount">-30%</div>
+        <img src="${product.img}" alt="${product.name}" />
+        <h3>${product.name}</h3>
+        <p>
+          <strong>₹${product.price}</strong>
+          <span class="original-price">₹${product.mrp}</span>
+        </p>
+        <p class="rating">★★★★☆ (99)</p>
+        <button class="add-to-cart AddToCartToday">Add To Cart</button>
+      </div>
+    `);
+  });
 
-    const discountDiv = document.createElement("div");
-    discountDiv.className = "discount";
-    discountDiv.textContent = "-30%";
-
-    const img = document.createElement("img");
-    img.src = product.img;
-    img.alt = product.name;
-
-    const name = document.createElement("h3");
-    name.textContent = product.name;
-
-    const priceP = document.createElement("p");
-    const priceStrong = document.createElement("strong");
-    priceStrong.textContent = `₹${product.price}`;
-    const originalPrice = document.createElement("span");
-    originalPrice.className = "original-price";
-    originalPrice.textContent = `₹${product.mrp}`;
-    priceP.append(priceStrong, originalPrice);
-
-    const ratingP = document.createElement("p");
-    ratingP.className = "rating";
-    ratingP.textContent = "★★★★☆ (99)";
-
-    const button = document.createElement("button");
-    button.className = "add-to-cart";
-    button.textContent = "Add To Cart";
-
-    button.addEventListener("click", () => {
-      addToCart(product);
+  document.querySelectorAll(".AddToCartToday").forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      addToCart(products[index]);
     });
-
-    productDiv.append(discountDiv, img, name, priceP, ratingP, button);
-
-    document.getElementById("TodaySaleProducts").appendChild(productDiv);
   });
 };
+
 
 const randomFourProducts = getRandomProducts(ProductData, 4);
 displayProductsTodaySell(randomFourProducts);
@@ -175,8 +159,9 @@ const displayBestSellingProducts = (products) => {
   });
 };
 
-const randomFiveProducts = getRandomProducts(ProductData, 4);
+const randomFiveProducts = getRandomProducts(ProductData, 5);
 displayBestSellingProducts(randomFiveProducts);
+
 
 //add to cart
 const addToCart = async (product) => {

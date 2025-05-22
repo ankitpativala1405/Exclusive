@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.getElementById("footer").innerHTML = Footer();
   document.getElementById("companypolicy").innerHTML = CompanyPolicy();
+  SearchValue()
 });
 
 const WishListCartCount = async () => {
@@ -82,9 +83,19 @@ const UiMaker = (page = 1) => {
       let LoggedUser = MUser.find((user) => user.username == LsUser.username);
       let LoggedUsername = LoggedUser.username;
       let wishlistAdd = { ...product, username: LoggedUsername };
-      await (await CartMethod.PostWishlist(wishlistAdd)).json();
+
+      let AllWishlist=await WishlistMethod.GetWishlist()
+
+      let IsExist=AllWishlist.find((item)=>item.sku == product.sku)
+      console.log("IsExist",IsExist);
+
+      if(IsExist){
+        alert("PRoduct Already exist")
+      }
+      
+      // await (await CartMethod.PostWishlist(wishlistAdd)).json();
       alert("Added to Wishlist");
-      location.reload();
+      // location.reload();
     });
 
     const eyeBtn = document.createElement("button");
@@ -124,7 +135,9 @@ const UiMaker = (page = 1) => {
       stars += '<i class="fa-regular fa-star"></i>';
     }
 
-    rating.innerHTML = `${stars} <span class="text-muted small">(${product.reviews || 0})</span>`;
+    rating.innerHTML = `${stars} <span class="text-muted small">(${
+      product.reviews || 0
+    })</span>`;
 
     const price = document.createElement("p");
     price.className = "text-danger fw-semibold mt-2";
@@ -173,7 +186,6 @@ const UiMaker = (page = 1) => {
   createPagination();
 };
 
-
 //pagination..
 const createPagination = () => {
   const totalPages = Math.ceil(data.length / itemsPerPage);
@@ -211,20 +223,20 @@ document.getElementById("sortby").addEventListener("change", () => {
 });
 
 //ratingFilter
-document.getElementById("ratingFilter").addEventListener("change",()=>{
-  let value=document.getElementById("ratingFilter").value
+document.getElementById("ratingFilter").addEventListener("change", () => {
+  let value = document.getElementById("ratingFilter").value;
   console.log(value);
-  if(value=="4"){
-    data=ProductData.filter((product)=>parseFloat(product.rating)>=4)
-  }else if(value=="3"){
-    data=ProductData.filter((product)=>parseFloat(product.rating)>=3)
-  }else if(value=="2"){
-    data=ProductData.filter((product)=>parseFloat(product.rating)>=2)
-  }else if(value=="1"){
-    data=ProductData.filter((product)=>parseFloat(product.rating)>=1)
+  if (value == "4") {
+    data = ProductData.filter((product) => parseFloat(product.rating) >= 4);
+  } else if (value == "3") {
+    data = ProductData.filter((product) => parseFloat(product.rating) >= 3);
+  } else if (value == "2") {
+    data = ProductData.filter((product) => parseFloat(product.rating) >= 2);
+  } else if (value == "1") {
+    data = ProductData.filter((product) => parseFloat(product.rating) >= 1);
   }
   UiMaker(currentPage);
-})
+});
 
 //slider of filterbar
 document.getElementById("priceRange").addEventListener("input", function () {
@@ -242,7 +254,7 @@ document.getElementById("categoryFilter").addEventListener("change", () => {
 
   if (value == "all") {
     data = ProductData;
-    location.reload()
+    location.reload();
   } else {
     data = ProductData.filter((product) => product.categoty == value);
   }
@@ -251,27 +263,32 @@ document.getElementById("categoryFilter").addEventListener("change", () => {
   UiMaker(currentPage);
 });
 
+const SearchValue = () => {
+  document.querySelector(".search-box").addEventListener("input", function () {
+    const SearchValue = this.value.trim().toLowerCase();
+    data = ProductData.filter((product) =>product.name.toLowerCase().includes(SearchValue) || product.description.toLowerCase().includes(SearchValue) )
+    currentPage = 1;
+    UiMaker(currentPage);
+  });
+};
 
-// (async () => {
-//   let WantCategory = sessionStorage.getItem("WantOpenCategory");
-//   let wantDisplay = sessionStorage.getItem("SelectedCategoryIndex");
-//   console.log("wantDisplay", wantDisplay);
+(async () => {
+  let WantCategory = sessionStorage.getItem("WantOpenCategory");
+  let wantDisplay = sessionStorage.getItem("SelectedCategoryIndex");
+  console.log("wantDisplay", wantDisplay);
 
-//   if (wantDisplay) {
-//     document.getElementById("categoryFilter").value = wantDisplay;
+  if (wantDisplay) {
+    document.getElementById("categoryFilter").value = wantDisplay;
 
-//     if (wantDisplay === "all") {
-//       data = ProductData;
-//     } else {
-//       data = ProductData.filter(
-//         (product) => product.categoty === wantDisplay
-//       );
-//     }
+    if (wantDisplay === "all") {
+      data = ProductData;
+    } else {
+      data = ProductData.filter((product) => product.categoty === wantDisplay);
+    }
 
-//     currentPage = 1;
-//     UiMaker(currentPage);
-//   }
+    currentPage = 1;
+    UiMaker(currentPage);
+  }
 
-//   sessionStorage.removeItem("WantOpenCategory");
-// })();
-
+  sessionStorage.removeItem("WantOpenCategory");
+})();
