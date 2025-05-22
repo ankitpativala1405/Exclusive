@@ -22,13 +22,13 @@ const WishListCartCount = async () => {
   let item = await WishlistMethod.GetWishlist();
 
   let LsUser = JSON.parse(localStorage.getItem("user"));
-  let WishlistByUser=item.filter((user)=>user.username == LsUser.username)
+  let WishlistByUser = item.filter((user) => user.username == LsUser.username);
 
   let countitem = WishlistByUser.length;
   document.getElementById("wishlist-count").innerHTML = `(${countitem})`;
 };
 WishListCartCount();
-navbarclassactive()
+navbarclassactive();
 
 let data = ProductData;
 
@@ -96,8 +96,8 @@ const UiMaker = (page = 1) => {
       window.location.href = "/PAGES/productdetail.html";
     });
 
-    iconsWrapper.append(heartBtn,eyeBtn)
-    imageWrapper.append(img,discount,iconsWrapper)
+    iconsWrapper.append(heartBtn, eyeBtn);
+    imageWrapper.append(img, discount, iconsWrapper);
 
     const name = document.createElement("p");
     name.className = "fw-medium";
@@ -109,7 +109,22 @@ const UiMaker = (page = 1) => {
 
     const rating = document.createElement("div");
     rating.className = "text-warning";
-    rating.innerHTML = '★★★★☆ <span class="text-muted small">(262)</span>';
+    let stars = "";
+    let fullStars = Math.floor(product.rating || 0);
+    let halfStar = product.rating % 1 >= 0.5 ? 1 : 0;
+    let emptyStars = 5 - fullStars - halfStar;
+
+    for (let i = 0; i < fullStars; i++) {
+      stars += '<i class="fa-solid fa-star"></i>';
+    }
+    if (halfStar) {
+      stars += '<i class="fa-solid fa-star-half-stroke"></i>';
+    }
+    for (let i = 0; i < emptyStars; i++) {
+      stars += '<i class="fa-regular fa-star"></i>';
+    }
+
+    rating.innerHTML = `${stars} <span class="text-muted small">(${product.reviews || 0})</span>`;
 
     const price = document.createElement("p");
     price.className = "text-danger fw-semibold mt-2";
@@ -127,11 +142,8 @@ const UiMaker = (page = 1) => {
       }
 
       let MUser = await LoginMethod.GetAll();
-
       let LoggedUser = MUser.find((user) => user.username == LsUser.username);
-
       let LoggedUsername = LoggedUser.username;
-
       let IsExist = CartItem.find((item) => item.sku === product.sku);
 
       if (IsExist) {
@@ -153,14 +165,14 @@ const UiMaker = (page = 1) => {
       }
     });
 
-    card.append(imageWrapper,name,sku,rating,price,addToCartBtn)
-
+    card.append(imageWrapper, name, sku, rating, price, addToCartBtn);
     col.appendChild(card);
     document.getElementById("Product-List").appendChild(col);
   });
 
   createPagination();
 };
+
 
 //pagination..
 const createPagination = () => {
@@ -187,53 +199,53 @@ const createPagination = () => {
 UiMaker(currentPage);
 
 //sorting
-document.getElementById("sortby").addEventListener("change",()=>{
-  let value=document.getElementById("sortby").value
+document.getElementById("sortby").addEventListener("change", () => {
+  let value = document.getElementById("sortby").value;
   console.log(value);
-  if(value=="lth"){
-    data.sort((a,b)=>parseFloat(a.price)-parseFloat(b.price))
-  }else if(value=="htl"){
-    data.sort((a,b)=>parseFloat(b.price)-parseFloat(a.price))
+  if (value == "lth") {
+    data.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+  } else if (value == "htl") {
+    data.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
   }
-  UiMaker(currentPage); 
-})
+  UiMaker(currentPage);
+});
 
 //ratingFilter
-// document.getElementById("ratingFilter").addEventListener("change",()=>{
-//   let value=document.getElementById("ratingFilter").value
-//   console.log(value);
-//   if(value=="4"){
-//     data=data.filter((product)=>parseFloat(product.rating)>=4)
-//   }else if(value=="3"){
-//     data=data.filter((product)=>parseFloat(product.rating)>=3)
-//   }else if(value=="2"){
-//     data=data.filter((product)=>parseFloat(product.rating)>=2)
-//   }else if(value=="1"){
-//     data=data.filter((product)=>parseFloat(product.rating)>=1)
-//   }
-//   UiMaker(currentPage); 
-// })
+document.getElementById("ratingFilter").addEventListener("change",()=>{
+  let value=document.getElementById("ratingFilter").value
+  console.log(value);
+  if(value=="4"){
+    data=ProductData.filter((product)=>parseFloat(product.rating)>=4)
+  }else if(value=="3"){
+    data=ProductData.filter((product)=>parseFloat(product.rating)>=3)
+  }else if(value=="2"){
+    data=ProductData.filter((product)=>parseFloat(product.rating)>=2)
+  }else if(value=="1"){
+    data=ProductData.filter((product)=>parseFloat(product.rating)>=1)
+  }
+  UiMaker(currentPage);
+})
 
 //slider of filterbar
-// document.getElementById("priceRange").addEventListener("input", function() {
-//   let Price = document.getElementById("priceRange").value;
-//   document.getElementById("priceRangeValue").innerHTML = Price;
+document.getElementById("priceRange").addEventListener("input", function () {
+  let Price = document.getElementById("priceRange").value;
+  document.getElementById("priceRangeValue").innerHTML = Price;
+  data = ProductData.filter((product) => parseFloat(product.price) <= Price);
 
-//   let datas = data.filter((product) => parseFloat(product.price) <= Price);
-//   console.log(datas);
-
-//   UiMaker(currentPage);
-
-// });
+  UiMaker(currentPage);
+});
 
 //filter by category
-document.getElementById("categoryFilter").addEventListener("change",()=>{
-  let value=document.getElementById("categoryFilter").value
+document.getElementById("categoryFilter").addEventListener("change", () => {
+  let value = document.getElementById("categoryFilter").value;
   console.log(value);
-  if(value=="all"){
-    data=ProductData
-  }else{
-    data=data.filter((product)=>product.categoty==value)
+
+  if (value == "all") {
+    data = ProductData;
+  } else {
+    data = ProductData.filter((product) => product.categoty == value);
   }
-  UiMaker(currentPage); 
-})
+
+  currentPage = 1;
+  UiMaker(currentPage);
+});
