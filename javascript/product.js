@@ -11,6 +11,8 @@ import { ExportCartCount } from "./cart.js";
 document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("navbar").innerHTML = Navbar();
 
+  SearchValue()
+
   const count = await ExportCartCount();
   document.getElementById("cart-count").innerText = `(${count})`;
 

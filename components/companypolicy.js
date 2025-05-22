@@ -1,7 +1,7 @@
 
 const CompanyPolicy=()=>{
     return`      <div class="features-section">
-        <div class="feature">
+        <div class="feature" onclick="window.open('/PAGES/orderdetail.html')">
           <div class="icon-circle">
             <img src="/images/fast-removebg-preview.png" alt="Delivery Icon" />
           </div>
