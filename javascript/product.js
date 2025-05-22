@@ -242,6 +242,7 @@ document.getElementById("categoryFilter").addEventListener("change", () => {
 
   if (value == "all") {
     data = ProductData;
+    location.reload()
   } else {
     data = ProductData.filter((product) => product.categoty == value);
   }
@@ -249,3 +250,19 @@ document.getElementById("categoryFilter").addEventListener("change", () => {
   currentPage = 1;
   UiMaker(currentPage);
 });
+
+
+(async () => {
+  let WantCategory = sessionStorage.getItem("WantOpenCategory");
+
+  let wantDisplay = sessionStorage.getItem("SelectedCategoryIndex");
+  console.log(wantDisplay);
+
+  if (WantCategory) {
+    data = ProductData.filter((product) => product.categoty === wantDisplay);
+    currentPage = 1;
+    UiMaker(currentPage);
+  }
+
+  sessionStorage.removeItem("WantOpenCategory")
+})();

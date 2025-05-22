@@ -213,3 +213,15 @@ const addToCart = async (product) => {
     location.reload();
   }
 };
+
+document.querySelectorAll(".category").forEach((category) => {
+  category.addEventListener("click", (e) => {
+    let value = e.currentTarget.innerText;
+    console.log("value", value);
+
+    sessionStorage.setItem("SelectedCategoryIndex", value);
+    sessionStorage.setItem("WantOpenCategory",true)
+
+    window.location.href="/PAGES/product.html"
+  });
+});

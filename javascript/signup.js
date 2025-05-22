@@ -112,8 +112,16 @@ document.getElementById("signupform").addEventListener("submit", async (e) => {
     return;
   }
 
+  //   let url = `https://api.whatsapp.com/send?phone=${number}&text=${message}`;
+  // let url1 = `https://api.msg91.com/api/sendhttp.php?sender=TESTIN&route=4&country=91&message=${message}&mobiles=${number}`
+  // let url2 = `https://api.msg91.com/api/v5/otp?template_id=4&mobile=${number}&authkey=YOUR_AUTH_KEY&otp=${otp}`;
+  // let url3 = `https://api.msg91.com/api/v5/otp?template_id=4&mobile=${number}&authkey=YOUR_AUTH_KEY&otp=${otp}`;
+  // let url4 = `https://api.msg91.com/api/v5/otp?template_id=4&mobile=${number}&authkey=YOUR_AUTH_KEY&otp=${otp}`;
+
   const req = await UserMethod.create(user);
   const res = await req.json();
   alert("Signup successful!");
   alert(`Your username is ->${username}`);
 });
+
+
