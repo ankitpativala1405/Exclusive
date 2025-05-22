@@ -92,7 +92,7 @@ let ProductData = [
     price: "46",
     sku: "E-DE-0605001",
     categoty: "Home & Kitchen",
-    rating: 2.0,
+    rating: 4.5,
     reviews: 60,
     description: "Correction Tape for Office and Stationery, 5mm x 8m, White.",
     dimensions: "3 x 1 x 1 inches",

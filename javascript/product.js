@@ -252,17 +252,26 @@ document.getElementById("categoryFilter").addEventListener("change", () => {
 });
 
 
-(async () => {
-  let WantCategory = sessionStorage.getItem("WantOpenCategory");
+// (async () => {
+//   let WantCategory = sessionStorage.getItem("WantOpenCategory");
+//   let wantDisplay = sessionStorage.getItem("SelectedCategoryIndex");
+//   console.log("wantDisplay", wantDisplay);
 
-  let wantDisplay = sessionStorage.getItem("SelectedCategoryIndex");
-  console.log(wantDisplay);
+//   if (wantDisplay) {
+//     document.getElementById("categoryFilter").value = wantDisplay;
 
-  if (WantCategory) {
-    data = ProductData.filter((product) => product.categoty === wantDisplay);
-    currentPage = 1;
-    UiMaker(currentPage);
-  }
+//     if (wantDisplay === "all") {
+//       data = ProductData;
+//     } else {
+//       data = ProductData.filter(
+//         (product) => product.categoty === wantDisplay
+//       );
+//     }
 
-  sessionStorage.removeItem("WantOpenCategory")
-})();
+//     currentPage = 1;
+//     UiMaker(currentPage);
+//   }
+
+//   sessionStorage.removeItem("WantOpenCategory");
+// })();
+
