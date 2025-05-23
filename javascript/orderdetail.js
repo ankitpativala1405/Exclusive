@@ -238,8 +238,8 @@ const ShowDataOnDisplay = async () => {
 };
 
 const generateStatusSteps = (currentStatus) => {
-  let steps = ["Ordered", "Payment", "Packed", "Shipped", "Delivered"];
-  let icons = ["fas fa-file-alt","fas fa-credit-card","fas fa-box-open","fas fa-truck","fas fa-check-circle"];
+  let steps = ["Ordered", "Payment", "Packed", "Shipped", "Delivered","Cancelled"];
+  let icons = ["fas fa-file-alt","fas fa-credit-card","fas fa-box-open","fas fa-truck","fas fa-check-circle", "fas fa-times-circle"];
 
   return steps.map((step, index) => {
       let statusClass =
@@ -261,7 +261,7 @@ const generateStatusSteps = (currentStatus) => {
 };
 
 const generateTrackerSteps = (currentStatus) => {
-  let steps = ["Ordered", "Payment", "Packed", "Shipped", "Delivered"];
+  let steps = ["Ordered", "Payment", "Packed", "Shipped", "Delivered","Cancelled"];
   return steps.map((step, index) => {
       const statusClass = index < steps.indexOf(currentStatus) ? "completed" : index === steps.indexOf(currentStatus) ? "active" : "";
 

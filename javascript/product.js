@@ -267,12 +267,17 @@ document.getElementById("categoryFilter").addEventListener("change", () => {
 
 const SearchValue = () => {
   document.querySelector(".search-box").addEventListener("input", function () {
-    const SearchValue = this.value.trim().toLowerCase();
-    data = ProductData.filter((product) =>product.name.toLowerCase().includes(SearchValue) || product.description.toLowerCase().includes(SearchValue) )
+    const searchValue = this.value.trim().toLowerCase();
+    data = ProductData.filter((product) => 
+      product.name.toLowerCase().includes(searchValue)
+     ||
+      (product.description && product.description.toLowerCase().includes(searchValue))
+    );
     currentPage = 1;
     UiMaker(currentPage);
   });
 };
+
 
 (async () => {
   let WantCategory = sessionStorage.getItem("WantOpenCategory");

@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     ...item,
     orderId: orderId,
     date: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata", hour12: true }),
-    status: "Pending",
+    status: "Ordered",
     payment: SelectedPayment,
     total: item.price * (item.quantity || 1),
   }));

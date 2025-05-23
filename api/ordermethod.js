@@ -23,16 +23,6 @@ const OrderMethod = {
       body: JSON.stringify(data),
     });
   },
-  // Create: async (data) => {
-  //   let request = await fetch("http://localhost:4000/order", {
-  //     method: "POST",
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //     body: JSON.stringify(data),
-  //   });
-  //   return request;
-  // },
   delete: async (id) => {
     let req = await fetch(`http://localhost:4000/order/${id}`, {
       method: "DELETE",
@@ -49,6 +39,23 @@ const OrderMethod = {
   });
   return request; // you'll call .json() later in handler
 },
+ UpdateStatus: async (id, status) => {
+    const res = await fetch(`http://localhost:4000/order/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ status })
+    });
+
+    if (!res.ok) {
+      const errorMsg = await res.text();
+      console.error("Server response:", errorMsg);
+      throw new Error("Failed to update status");
+    }
+
+    return await res.json();
+  }
 };
 
 export default OrderMethod;

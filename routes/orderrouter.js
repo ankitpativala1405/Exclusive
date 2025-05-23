@@ -6,5 +6,7 @@ orderrouter.get("/",OrderController.getAll)
 orderrouter.post("/",OrderController.post)
 orderrouter.delete("/:sku",OrderController.delete)
 orderrouter.patch("/:id",OrderController.update)
+orderrouter.patch("/order/:id",OrderController.UpdateStatus);
+
 
 module.exports=orderrouter

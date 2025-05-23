@@ -51,5 +51,22 @@ const OrderController = {
     });
     res.status(200).json(updatedItem);
   },
+UpdateStatus: async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    try {
+        const updatedOrder = await OrderItem.findByIdAndUpdate(id, { status }, { new: true });
+
+        if (!updatedOrder) {
+            return res.status(404).send("Order not found");
+        }
+
+        res.json(updatedOrder);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error updating order status");
+    }
+}
 };
 module.exports = OrderController;
