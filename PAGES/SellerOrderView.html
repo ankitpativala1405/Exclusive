@@ -12,6 +12,30 @@
 
 <body>
   <div id="navbar"></div>
+
+    <!-- Change Status Form -->
+  <div id="statusFormContainer" style="display:none; padding: 1rem; border: 1px solid #ccc; margin-top: 20px;">
+    <h3>Update Order Status</h3>
+    <form id="statusForm">
+      <input type="hidden" id="orderIdInput" />
+      <div>
+        <label for="statusSelect">Status:</label>
+        <select id="statusSelect" required>
+          <option value="">Select status</option>
+          <option value="Ordered">Ordered</option>
+          <option value="Payment">Payment</option>
+          <option value="Packed">Packed</option>
+          <option value="Shipped">Shipped</option>
+          <option value="Delivered">Delivered</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+      </div>
+      <button type="submit">Update Status</button>
+      <button type="button" id="cancelFormBtn">Cancel</button>
+    </form>
+  </div>
+
+  
   <h1>Seller Order View</h1>
 
   <div class="table-wrapper">
@@ -65,27 +89,7 @@
     </table>
   </div>
 
-  <!-- Change Status Form -->
-  <div id="statusFormContainer" style="display:none; padding: 1rem; border: 1px solid #ccc; margin-top: 20px;">
-    <h3>Update Order Status</h3>
-    <form id="statusForm">
-      <input type="hidden" id="orderIdInput" />
-      <div>
-        <label for="statusSelect">Status:</label>
-        <select id="statusSelect" required>
-          <option value="">Select status</option>
-          <option value="Ordered">Ordered</option>
-          <option value="Payment">Payment</option>
-          <option value="Packed">Packed</option>
-          <option value="Shipped">Shipped</option>
-          <option value="Delivered">Delivered</option>
-          <option value="Cancelled">Cancelled</option>
-        </select>
-      </div>
-      <button type="submit">Update Status</button>
-      <button type="button" id="cancelFormBtn">Cancel</button>
-    </form>
-  </div>
+
 
 </body>
 <script type="module" src="/javascript/SellerOrderView.js"></script>

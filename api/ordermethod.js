@@ -37,7 +37,7 @@ const OrderMethod = {
     },
     body: JSON.stringify(data),
   });
-  return request; // you'll call .json() later in handler
+  return request; 
 },
  UpdateStatus: async (id, status) => {
     const res = await fetch(`http://localhost:4000/order/${id}`, {
@@ -47,13 +47,6 @@ const OrderMethod = {
       },
       body: JSON.stringify({ status })
     });
-
-    if (!res.ok) {
-      const errorMsg = await res.text();
-      console.error("Server response:", errorMsg);
-      throw new Error("Failed to update status");
-    }
-
     return await res.json();
   }
 };
