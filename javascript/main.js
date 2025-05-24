@@ -90,7 +90,7 @@ const displayProductsTodaySell = (products) => {
       <div class="product">
         <div id="discount">-30%</div>
         <img src="${product.img}" alt="${product.name}" />
-        <h3>${product.name}</h3>
+        <h3 class="product-name-today">${product.name}</h3>
         <p>
           <strong>₹${product.price}</strong>
           <span class="original-price">₹${product.mrp}</span>
@@ -130,7 +130,7 @@ const displayBestSellingProducts = (products) => {
     img.alt = product.name;
 
     const nameDiv = document.createElement("div");
-    nameDiv.className = "product-name";
+    nameDiv.className = "product-name product-name-month";
     nameDiv.textContent = product.name;
 
     const priceDiv = document.createElement("div");

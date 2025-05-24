@@ -278,3 +278,20 @@ header {
     margin-left: 600px;
     margin-right: -100px;
   }
+
+
+  .product-name-today{
+      white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+
+  }
+
+  .product-name-month{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 285px;
+  }
+
