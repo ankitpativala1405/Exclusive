@@ -7,27 +7,17 @@ import Navbar from "../components/navbar.js";
 import ProductData from "../public/productdata.js";
 import { ExportCartCount } from "./cart.js";
 
-// Product gallery switching logic
-// document.querySelectorAll(".product-gallery-thumb").forEach(function (thumb) {
-//   thumb.addEventListener("click", function () {
-//     document.getElementById("mainProductImage").src = this.dataset.large;
-//     document.querySelectorAll(".product-gallery-thumb").forEach((t) => t.classList.remove("active"));
-//     this.classList.add("active");
-//   });
-// });
+function generateStarRating(rating) {
+  const fullStars = Math.floor(rating);
+  const halfStar = rating % 1 >= 0.5 ? 1 : 0;
+  const emptyStars = 5 - fullStars - halfStar;
 
-// document.getElementById("btn-decrease").onclick = function () {
-//   var qty = document.getElementById("qty-input");
-//   qty.value = Math.max(1, parseInt(qty.value, 10) - 1);
-// };
-// document.getElementById("btn-decrease").addEventListener("click", () => {
-//   let qty = document.getElementById("qty-input");
-//   qty.value = Math.max(1, parseInt(qty.value, 10) - 1);
-// });
-// document.getElementById("btn-increase").onclick = function () {
-//   var qty = document.getElementById("qty-input");
-//   qty.value = parseInt(qty.value, 10) + 1;
-// };
+  let starHTML = "";
+  for (let i = 0; i < fullStars; i++) starHTML += "&#9733;";
+  if (halfStar) starHTML += "&#189;";
+  for (let i = 0; i < emptyStars; i++) starHTML += "&#9734;";
+  return starHTML;
+}
 
 document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("navbar").innerHTML = Navbar();
@@ -75,83 +65,58 @@ document.getElementById("companypolicy").innerHTML = CompanyPolicy();
 
 const ShowDataDisplay = () => {
   let data = ProductData;
-
   let LsData = JSON.parse(localStorage.getItem("ViewProductDetail"));
-
   let ShowData = data.find((data) => data.sku == LsData.sku);
 
-  console.log("ShowData", ShowData);
-
   if (ShowData) {
+    // Generate dynamic star rating
+    const rating = ShowData.rating || 0;
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 >= 0.5 ? 1 : 0;
+    const emptyStars = 5 - fullStars - halfStar;
+
+    let starHTML = "";
+    for (let i = 0; i < fullStars; i++) {
+      starHTML += `<i class="fa-solid fa-star"></i>`;
+    }
+    if (halfStar) {
+      starHTML += `<i class="fa-solid fa-star-half-stroke"></i>`;
+    }
+    for (let i = 0; i < emptyStars; i++) {
+      starHTML += `<i class="fa-regular fa-star"></i>`;
+    }
+
     document.getElementById("FindProductview").innerHTML = `
-          <div class="row g-4 align-items-start" id="ProductInfoDetail">
-        <!-- Gallery column -->
+      <div class="row g-4 align-items-start" id="ProductInfoDetail">
         <div class="col-lg-2 gallery-col">
           <div id="gallery-thumbs">
-            <img
-              src="${ShowData.img2}"
-              class="img-fluid product-gallery-thumb active"
-              data-large="/images/ProductImages/0/Magic-Silicone-Cleaning-Hand-Glove-1.jpg"
-              alt="Thumbnail 1"
-            />
-            <img
-              src="${ShowData.img3}"
-              class="img-fluid product-gallery-thumb"
-              data-large="https://img.icons8.com/color/400/000000/controller.png"
-              alt="Thumbnail 2"
-            />
-            <img
-              src="${ShowData.img4}"
-              class="img-fluid product-gallery-thumb"
-              data-large="https://img.icons8.com/doodle/400/000000/controller.png"
-              alt="Thumbnail 3"
-            />
-            <img
-              src="${ShowData.img5}"
-              class="img-fluid product-gallery-thumb"
-              data-large="https://img.icons8.com/office/400/000000/controller.png"
-              alt="Thumbnail 4"
-            />
+            <img src="${ShowData.img2}" class="img-fluid product-gallery-thumb active" data-large="${ShowData.img2}" alt="Thumbnail 1" />
+            <img src="${ShowData.img3}" class="img-fluid product-gallery-thumb" data-large="${ShowData.img3}" alt="Thumbnail 2" />
+            <img src="${ShowData.img4}" class="img-fluid product-gallery-thumb" data-large="${ShowData.img4}" alt="Thumbnail 3" />
+            <img src="${ShowData.img5}" class="img-fluid product-gallery-thumb" data-large="${ShowData.img5}" alt="Thumbnail 4" />
           </div>
         </div>
 
-        <!-- Main image column -->
         <div class="col-lg-5 main-img-col text-center" id="MainImage">
-          <img
-            id="mainProductImage"
-            src="${ShowData.img}"
-            class="img-fluid rounded"
-            style="
-              width: 600px;
-              height: 600px;
-              background: #fff;
-              padding: 24px;
-              margin-left: -21px;
-            "
-            alt="Main Product Image"
-          />
+          <img id="mainProductImage" src="${ShowData.img}" class="img-fluid rounded" style="width: 600px; height: 600px; background: #fff; padding: 24px; margin-left: -21px;" alt="Main Product Image"/>
         </div>
 
-        <!-- Product info column -->
         <div class="col-lg-5 info-col">
           <h4>${ShowData.name}</h4>
           <div class="d-flex align-items-center mb-2">
-            <div class="me-2">
-              <span class="text-warning"
-                >&#9733;&#9733;&#9733;&#9733;&#9734;</span
-              >
-              <span class="text-muted ms-1">(150 Reviews)</span>
+            <div class="me-2 text-warning">${starHTML}
+              <span class="text-muted ms-1">(${ShowData.reviews || 0} Reviews)</span>
             </div>
             <span class="badge bg-success ms-2">In Stock</span>
           </div>
           <div class="fs-4 fw-bold mb-2" style="color: #232323">₹${ShowData.price}</div>
-          <!-- Color selection -->
+
           <div class="mb-2">
             <span class="me-2">Colours:</span>
-            <button class="btn btn-sm rounded-circle" style=" background: #222; width: 28px; height: 28px; border: 1.5px solid #ccc;"></button>
-            <button class="btn btn-sm rounded-circle" style=" background: #e9ecef; width: 28px; height: 28px; border: 1.5px solid #ccc;"></button>
+            <button class="btn btn-sm rounded-circle" style="background: #222; width: 28px; height: 28px; border: 1.5px solid #ccc;"></button>
+            <button class="btn btn-sm rounded-circle" style="background: #e9ecef; width: 28px; height: 28px; border: 1.5px solid #ccc;"></button>
           </div>
-          <!-- Size selection -->
+
           <div class="mb-2 product-size">
             <span class="me-2">Size:</span>
             <input type="radio" class="btn-check" name="size" id="sizeXS" autocomplete="off"/>
@@ -165,7 +130,7 @@ const ShowDataDisplay = () => {
             <input type="radio" class="btn-check" name="size" id="sizeXL" autocomplete="off"/>
             <label class="btn btn-outline-secondary btn-sm" for="sizeXL">XL</label>
           </div>
-          <!-- Quantity & Add to cart -->
+
           <div class="d-flex align-items-center mb-3">
             <div class="input-group me-3" style="width: 110px">
               <button class="btn btn-outline-secondary" id="btn-decrease" type="button">-</button>
@@ -175,11 +140,11 @@ const ShowDataDisplay = () => {
             <button class="btn btn-buy px-4" type="button" id="addToCartBtn">
               <i class="bi bi-cart-fill"></i> Add to Cart
             </button>
-            <button class="btn btn-outline-secondary ms-2" style="border-radius: 10%" title="Add to wishlist">
+            <button class="btn btn-outline-secondary ms-2" style="border-radius: 10%" title="Add to wishlist" >
               <i class="bi bi-heart"></i>
             </button>
           </div>
-          <!-- Delivery info -->
+
           <div class="border rounded p-3 bg-white mt-3 small">
             <div class="d-flex align-items-center mb-1">
               <i class="bi bi-truck me-2"></i>
@@ -191,27 +156,35 @@ const ShowDataDisplay = () => {
             <div class="d-flex align-items-center mt-2">
               <i class="bi bi-arrow-counterclockwise me-2"></i>
               <div>
-                <strong>Return Delivery</strong><br />Free 14 Days Delivery
-                Returns.
+                <strong>Return Delivery</strong><br />Free 14 Days Delivery Returns.
                 <a href="#" class="text-decoration-underline small">Details</a>
               </div>
             </div>
           </div>
+
           <div class="mb-3 small text-secondary description">
-            PlayStation 5 Controller Skin: High quality vinyl with air channel
-            adhesive for easy bubble free install & mess free removal. Pressure
-            sensitive.
+           ${ShowData.description}
           </div>
         </div>
       </div>
-  `;
+    `;
 
+    // Register event listener after rendering
     document.getElementById("addToCartBtn").addEventListener("click", () => {
       AddToCart(ShowData);
     });
+
+    // Enable thumbnail switching
+    document.querySelectorAll(".product-gallery-thumb").forEach(function (thumb) {
+      thumb.addEventListener("click", function () {
+        document.getElementById("mainProductImage").src = this.dataset.large;
+        document.querySelectorAll(".product-gallery-thumb").forEach((t) => t.classList.remove("active"));
+        this.classList.add("active");
+      });
+    });
+
   } else {
-    document.getElementById("FindProductview").innerHTML =
-      "<p class='text-danger'>Product not found</p>";
+    document.getElementById("FindProductview").innerHTML = "<p class='text-danger'>Product not found</p>";
   }
 };
 

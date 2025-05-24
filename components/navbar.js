@@ -25,8 +25,7 @@ const Navbar = () => {
         <!-- <i class="fas fa-search"></i> -->
         <div class="icons">
          <a href="/PAGES/wishlist.html" style="text-decoration: none; color: black;">
-            <i class="far fa-heart" style="margin-top: 10px;"></i>
-              <span id="wishlist-count">(0)</span>
+            <i class="far fa-heart" style="margin-top: 10px;">&nbsp;<span id="wishlist-count">(0)</span></i>    
          </a>
 
          <a href="/PAGES/cart.html" style="text-decoration: none; color: black; display: inline-flex; align-items: center;">
