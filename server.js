@@ -1,6 +1,5 @@
 const DbConnect = require("./config/dbconnect");
 const express = require("express");
-const otpRouter =require("./routes/otprouter")
 const app = express();
 
 const cors = require("cors");
@@ -19,7 +18,6 @@ app.use("/cart", cartrouter);
 app.use("/order", orderrouter);
 app.use("/wishlist", wishlistrouter);
 app.use("/LoggedUser", LoggedRouter);
-app.use("/send-otp", otpRouter)
 
 app.listen(PORT, () => {
   console.log(`start listning onport->${PORT}....`);

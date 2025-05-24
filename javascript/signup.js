@@ -119,32 +119,6 @@ document.getElementById("signupform").addEventListener("submit", async (e) => {
   // let url3 = `https://api.msg91.com/api/v5/otp?template_id=4&mobile=${number}&authkey=YOUR_AUTH_KEY&otp=${otp}`;
   // let url4 = `https://api.msg91.com/api/v5/otp?template_id=4&mobile=${number}&authkey=YOUR_AUTH_KEY&otp=${otp}`;
 
-    // Send OTP
-  const sendOtpRes = await fetch("http://localhost:4000/send-otp", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email }),
-  });
-  const otpSendResult = await sendOtpRes.json();
-  if (!sendOtpRes.ok) {
-    alert(otpSendResult.message);
-    return;
-  }
-  alert("OTP sent to your email.");
-
-  // const userOtp = prompt("Enter the OTP sent to your email:");
-  // const verifyOtpRes = await fetch("http://localhost:4000/verify-otp", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify({ email, otp: userOtp }),
-  // });
-
-  // const otpVerifyResult = await verifyOtpRes.json();
-  // if (!otpVerifyResult.verified) {
-  //   alert("OTP verification failed. Please try again.");
-  //   return;
-  // }
-
   const req = await UserMethod.create(user);
   const res = await req.json();
   alert("Signup successful!");
