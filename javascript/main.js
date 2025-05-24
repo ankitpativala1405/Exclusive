@@ -95,7 +95,7 @@ const displayProductsTodaySell = (products) => {
           <strong>₹${product.price}</strong>
           <span class="original-price">₹${product.mrp}</span>
         </p>
-        <p class="rating">★★★★☆ (99)</p>
+        <p class="rating">${generateStarRating(product.rating)} (${product.reviews})</p>
         <button class="add-to-cart AddToCartToday">Add To Cart</button>
       </div>
     `);
@@ -139,7 +139,8 @@ const displayBestSellingProducts = (products) => {
 
     const ratingDiv = document.createElement("div");
     ratingDiv.className = "rating";
-    ratingDiv.innerHTML = `★★★★★ <span>(65)</span>`;
+    ratingDiv.innerHTML = `${generateStarRating(product.rating)} <span>(${product.reviews})</span>`;
+
 
     const buttonDiv = document.createElement("div");
     buttonDiv.className = "product-btn";
@@ -210,3 +211,26 @@ document.querySelectorAll(".category").forEach((category) => {
     window.location.href="/PAGES/product.html"
   });
 });
+
+//dynamic star
+function generateStarRating(rating) {
+  const fullStars = Math.floor(rating);
+  const halfStar = rating % 1 >= 0.5;
+  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+  let starsHTML = "";
+
+  for (let i = 0; i < fullStars; i++) {
+    starsHTML += `<i class="fas fa-star"></i>`;
+  }
+
+  if (halfStar) {
+    starsHTML += `<i class="fas fa-star-half-alt"></i>`;
+  }
+
+  for (let i = 0; i < emptyStars; i++) {
+    starsHTML += `<i class="far fa-star"></i>`;
+  }
+
+  return starsHTML;
+}
