@@ -212,7 +212,7 @@ document.querySelectorAll(".category").forEach((category) => {
   });
 });
 
-//dynamic star
+//dynamic star todaysell and monthlysell 
 function generateStarRating(rating) {
   const fullStars = Math.floor(rating);
   const halfStar = rating % 1 >= 0.5;
