@@ -53,11 +53,11 @@ const UiMaker = (page = 1) => {
 
   paginatedItems.map((product) => {
     const col = document.createElement("div");
-    col.className = "col-12 col-sm-6 col-lg-3";
+    col.className = "col-12 col-sm-6 col-lg-3 maindiv";
 
     const card = document.createElement("div");
     card.className =
-      "border p-3 rounded text-center shadow-sm position-relative";
+      "border p-3 rounded text-center shadow-sm position-relative CardHover";
 
     const imageWrapper = document.createElement("div");
     imageWrapper.className = "mb-3 position-relative";

@@ -342,3 +342,14 @@ footer{
   display: block;
   width: 100%;
 }
+
+.CardHover {
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.CardHover:hover {
+  transform: scale(1.05);
+  background-color: #e2dddd;
+  color: #000;
+}
