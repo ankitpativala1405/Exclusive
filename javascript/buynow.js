@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("navbar").innerHTML = Navbar();
 
   const count = await ExportCartCount();
-  document.getElementById("cart-count").innerText = `(${count})`;
+  document.getElementById("cart-count").innerText = `(${count || 0})`;
 
   const wishlist = await WishlistMethod.GetWishlist();
   document.getElementById("wishlist-count").innerText = `(${wishlist.length})`;

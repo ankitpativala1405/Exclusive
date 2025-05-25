@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   SearchValue();
 
   const count = await ExportCartCount();
-  document.getElementById("cart-count").innerText = `(${count})`;
+  document.getElementById("cart-count").innerText = `(${count || 0})`;
 
   document.getElementById("footer").innerHTML = Footer();
   document.getElementById("companypolicy").innerHTML = CompanyPolicy();

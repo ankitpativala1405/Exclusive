@@ -10,7 +10,7 @@ document.getElementById("footer").innerHTML = Footer();
 
 document.addEventListener("DOMContentLoaded", async () => {
   const count = await ExportCartCount();
-  document.getElementById("cart-count").innerText = `( ${count} )`;
+  document.getElementById("cart-count").innerText = `(${count || 0})`;
 
   let WantData = JSON.parse(sessionStorage.getItem("ViewOrderDetail"));
   console.log(WantData);

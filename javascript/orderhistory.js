@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("footer").innerHTML = Footer();
 
   const count = await ExportCartCount();
-  document.getElementById("cart-count").innerText = `(${count})`;
+  document.getElementById("cart-count").innerText = `(${count || 0})`;
 
   const ordersList = document.getElementById("ordersList");
 

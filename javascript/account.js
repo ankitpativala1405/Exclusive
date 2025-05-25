@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("navbar").innerHTML = Navbar();
   
     const count = await ExportCartCount();
-    document.getElementById("cart-count").innerText = `(${count})`;
+    document.getElementById("cart-count").innerText = `(${count || 0})`;
   
     document.getElementById("footer").innerHTML = Footer();
   });
