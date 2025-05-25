@@ -11,6 +11,7 @@ const cartrouter = require("./routes/cartrouter");
 const orderrouter = require("./routes/orderrouter");
 const wishlistrouter = require("./routes/wishlistrouter");
 const LoggedRouter = require("./routes/loggeduser");
+const ContactRouter = require("./routes/ContactRouter");
 
 app.use(express.json());
 app.use("/user", router);
@@ -18,6 +19,7 @@ app.use("/cart", cartrouter);
 app.use("/order", orderrouter);
 app.use("/wishlist", wishlistrouter);
 app.use("/LoggedUser", LoggedRouter);
+app.use("/contact",ContactRouter)
 
 app.listen(PORT, () => {
   console.log(`start listning onport->${PORT}....`);

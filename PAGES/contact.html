@@ -40,13 +40,13 @@
         </div>
 
         <div class="form-box">
-          <form>
+          <form id="contactform" action="/api/contact" method="POST">
             <div class="form-group">
               <input type="text" placeholder="Your Name *" id="contactname" required />
-              <input type="email" placeholder="Your Email *" required />
-              <input type="tel" placeholder="Your Phone *" required />
+              <input type="email" placeholder="Your Email *" id="contactemail" required />
+              <input type="tel" placeholder="Your Phone *" id="contactphone" required />
             </div>
-            <textarea placeholder="Your Message"></textarea>
+            <textarea placeholder="Your Message" id="contactmessage"></textarea>
             <button type="submit" class="submit-btn">Send Message</button>
           </form>
         </div>
