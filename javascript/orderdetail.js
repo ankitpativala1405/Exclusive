@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("cart-count").innerText = `(${count || 0})`;
 
   let WantData = JSON.parse(sessionStorage.getItem("ViewOrderDetail"));
-  console.log(WantData);
 
   document.getElementsByTagName(
     "h2"
@@ -136,8 +135,7 @@ const ShowDataOnDisplay = async () => {
 
     if (matchedOrders.length > 0) {
     const order = matchedOrders[0];
-    console.log("order",order);
-    
+   
 
     // Convert price-related fields to numbers
     const price = parseFloat(order.price) || 0;

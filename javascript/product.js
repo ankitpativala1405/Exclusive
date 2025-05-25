@@ -94,7 +94,6 @@ const UiMaker = (page = 1) => {
       let AllWishlist = await WishlistMethod.GetWishlist();
 
       let IsExist = AllWishlist.find((item) => item.sku == product.sku);
-      console.log("IsExist", IsExist);
 
       if (IsExist) {
         alert("PRoduct Already exist");
@@ -227,7 +226,6 @@ UiMaker(currentPage);
 //sorting
 document.getElementById("sortby").addEventListener("change", () => {
   let value = document.getElementById("sortby").value;
-  console.log(value);
   if (value == "lth") {
     data.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
   } else if (value == "htl") {
@@ -239,7 +237,6 @@ document.getElementById("sortby").addEventListener("change", () => {
 //ratingFilter
 document.getElementById("ratingFilter").addEventListener("change", () => {
   let value = document.getElementById("ratingFilter").value;
-  console.log(value);
   if (value == "4") {
     data = ProductData.filter((product) => parseFloat(product.rating) >= 4);
   } else if (value == "3") {
@@ -265,7 +262,6 @@ document.getElementById("priceRange").addEventListener("input", function () {
 document.getElementById("categoryFilter").addEventListener("change", () => {
   RemoveSessionStorage();
   let value = document.getElementById("categoryFilter").value;
-  console.log(value);
 
   if (value == "all") {
     data = ProductData;
@@ -301,7 +297,6 @@ const RemoveSessionStorage = () => {
 (async () => {
   let WantCategory = sessionStorage.getItem("WantOpenCategory");
   let wantDisplay = sessionStorage.getItem("SelectedCategoryIndex");
-  console.log("wantDisplay", wantDisplay);
 
   if (wantDisplay) {
     document.getElementById("categoryFilter").value = wantDisplay;

@@ -279,7 +279,6 @@ const UiMaker = (CartItem) => {
         await CartMethod.Update(item.sku, { quantity: newQty });
       } catch (error) {
         console.error("Failed to update quantity:", error);
-        alert("Error updating quantity. Please try again.");
       }
     }
 

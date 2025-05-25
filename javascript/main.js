@@ -209,7 +209,6 @@ const addToCart = async (product) => {
 document.querySelectorAll(".category").forEach((category) => {
   category.addEventListener("click", (e) => {
     let value = e.currentTarget.innerText;
-    console.log("value", value);
 
     sessionStorage.setItem("SelectedCategoryIndex", value);
     sessionStorage.setItem("WantOpenCategory", true);

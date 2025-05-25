@@ -17,8 +17,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let matchedOrders = allOrders.filter((order) =>order.username === sessionData.username && order.orderId === sessionData.orderId &&
    order.sku === sessionData.sku);
-
-   console.log("matchedOrders",matchedOrders);
    
   let LsUser = JSON.parse(localStorage.getItem("user"));
   if (!LsUser) {

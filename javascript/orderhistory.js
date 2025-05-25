@@ -98,7 +98,6 @@ const UiMaker = (orders, page = 1) => {
     btnReorder.style.border = "none";
     btnReorder.style.color = "white";
     btnReorder.addEventListener("click", () => {
-      console.log(product);
       localStorage.setItem("ReorderItem",JSON.stringify(product)) 
       alert("srored")
     });
@@ -171,7 +170,6 @@ document.getElementById("methodSelect").addEventListener("change", () => {
 //sort by latest-oldest
 document.getElementById("sortSelect").addEventListener("change", () => {
   const sortValue = document.getElementById("sortSelect").value;
-  console.log("sortValue", sortValue);
 
   if (sortValue === "latest") {
     filteredOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -185,7 +183,6 @@ document.getElementById("sortSelect").addEventListener("change", () => {
 //search by Product-Name or SKU or OrderID
 document.getElementById("orderSearch").addEventListener("input", (e) => {
   let SearchValue = e.target.value.trim();
-  console.log("SearchValue", SearchValue);
   for (let i = 0; i < filteredOrders.length; i++) {
     let temp = filteredOrders.filter( (ele) => ele.orderId.toString().includes(SearchValue) || ele.sku.toLowerCase().includes(SearchValue.toLowerCase()) ||
     ele.name.toLowerCase().includes(SearchValue.toLowerCase())

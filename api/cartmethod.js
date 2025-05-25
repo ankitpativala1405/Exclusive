@@ -31,7 +31,7 @@ export const CartMethod = {
     const allItems = CartItem.filter(
       (products) => products.username == LsUser.username
     );
-    console.log("allItems", allItems);
+
     const deleteall = allItems.map((item) =>
       fetch(`${apiUrl.carts}/${item.sku}`, {
         method: "DELETE",
