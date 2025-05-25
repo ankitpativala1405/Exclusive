@@ -1,9 +1,11 @@
 import { CartMethod } from "../api/cartmethod.js";
 import LoginMethod from "../api/loginmethod.js";
 import OrderMethod from "../api/ordermethod.js";
+import { UserDetailMethod } from "../api/UserDetailMethod.js";
 import WishlistMethod from "../api/wishlistmethod.js";
 import Footer from "../components/footer.js";
 import Navbar from "../components/navbar.js";
+import { GetValue } from "../utils/GetValue.js";
 import { ExportCartCount } from "./cart.js";
 
 const WishListCartCount = async () => {
@@ -151,34 +153,75 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  document.getElementById("GetOrder").addEventListener("click", async () => {
-  const orderId = `EDEO${Date.now()}`;
-  let selectedPaymentInput = document.querySelector('input[name="payment"]:checked');
+  document.getElementById("GetOrder").addEventListener("click", async () => {    
+    let LsUser = JSON.parse(localStorage.getItem("user"));
 
-  if (!selectedPaymentInput) {
-    alert("Please select a payment method.");
-    return;
-  }
+    if (!LsUser) {
+      alert("You Are Not Still loggedIn. Please Login First...");
+      return;
+    }
 
-  let SelectedPayment = selectedPaymentInput.value;
+    let MUser = await LoginMethod.GetAll();
+    let LoggedUser = MUser.find((user) => user.username === LsUser.username);
+    console.log("LoggedUser", LoggedUser.username);
+    let LoggedUserId = LoggedUser._id;
 
-  const orderItemsWithId = WantItem.map((item) => ({
-    ...item,
-    orderId: orderId,
-    date: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata", hour12: true }),
-    status: "Ordered",
-    payment: SelectedPayment,
-    total: item.price * (item.quantity || 1),
-  }));
+    let UserDetail = {
+      name: GetValue("UserName"),
+      number: GetValue("UserMobile"),
+      email: GetValue("UserEmail"),
+      apartment: GetValue("UserApartment"),
+      street: GetValue("UserStreet"),
+      city: GetValue("UserCity"),
+      state: GetValue("UserState"),
+      pincode: GetValue("UerPincode"),
+      username:LoggedUser.username
+    };
+    console.log("UserDetail",UserDetail);
 
-  // Use OrderMethod instead of CartMethod here
-  const req = await OrderMethod.Create(orderItemsWithId);
-  const res = await req.json();
+    if (
+      LoggedUser.number != UserDetail.number ||
+      LoggedUser.email != UserDetail.email
+    ) {
+      let UserChoise = confirm(
+        `Your Mobile Number Or Your Email Not Match With You LoggedIn Already...!!\n"Click-Ok" To If You Want To Update Them Or \n "Click-Cancel" to Change Them.`
+      );
+      if (UserChoise) {
+        await UserDetailMethod.Post(LoggedUserId, UserDetail);
+      }
+    }
 
-  alert(`Order successful! Order ID: ${orderId}`);
-  
-  // Optionally clear the cart
-  // await CartMethod.DeleteAll();
-});
+ 
+    const orderId = `EDEO${Date.now()}`;
+    let selectedPaymentInput = document.querySelector(
+      'input[name="payment"]:checked'
+    );
 
+    if (!selectedPaymentInput) {
+      alert("Please select a payment method.");
+      return;
+    }
+
+    let SelectedPayment = selectedPaymentInput.value;
+
+    const orderItemsWithId = WantItem.map((item) => ({
+      ...item,
+      orderId: orderId,
+      date: new Date().toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        hour12: true,
+      }),
+      status: "Ordered",
+      payment: SelectedPayment,
+      total: item.price * (item.quantity || 1),
+    }));
+
+    const req = await OrderMethod.Create(orderItemsWithId);
+    const res = await req.json();
+
+    alert(`Order successful! Order ID: ${orderId}`);
+
+    // Optionally clear the cart
+    // await CartMethod.DeleteAll();
+  });
 })();
