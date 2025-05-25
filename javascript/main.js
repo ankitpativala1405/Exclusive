@@ -86,19 +86,26 @@ const displayProductsTodaySell = (products) => {
   container.innerHTML = ""; // Clear first
 
   products.forEach((product, index) => {
-    container.insertAdjacentHTML("beforeend", `
+    container.insertAdjacentHTML(
+      "beforeend",
+      `
       <div class="product">
-        <div id="discount">-30%</div>
+        <div id="discount">${Math.round(
+          (parseFloat(product.price) * 100) / parseFloat(product.mrp) - 100
+        )}%</div>
         <img src="${product.img}" alt="${product.name}" />
         <h3 class="product-name-today">${product.name}</h3>
         <p>
           <strong>₹${product.price}</strong>
           <span class="original-price">₹${product.mrp}</span>
         </p>
-        <p class="rating">${generateStarRating(product.rating)} (${product.reviews})</p>
+        <p class="rating">${generateStarRating(product.rating)}
+           <span class="review-text">(${product.reviews})</span>
+        </p>
         <button class="add-to-cart AddToCartToday">Add To Cart</button>
       </div>
-    `);
+    `
+    );
   });
 
   document.querySelectorAll(".AddToCartToday").forEach((btn, index) => {
@@ -107,7 +114,6 @@ const displayProductsTodaySell = (products) => {
     });
   });
 };
-
 
 const randomFourProducts = getRandomProducts(ProductData, 4);
 displayProductsTodaySell(randomFourProducts);
@@ -139,8 +145,9 @@ const displayBestSellingProducts = (products) => {
 
     const ratingDiv = document.createElement("div");
     ratingDiv.className = "rating";
-    ratingDiv.innerHTML = `${generateStarRating(product.rating)} <span>(${product.reviews})</span>`;
-
+    ratingDiv.innerHTML = `${generateStarRating(product.rating)} <span>(${
+      product.reviews
+    })</span>`;
 
     const buttonDiv = document.createElement("div");
     buttonDiv.className = "product-btn";
@@ -162,7 +169,6 @@ const displayBestSellingProducts = (products) => {
 
 const randomFiveProducts = getRandomProducts(ProductData, 5);
 displayBestSellingProducts(randomFiveProducts);
-
 
 //add to cart
 const addToCart = async (product) => {
@@ -206,13 +212,13 @@ document.querySelectorAll(".category").forEach((category) => {
     console.log("value", value);
 
     sessionStorage.setItem("SelectedCategoryIndex", value);
-    sessionStorage.setItem("WantOpenCategory",true)
+    sessionStorage.setItem("WantOpenCategory", true);
 
-    window.location.href="/PAGES/product.html"
+    window.location.href = "/PAGES/product.html";
   });
 });
 
-//dynamic star todaysell and monthlysell 
+//dynamic star todaysell and monthlysell
 function generateStarRating(rating) {
   const fullStars = Math.floor(rating);
   const halfStar = rating % 1 >= 0.5;
@@ -232,5 +238,14 @@ function generateStarRating(rating) {
     starsHTML += `<i class="far fa-star"></i>`;
   }
 
-  return starsHTML;
+  let colorClass = "";
+  if (rating < 2) {
+    colorClass = "rating-red";
+  } else if (rating <= 3.5) {
+    colorClass = "rating-yellow";
+  } else {
+    colorClass = "rating-green";
+  }
+
+  return `<span class="${colorClass}">${starsHTML}</span>`;
 }

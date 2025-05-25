@@ -295,3 +295,19 @@ header {
     max-width: 285px;
   }
 
+  .rating-red i {
+  color: red;
+}
+
+.rating-yellow i {
+  color: #f0ad4e; 
+}
+
+.rating-green i {
+  color: green;
+}
+
+.review-text {
+  color: black;
+  margin-left: 4px;
+}

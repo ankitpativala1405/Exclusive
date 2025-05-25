@@ -11,14 +11,19 @@ import { ExportCartCount } from "./cart.js";
 document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("navbar").innerHTML = Navbar();
 
-  SearchValue()
+  SearchValue();
 
   const count = await ExportCartCount();
   document.getElementById("cart-count").innerText = `(${count})`;
 
   document.getElementById("footer").innerHTML = Footer();
   document.getElementById("companypolicy").innerHTML = CompanyPolicy();
-  SearchValue()
+  SearchValue();
+
+  setTimeout(() => {
+    sessionStorage.clear();
+    location.reload();
+  }, 30000);
 });
 
 const WishListCartCount = async () => {
@@ -86,15 +91,15 @@ const UiMaker = (page = 1) => {
       let LoggedUsername = LoggedUser.username;
       let wishlistAdd = { ...product, username: LoggedUsername };
 
-      let AllWishlist=await WishlistMethod.GetWishlist()
+      let AllWishlist = await WishlistMethod.GetWishlist();
 
-      let IsExist=AllWishlist.find((item)=>item.sku == product.sku)
-      console.log("IsExist",IsExist);
+      let IsExist = AllWishlist.find((item) => item.sku == product.sku);
+      console.log("IsExist", IsExist);
 
-      if(IsExist){
-        alert("PRoduct Already exist")
+      if (IsExist) {
+        alert("PRoduct Already exist");
       }
-      
+
       // await (await CartMethod.PostWishlist(wishlistAdd)).json();
       alert("Added to Wishlist");
       // location.reload();
@@ -121,7 +126,14 @@ const UiMaker = (page = 1) => {
     sku.innerText = `SKU: ${product.sku}`;
 
     const rating = document.createElement("div");
-    rating.className = "text-warning";
+    let ratingValue = parseFloat(product.rating) || 0;
+    if (ratingValue < 2) {
+      rating.className = "text-danger"; // red
+    } else if (ratingValue >= 2 && ratingValue <= 3.5) {
+      rating.className = "text-warning"; // yellow
+    } else {
+      rating.className = "text-success"; // green
+    }
     let stars = "";
     let fullStars = Math.floor(product.rating || 0);
     let halfStar = product.rating % 1 >= 0.5 ? 1 : 0;
@@ -251,6 +263,7 @@ document.getElementById("priceRange").addEventListener("input", function () {
 
 //filter by category
 document.getElementById("categoryFilter").addEventListener("change", () => {
+  RemoveSessionStorage();
   let value = document.getElementById("categoryFilter").value;
   console.log(value);
 
@@ -268,16 +281,22 @@ document.getElementById("categoryFilter").addEventListener("change", () => {
 const SearchValue = () => {
   document.querySelector(".search-box").addEventListener("input", function () {
     const searchValue = this.value.trim().toLowerCase();
-    data = ProductData.filter((product) => 
-      product.name.toLowerCase().includes(searchValue)
-     ||
-      (product.description && product.description.toLowerCase().includes(searchValue))
+    data = ProductData.filter(
+      (product) =>
+        product.name.toLowerCase().includes(searchValue) ||
+        (product.description &&
+          product.description.toLowerCase().includes(searchValue))
     );
     currentPage = 1;
     UiMaker(currentPage);
   });
 };
 
+const RemoveSessionStorage = () => {
+  sessionStorage.removeItem("SelectedCategoryIndex");
+  sessionStorage.removeItem("WantOpenCategory");
+  sessionStorage.removeItem("CategorySelectionTime");
+};
 
 (async () => {
   let WantCategory = sessionStorage.getItem("WantOpenCategory");
