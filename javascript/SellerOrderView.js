@@ -49,7 +49,6 @@ const renderTable = (data) => {
 
 const setupFilters = () => {
   const filterElements = document.querySelectorAll("#filter-row input[data-key], #filter-row select");
-
   filterElements.forEach(el => {
     el.addEventListener("input", filterData);
     el.addEventListener("change", filterData);
@@ -72,8 +71,7 @@ const filterData = () => {
 
   const filtered = allOrders.filter(order => {
     const matches = Object.entries(filters).every(([key, val]) =>
-      val === "" || order[key]?.toString().toLowerCase().includes(val)
-    );
+      val === "" || order[key]?.toString().toLowerCase().includes(val));
 
     if (!matches) return false;
 
