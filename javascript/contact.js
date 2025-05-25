@@ -1,4 +1,5 @@
 import Contactmethod from "../api/ContactMethod.js";
+import LoginMethod from "../api/loginmethod.js";
 import WishlistMethod from "../api/wishlistmethod.js";
 import CompanyPolicy from "../components/companypolicy.js";
 import Footer from "../components/footer.js";
@@ -42,7 +43,26 @@ document.getElementById("contactform").addEventListener("submit", async (e) => {
     number: User_Phone,
   };
 
-  await (await Contactmethod.create(User_Quary)).json
+    if (User_Name == "" || User_Email == "" || User_Message == "" || User_Phone == "") {
+    alert("Please Fill All The Fields");
+    return;
+  }
 
-  alert("Your Query has been submitted successfully");
+  let LsUser = JSON.parse(localStorage.getItem("user"));
+  if (!LsUser) {
+    alert("You Are Not Still loggedIn Please Login First...");
+    return;
+  }
+  let MUser = await LoginMethod.GetAll();
+  let LoggedUser = MUser.find((user) => user.username == LsUser.username);
+
+  if(User_Phone != LoggedUser.number ){
+    alert("Please Enter Your Correct Phone Number. You Enter Wrong Number With registered Number");
+    return;
+  }
+
+  await(await Contactmethod.create(User_Quary)).json;
+
+  alert("Your Query has been submitted successfully.\n Our team will contact you soon.");
+  document.getElementById("contactform").reset();
 });
