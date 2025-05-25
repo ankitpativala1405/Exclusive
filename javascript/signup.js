@@ -113,6 +113,12 @@ document.getElementById("signupform").addEventListener("submit", async (e) => {
     return;
   }
 
+//   await sendOtp(email);
+
+//   let userOtp = prompt("Enter the OTP sent to your email:");
+// let isVerified = await verifyOtp(email, userOtp);
+// if (!isVerified) return;
+
   await(await UserMethod.create(user)).json
   alert("Signup successful!");
   alert(`Your username is ->${username}`);
