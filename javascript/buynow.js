@@ -154,42 +154,42 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("GetOrder").addEventListener("click", async () => {    
-    let LsUser = JSON.parse(localStorage.getItem("user"));
+    // let LsUser = JSON.parse(localStorage.getItem("user"));
 
-    if (!LsUser) {
-      alert("You Are Not Still loggedIn. Please Login First...");
-      return;
-    }
+    // if (!LsUser) {
+    //   alert("You Are Not Still loggedIn. Please Login First...");
+    //   return;
+    // }
 
-    let MUser = await LoginMethod.GetAll();
-    let LoggedUser = MUser.find((user) => user.username === LsUser.username);
-    console.log("LoggedUser", LoggedUser.username);
-    let LoggedUserId = LoggedUser._id;
+    // let MUser = await LoginMethod.GetAll();
+    // let LoggedUser = MUser.find((user) => user.username === LsUser.username);
+    // console.log("LoggedUser", LoggedUser.username);
+    // let LoggedUserId = LoggedUser._id;
 
-    let UserDetail = {
-      name: GetValue("UserName"),
-      number: GetValue("UserMobile"),
-      email: GetValue("UserEmail"),
-      apartment: GetValue("UserApartment"),
-      street: GetValue("UserStreet"),
-      city: GetValue("UserCity"),
-      state: GetValue("UserState"),
-      pincode: GetValue("UerPincode"),
-      username:LoggedUser.username
-    };
-    console.log("UserDetail",UserDetail);
+    // let UserDetail = {
+    //   name: GetValue("UserName"),
+    //   number: GetValue("UserMobile"),
+    //   email: GetValue("UserEmail"),
+    //   apartment: GetValue("UserApartment"),
+    //   street: GetValue("UserStreet"),
+    //   city: GetValue("UserCity"),
+    //   state: GetValue("UserState"),
+    //   pincode: GetValue("UerPincode"),
+    //   username:LoggedUser.username
+    // };
+    // console.log("UserDetail",UserDetail);
 
-    if (
-      LoggedUser.number != UserDetail.number ||
-      LoggedUser.email != UserDetail.email
-    ) {
-      let UserChoise = confirm(
-        `Your Mobile Number Or Your Email Not Match With You LoggedIn Already...!!\n"Click-Ok" To If You Want To Update Them Or \n "Click-Cancel" to Change Them.`
-      );
-      if (UserChoise) {
-        await UserDetailMethod.Post(LoggedUserId, UserDetail);
-      }
-    }
+    // if (
+    //   LoggedUser.number != UserDetail.number ||
+    //   LoggedUser.email != UserDetail.email
+    // ) {
+    //   let UserChoise = confirm(
+    //     `Your Mobile Number Or Your Email Not Match With You LoggedIn Already...!!\n"Click-Ok" To If You Want To Update Them Or \n "Click-Cancel" to Change Them.`
+    //   );
+    //   if (UserChoise) {
+    //     await UserDetailMethod.Post(LoggedUserId, UserDetail);
+    //   }
+    // }
 
  
     const orderId = `EDEO${Date.now()}`;
@@ -221,7 +221,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     alert(`Order successful! Order ID: ${orderId}`);
 
-    // Optionally clear the cart
     // await CartMethod.DeleteAll();
   });
 })();
