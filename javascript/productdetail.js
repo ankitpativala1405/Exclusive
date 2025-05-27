@@ -116,7 +116,7 @@ const ShowDataDisplay = () => {
             <button class="btn btn-sm rounded-circle" style="background: #e9ecef; width: 28px; height: 28px; border: 1.5px solid #ccc;"></button>
           </div>
 
-          <div class="mb-2 product-size">
+          <div class="mb-2 product-size" style="display: block;">
             <span class="me-2">Size:</span>
             <input type="radio" class="btn-check" name="size" id="sizeXS" autocomplete="off"/>
             <label class="btn btn-outline-secondary btn-sm" for="sizeXS">XS</label>
@@ -167,6 +167,13 @@ const ShowDataDisplay = () => {
         </div>
       </div>
     `;
+
+    if (ShowData.categoty !== "Clothing") {
+    const sizeElements = document.getElementsByClassName("product-size");
+    for (let i = 0; i < sizeElements.length; i++) {
+        sizeElements[i].style.display = "none";
+    }
+}
 
     // Register event listener after rendering
     document.getElementById("addToCartBtn").addEventListener("click", () => {

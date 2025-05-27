@@ -99,7 +99,7 @@ const UiMaker = (page = 1) => {
         alert("PRoduct Already exist");
       }
 
-      // await (await CartMethod.PostWishlist(wishlistAdd)).json();
+      await (await CartMethod.PostWishlist(wishlistAdd)).json();
       alert("Added to Wishlist");
       // location.reload();
     });
